@@ -8,4 +8,4 @@ In this series of pages we make available to all users our AI tools created thro
 Last update: v.15, June 10-20, 2025.
 
 IMPORTANT:
-Create the #./upload# folder at index level
+Create the **./upload** folder at index level
