@@ -1,534 +1,296 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <title>VivacityGPT Complete</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-
-        * {
-        box-sizing: border-box;
-        }
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;        
-  height: 100vh;
-  width: 100%;
-  background-color: white;
-  background-image: url('vd_background.jpg');
-        background-position: center;
-        background-size: cover;
-}
-
-      
-
-.topnav {
-  overflow: hidden;
-  background-color: #000;
-        z-index: 100;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #fff;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: rgba(4, 190, 109, 1);
-        
-  color: black;
-}
-
-.topnav a.active {
-  background-color: rgba(4, 190, 109, 1);
-  color: white;
-}
-
-.topnav .icon {
-  display: none;
-}
-        
-.heading {
-        font-size: 2.4rem;
-        color: black;
-        text-shadow: 0 2px 8px rgba(4, 190, 109, 1);
-        backdrop-filter: blur(4px);        
-        }  
-        
-        hr {
-        background: transparent;
-                height: 4px;
-                border: 1px solid black inset;
-        }
-        
- main {
-margin: 1rem auto;
-  width: 80%;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 24px;
-  box-shadow: 0 6px 10px black;
-  margin-bottom: 1rem;
-  }
-
-#intro,
-#contentGPTS {
-  margin: 0 auto;
-  width: 90%;
-  font-size: 1rem;
-  text-align: justify;
-}
-
-#contentGPTS {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  flex-wrap: wrap;
-}
-        
-        
-.userinput {
-        width: 100%;
-        backdrop-filter: blur(4px);  
-        
-        }        
-#apikey {
-  width: 60%;
-  margin: 0.5rem;
-border-radius: 10px;
-padding: 4px 8px;
-}
-#prompt, #search-input {
-  width: 80%;
-  margin: 0.5rem;
-  resize: none;
-border-radius: 6px;
-padding: 4px 8px;
-}
-button {
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-	margin-top: 4px;
-  background: rgba(4, 190, 109, 1);
-  color: #fff;
-        transition: all .3s ease;
-}
-button:hover {
-  background: transparent;
-  color: rgba(4, 190, 109, 1);
-        border: 2px solid rgba(4, 190, 109, 1);
-}
-       
-
-    
-.card {
-  border: 1px solid #ccc; /* Bordo delle card */
-  border-radius: 10px; /* Angoli arrotondati */
-  overflow: hidden; /* Nasconde eventuali sporgenze */
-  margin: 0.25rem; /* Margine intorno alle card */
-  width: 30%; /* Larghezza delle card, raggruppate in due */
-  height: 26rem;
-  padding: 0.5rem;
-  backdrop-filter: blur(4px);       
-}
-
-.card-image {
-  width: 100%; /* Larghezza dell'immagine */
-  height: 200px; /* Altezza automatica */
-}
-
-.card-content {
-  padding: 15px; /* Spaziatura interna della card */
-}
-
-.card-link {
-  display: inline-block;
-  margin-top: 10px; /* Spazio sopra il link */
-  text-decoration: none; /* Rimuove la sottolineatura */
-  color: black; /* Colore del link */
-}
-
-.card-link:hover {
-  text-decoration: underline; /* Sottolinea il link al passaggio del mouse */
-}
-
-.card h2 {
-        font-size: 1.4rem;
-        text-align: left;
-        } 
-        
-  .footer {
-    font-size: 1rem;
-          color: white;
-    text-align: center;
-    margin: 1rem auto;
-    width: 100%;
-  } 
- .footer a {text-decoration: none; color: white;}        
-.footer a:hover {text-decoration: underline; }        
-        
-
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-  main {
-    margin: 20px auto;
-    width: 96%;
-    text-align: center;
-    padding: 0.25rem;
-    border-radius: 24px;
-    box-shadow: 0 6px 10px black;
-    margin-bottom: 1rem;
-  }
-
-  #contentGPTS {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-     margin: 0 auto;
-    font-size: 0.9rem;
-    text-align: justify;
-    gap: 10px;      
-  }
-
-  .heading {
-    font-size: 2rem;
-  }
-        
-  #intro {
-    margin: 0 auto;
-    width: 98%;
-    font-size: 0.9rem;
-    text-align: justify;
-  }
-  
-
-.card-content h2 {
-        font-size: 1.2rem;
-        }        
-        
-  .footer {
-    font-size: 0.7rem;
-    text-align: center;
-    margin: 0.5rem auto;
-    width: 100%;
-  }
-
-  .card {
-    border: 1px solid #ccc; /* Bordo delle card */
-    border-radius: 10px; /* Angoli arrotondati */
-    overflow: hidden; /* Nasconde eventuali sporgenze */
-    margin: 10px 4px; /* Margine intorno alle card */
-    width: auto; /* Larghezza delle card, raggruppate in due */
-    height: auto;
-    padding: 0.25rem 0;
-  }
-  .card-image {
-    width: 100%; /* Larghezza dell'immagine */
-    height: 200px; /* Altezza automatica */
-  }
-
-  .card-content {
-    padding: 8px; /* Spaziatura interna della card */
-  }
-
-  .card-link {
-    display: inline-block;
-    margin-top: 10px; /* Spazio sopra il link */
-    text-decoration: none; /* Rimuove la sottolineatura */
-    color: black; /* Colore del link */
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .topnav.responsive {
-    position: relative;
-  }
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  main {
-    margin: 10px auto;
-    width: 90%;
-    text-align: center;
-    padding: 0.5rem;
-    border-radius: 24px;
-    box-shadow: 0 6px 10px black;
-    margin-bottom: 1rem;
-  }
-  .heading {
-    font-size: 2rem;
-  }
-  #intro,
-  #contentGPTS {
-    margin: 0 auto;
-    width: 95%;
-    font-size: 0.9rem;
-    text-align: justify;
-  }
-
-  .footer {
-    font-size: 0.7rem;
-    text-align: center;
-    margin: 0.5rem auto;
-    width: 100%;
-  }
-
-  .card {
-    border: 1px solid #ccc; /* Bordo delle card */
-    border-radius: 10px; /* Angoli arrotondati */
-    overflow: hidden; /* Nasconde eventuali sporgenze */
-    margin: 0.25rem; /* Margine intorno alle card */
-    width: 45%; /* Larghezza delle card, raggruppate in due */
-    height: auto;
-    padding: 0.25rem;
-  }
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VivacityGPT AI Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/core.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
 </head>
 <body>
 
 <div class="topnav" id="myTopnav">
-  <a href="index.html">Home</a>
-  <a href="txtchatbot.html">Master Chatbot</a>
-  <a href="devbot.html">Web Dev Bot</a>          
-  <a href="dalle.html">Image Creator</a>
-  <a href="pdfchatbot.html">PDF Chatbot</a>
-  <a href="tts.html">Text to Speech</a>
-  <a href="whisper.html">Audio Transcriber</a>
-  <a href="#" class="active">VD GPTs</a>
-  
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
+    <a href="index.html">Home</a>
+    <a href="txtchatbot.html">Master Chatbot</a>
+    <a href="devbot.html">Web Dev Bot</a>
+    <a href="dalle.html">Image Creator</a>
+    <a href="pdfchatbot.html">PDF Chatbot</a>
+    <a href="tts.html">Text to Speech</a>
+    <a href="whisper.html">Audio Transcriber</a>
+    <a href="#" class="active">VD GPTs</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
 </div>
 
 <main>
-  <section id="intro">
-    <h1 class="heading">VivacityGPT AI Tools</h1>
-  <p style="float: right;"><i>Action first, without boundaries!</i></p><hr>
-  </section>
-  <section id="contentGPTS">
-          
-<div class="card">
-<img src="blogging.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Blog Post Creator</h2>
-<p>Insert a topic and generate the text, image and voice files for your blog.</p>
-<a href="blogpostcreator.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>
-          
-<div class="card">
-<img src="psycho.png" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Dreams Interpreter</h2>
-<p>Write your dream, and generate a complete analysis and an oniric image.</p>
-<a href="psycho_bot.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1 class="heading">VivacityGPT AI Tools</h1>
+            <p class="page-subtitle">Action first, without boundaries!</p>
+        </div>
+    </section>
 
-<div class="card">
-<img src="img_rebuilder.jpg" alt="Image 2" class="card-image">
-<div class="card-content">
-<h2>AI Image Rebuilder</h2>
-<p>Upload an image, get the description and produce a new variant.</p>
-<a href="img_rebuilder.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>  
+    <div class="tab-bar" role="tablist">
+        <button class="tab-button active" type="button" data-category="all" role="tab" aria-selected="true">All</button>
+        <button class="tab-button" type="button" data-category="image" role="tab" aria-selected="false">Image Tools</button>
+        <button class="tab-button" type="button" data-category="chatbots" role="tab" aria-selected="false">Chatbots</button>
+        <button class="tab-button" type="button" data-category="audio" role="tab" aria-selected="false">Audio</button>
+        <button class="tab-button" type="button" data-category="developers" role="tab" aria-selected="false">Developers</button>
+        <button class="tab-button" type="button" data-category="fun" role="tab" aria-selected="false">Fun</button>
+    </div>
 
-<div class="card">
-<img src="img_rebuilder.jpg" alt="Image 2" class="card-image">
-<div class="card-content">
-<h2>AI Image Modifier</h2>
-<p>Upload an image, insert your prompt for modification, and get and edited version.</p>
-<a href="img_modifier.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div> 
-          
-<div class="card">
-<img src="img_rebuilder.jpg" alt="Image 2" class="card-image">
-<div class="card-content">
-<h2>AI Image Merger</h2>
-<p>Upload u to 3 images, insert your prompt for modification, and get a merged version.</p>
-<a href="img_joiner.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>           
-          
-<div class="card">
-<img src="script_reader.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Transcript Creator</h2>
-<p>Insert your movie transcript and generate an audio file. Up to 6 actors!</p>
-<a href="transcript_creator.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>   
-          
-<div class="card">
-<img src="langages.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Language Teacher</h2>
-<p>Learn the fundamentals of 16 languages in 14 straightforward lessons!</p>
-<a href="language_teacher.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div> 
-          
-<div class="card">
-<img src="chatter.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Voice Chatbot</h2>
-<p>Advanced chatbot for voice chats, now with web search and image generation (english and italian)!</p>
-<a href="voicechatter_realtime.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>   
-          
-<div class="card">
-<img src="art_critic.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Art Critic</h2>
-<p>Upload an image with your piece of art, and get a critic analysis!</p>
-<a href="art_critic.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>  
-          
-<div class="card">
-<img src="interface_analyzer.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Interface Analyzer</h2>
-<p>Upload a screenshot of your webpage or app frontend and get a full professional analysis.</p>
-<a href="interface_analyzer.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>             
+    <section id="contentGPTS" class="tool-grid grid grid-3">
+        <article class="card tool-card" data-category="fun">
+            <img src="blogging.jpg" alt="AI Blog Post Creator" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Blog Post Creator</h2>
+                <p>Insert a topic and generate the text, image and voice files for your blog.</p>
+                <a href="blogpostcreator.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
 
-<div class="card">
-<img src="interface_analyzer.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Website Builder +</h2>
-<p>Describe the design of your landing page and generate the visual Front-End and full stack code (now with PHP!).</p>
-<a href="website_builder_plus.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div> 
-          
-<div class="card">
-<img src="interface_analyzer.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Website Restyler</h2>
-<p>Generate a new website by prompt or restyle and De-Wordpress existing websites. Visual generation and code download!</p>
-<a href="web_restyler.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>           
-          
-<div class="card">
-<img src="book_creator.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Book Plot Creator</h2>
-<p>Insert a title, a genre and a brief plot, and let the GTP generate your book plot in details.</p>
-<a href="book_creator.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>
-          
-<div class="card">
-<img src="sommelier.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Virtual Sommelier</h2>
-<p>Learn hotw to plan your perfect dinner following this Virtual Sommelier advices for courses and wines!</p>
-<a href="virtual_sommelier.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>
-          
-<div class="card">
-<img src="skynet.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>Skynet</h2>
-<p>Chat with the most iconical and agressive artificial intelligence ever! Ready for Judgement Day?!</p>
-<a href="skynet.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>
-          
-<div class="card">
-<img src="webslides.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI WebSlide Creator</h2>
-<p>Generate Web Slides for your tutorials with Dall-E, and export them in HTML format! Four styles, three templates</p>
-<a href="webslide_creator.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>   
-          
-<div class="card">
-<img src="xora-video.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>Xora Video Generator</h2>
-<p>Generate stunning hi quality video using OpenAI Sora 2/Pro models, from text and images!</p>
-<a href="xora.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div> 
-          
-<div class="card">
-<img src="webdevteam.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Web Agency</h2>
-<p>See a front-end and a beck-end chatbots collaborate to make the website of your project come to life!</p>
-<a href="web_agency.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>
-          
-<div class="card">
-<img src="debater.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Master Debater</h2>
-<p>Insert a hot topic, watch the two chatbots debate in front of your eyes, and decreet the winner! Eight personalities!</p>
-<a href="master_debater.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>  
-          
-<div class="card">
-<img src="repo.jpg" alt="Image 1" class="card-image">
-<div class="card-content">
-<h2>AI Repo Analyzer</h2>
-<p>Insert a Github repository URL and get a complete analysis made by AI, with description of project properties and scope</p>
-<a href="repo_analyzer.html" class="card-link"><b>Use the tool!</b></a>
-</div>
-</div>           
-          
-</section>
-<div class="footer">Powered by Vivacity Design Web Agency, May 2024 - December 2025<br>
-</div>
+        <article class="card tool-card" data-category="chatbots">
+            <img src="psycho.png" alt="AI Dreams Interpreter" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Dreams Interpreter</h2>
+                <p>Write your dream, and generate a complete analysis and an oniric image.</p>
+                <a href="psycho_bot.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="image">
+            <img src="img_rebuilder.jpg" alt="AI Image Rebuilder" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Image Rebuilder</h2>
+                <p>Upload an image, get the description and produce a new variant.</p>
+                <a href="img_rebuilder.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="image">
+            <img src="img_rebuilder.jpg" alt="AI Image Modifier" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Image Modifier</h2>
+                <p>Upload an image, insert your prompt for modification, and get an edited version.</p>
+                <a href="img_modifier.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="image">
+            <img src="img_rebuilder.jpg" alt="AI Image Merger" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Image Merger</h2>
+                <p>Upload up to 3 images, insert your prompt, and get a merged version.</p>
+                <a href="img_joiner.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="audio">
+            <img src="script_reader.jpg" alt="AI Transcript Creator" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Transcript Creator</h2>
+                <p>Insert your movie transcript and generate an audio file. Up to 6 actors!</p>
+                <a href="transcript_creator.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="chatbots">
+            <img src="chatter.jpg" alt="AI Voice Chatbot" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Voice Chatbot</h2>
+                <p>Advanced chatbot for voice chats, now with web search and image generation (English and Italian).</p>
+                <a href="voicechatter_realtime.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="image">
+            <img src="art_critic.jpg" alt="AI Art Critic" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Art Critic</h2>
+                <p>Upload an image with your piece of art, and get a critical analysis.</p>
+                <a href="art_critic.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="developers">
+            <img src="interface_analyzer.jpg" alt="AI Website Builder Plus" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Website Builder +</h2>
+                <p>Describe the design of your landing page and generate the visual front-end and full stack code.</p>
+                <a href="website_builder_plus.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="developers">
+            <img src="interface_analyzer.jpg" alt="AI Website Restyler" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Website Restyler</h2>
+                <p>Generate a new website by prompt or restyle existing websites. Visual generation and code download.</p>
+                <a href="web_restyler.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="fun">
+            <img src="book_creator.jpg" alt="AI Book Plot Creator" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Book Plot Creator</h2>
+                <p>Insert a title, a genre and a brief plot, and let the GPT generate your book plot in detail.</p>
+                <a href="book_creator.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="chatbots">
+            <img src="sommelier.jpg" alt="AI Virtual Sommelier" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Virtual Sommelier</h2>
+                <p>Plan your perfect dinner with sommelier advice for courses and wine pairings.</p>
+                <a href="virtual_sommelier.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="chatbots">
+            <img src="skynet.jpg" alt="Skynet" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">Skynet</h2>
+                <p>Chat with the most iconic and aggressive artificial intelligence ever. Ready for Judgment Day?</p>
+                <a href="skynet.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="fun">
+            <img src="webslides.jpg" alt="AI WebSlide Creator" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI WebSlide Creator</h2>
+                <p>Generate web slides for your tutorials with Dall-E, and export them in HTML format.</p>
+                <a href="webslide_creator.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="image">
+            <img src="xora-video.jpg" alt="Xora Video Generator" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">Xora Video Generator</h2>
+                <p>Generate stunning high-quality video using OpenAI Sora 2/Pro models, from text and images.</p>
+                <a href="xora.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="developers">
+            <img src="webdevteam.jpg" alt="AI Web Agency" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Web Agency</h2>
+                <p>See front-end and back-end chatbots collaborate to make the website of your project come to life.</p>
+                <a href="web_agency.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="chatbots">
+            <img src="debater.jpg" alt="AI Master Debater" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Master Debater</h2>
+                <p>Insert a hot topic, watch the two chatbots debate, and decree the winner.</p>
+                <a href="master_debater.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="developers">
+            <img src="repo.jpg" alt="AI Repo Analyzer" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">AI Repo Analyzer</h2>
+                <p>Insert a GitHub repository URL and get a complete analysis made by AI.</p>
+                <a href="repo_analyzer.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="audio">
+            <img src="user_image.jpg" alt="Text to Speech" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">Text to Speech</h2>
+                <p>Generate lifelike voiceovers from text with multiple tones and voices.</p>
+                <a href="tts.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="audio">
+            <img src="horizontal_image.jpg" alt="Audio Transcriber" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">Audio Transcriber</h2>
+                <p>Upload audio and get accurate transcriptions in minutes.</p>
+                <a href="whisper.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+
+        <article class="card tool-card" data-category="developers">
+            <img src="chatbot_face_03.jpg" alt="Web Dev Bot" class="tool-card__image">
+            <div class="tool-card__content">
+                <h2 class="tool-card__title">Web Dev Bot</h2>
+                <p>Build, debug, and improve your web projects with an AI coding assistant.</p>
+                <a href="devbot.html" class="tool-card__link">Use the tool!</a>
+            </div>
+        </article>
+    </section>
+
+    <div class="footer">Powered by Vivacity Design Web Agency, May 2024 - December 2025</div>
 </main>
-<br>
 
 <script>
-function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-        
-   
-        
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var tabs = document.querySelectorAll(".tab-button");
+        var cards = document.querySelectorAll(".tool-card");
+        var fadeDuration = 300;
+
+        function setActiveTab(activeTab) {
+            tabs.forEach(function (tab) {
+                var isActive = tab === activeTab;
+                tab.classList.toggle("active", isActive);
+                tab.setAttribute("aria-selected", isActive);
+            });
+        }
+
+        function filterCards(category) {
+            cards.forEach(function (card) {
+                var matches = category === "all" || card.dataset.category === category;
+
+                if (matches) {
+                    if (card.classList.contains("is-hidden")) {
+                        card.classList.remove("is-hidden");
+                        card.classList.add("is-fading");
+                        requestAnimationFrame(function () {
+                            card.classList.remove("is-fading");
+                        });
+                    }
+                    return;
+                }
+
+                if (!card.classList.contains("is-hidden")) {
+                    card.classList.add("is-fading");
+                    setTimeout(function () {
+                        card.classList.add("is-hidden");
+                        card.classList.remove("is-fading");
+                    }, fadeDuration);
+                }
+            });
+        }
+
+        tabs.forEach(function (tab) {
+            tab.addEventListener("click", function () {
+                setActiveTab(tab);
+                filterCards(tab.dataset.category);
+            });
+        });
+    });
 </script>
 
 </body>
