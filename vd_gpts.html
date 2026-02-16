@@ -6,31 +6,26 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 
+        * {
+        box-sizing: border-box;
+        }
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;        
   height: 100vh;
   width: 100%;
-  background-color: rgba(4, 190, 109, 1);
-  background-image: url("smoke_PNG965.png"), url("smoke_PNG966.png"),
-    url("smoke_PNG967.png");
-  background-repeat: repeat-x;
-  background-position: 0 20%, 0 100%, 0 50%, 0 100%, 0 0;
-  background-size: 2000px, 2000px, 2000px;
-  animation: 120s smoke infinite linear;
+  background-color: white;
+  background-image: url('vd_background.jpg');
+        background-position: center;
+        background-size: cover;
 }
 
-@keyframes smoke {
-  100% {
-    background-position: -5000px 20%, -800px 95%, 500px 50%, 1000px 100%,
-      400px 0;
-  }
-}
+      
 
 .topnav {
   overflow: hidden;
   background-color: #000;
-  z-index: 100;
+        z-index: 100;
 }
 
 .topnav a {
@@ -45,7 +40,7 @@ body {
 
 .topnav a:hover {
   background-color: rgba(4, 190, 109, 1);
-
+        
   color: black;
 }
 
@@ -57,80 +52,90 @@ body {
 .topnav .icon {
   display: none;
 }
-
+        
 .heading {
-  font-size: 2.4rem;
-}
-
-hr {
-  background: transparent;
-  height: 4px;
-  border: 1px solid black inset;
-}
-#intro,
-#content {
-  margin: 0 auto;
-  width: 90%;
-  font-size: 1rem;
-  text-align: justify;
-}
-
-#content {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  flex-wrap: wrap;
-}
-
-.avatar {
-  padding: 4px;
-  margin: 0.5rem 0;
-}
-.avatar img {
-  border-radius: 10px;
-}
-
-main {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 1rem auto;
+        font-size: 2.4rem;
+        color: black;
+        text-shadow: 0 2px 8px rgba(4, 190, 109, 1);
+        backdrop-filter: blur(4px);        
+        }  
+        
+        hr {
+        background: transparent;
+                height: 4px;
+                border: 1px solid black inset;
+        }
+        
+ main {
+margin: 1rem auto;
   width: 80%;
   text-align: center;
   padding: 1rem;
   border-radius: 24px;
   box-shadow: 0 6px 10px black;
   margin-bottom: 1rem;
-}
-.footer {
-  font-size: 0.9rem;
-  text-align: center;
-  margin: 2rem 0 0.5rem 0;
-  width: 100%;
+  }
+
+#intro,
+#contentGPTS {
+  margin: 0 auto;
+  width: 90%;
+  font-size: 1rem;
+  text-align: justify;
 }
 
+#contentGPTS {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+}
+        
+        
+.userinput {
+        width: 100%;
+        backdrop-filter: blur(4px);  
+        
+        }        
+#apikey {
+  width: 60%;
+  margin: 0.5rem;
+border-radius: 10px;
+padding: 4px 8px;
+}
+#prompt, #search-input {
+  width: 80%;
+  margin: 0.5rem;
+  resize: none;
+border-radius: 6px;
+padding: 4px 8px;
+}
 button {
   padding: 0.5rem 1rem;
   border-radius: 10px;
   cursor: pointer;
-  margin-top: 4px;
-  background: #f00;
+	margin-top: 4px;
+  background: rgba(4, 190, 109, 1);
   color: #fff;
+        transition: all .3s ease;
 }
 button:hover {
-  background: #fff;
-  color: #f00;
+  background: transparent;
+  color: rgba(4, 190, 109, 1);
+        border: 2px solid rgba(4, 190, 109, 1);
 }
+       
 
+    
 .card {
   border: 1px solid #ccc; /* Bordo delle card */
   border-radius: 10px; /* Angoli arrotondati */
   overflow: hidden; /* Nasconde eventuali sporgenze */
   margin: 0.25rem; /* Margine intorno alle card */
   width: 30%; /* Larghezza delle card, raggruppate in due */
-  height: auto;
+  height: 26rem;
   padding: 0.5rem;
+  backdrop-filter: blur(4px);       
 }
 
 .card-image {
@@ -156,7 +161,17 @@ button:hover {
 .card h2 {
         font-size: 1.4rem;
         text-align: left;
-        }        
+        } 
+        
+  .footer {
+    font-size: 1rem;
+          color: white;
+    text-align: center;
+    margin: 1rem auto;
+    width: 100%;
+  } 
+ .footer a {text-decoration: none; color: white;}        
+.footer a:hover {text-decoration: underline; }        
         
 
 @media screen and (max-width: 600px) {
@@ -169,33 +184,42 @@ button:hover {
   }
   main {
     margin: 20px auto;
-    width: 80%;
+    width: 96%;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.25rem;
     border-radius: 24px;
-
     box-shadow: 0 6px 10px black;
     margin-bottom: 1rem;
   }
 
-  #content {
+  #contentGPTS {
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+     margin: 0 auto;
+    font-size: 0.9rem;
+    text-align: justify;
+    gap: 10px;      
   }
 
   .heading {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
-  #intro,
-  #content {
+        
+  #intro {
     margin: 0 auto;
-    width: 90%;
+    width: 98%;
     font-size: 0.9rem;
     text-align: justify;
   }
+  
 
+.card-content h2 {
+        font-size: 1.2rem;
+        }        
+        
   .footer {
     font-size: 0.7rem;
     text-align: center;
@@ -207,10 +231,10 @@ button:hover {
     border: 1px solid #ccc; /* Bordo delle card */
     border-radius: 10px; /* Angoli arrotondati */
     overflow: hidden; /* Nasconde eventuali sporgenze */
-    margin: 0.25rem; /* Margine intorno alle card */
-    width: 90%; /* Larghezza delle card, raggruppate in due */
+    margin: 10px 4px; /* Margine intorno alle card */
+    width: auto; /* Larghezza delle card, raggruppate in due */
     height: auto;
-    padding: 0.25rem;
+    padding: 0.25rem 0;
   }
   .card-image {
     width: 100%; /* Larghezza dell'immagine */
@@ -229,7 +253,7 @@ button:hover {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .topnav.responsive {
     position: relative;
   }
@@ -245,7 +269,7 @@ button:hover {
   }
   main {
     margin: 10px auto;
-    width: 80%;
+    width: 90%;
     text-align: center;
     padding: 0.5rem;
     border-radius: 24px;
@@ -256,9 +280,9 @@ button:hover {
     font-size: 2rem;
   }
   #intro,
-  #content {
+  #contentGPTS {
     margin: 0 auto;
-    width: 90%;
+    width: 95%;
     font-size: 0.9rem;
     text-align: justify;
   }
@@ -275,7 +299,7 @@ button:hover {
     border-radius: 10px; /* Angoli arrotondati */
     overflow: hidden; /* Nasconde eventuali sporgenze */
     margin: 0.25rem; /* Margine intorno alle card */
-    width: 90%; /* Larghezza delle card, raggruppate in due */
+    width: 45%; /* Larghezza delle card, raggruppate in due */
     height: auto;
     padding: 0.25rem;
   }
@@ -287,13 +311,12 @@ button:hover {
 
 <div class="topnav" id="myTopnav">
   <a href="index.html">Home</a>
-        <a href="total_chatbot.html">Total Analyzer</a> 
-  <a href="txtchatbot.html">Text Chatbot</a>
+  <a href="txtchatbot.html">Master Chatbot</a>
   <a href="devbot.html">Web Dev Bot</a>          
   <a href="dalle.html">Image Creator</a>
   <a href="pdfchatbot.html">PDF Chatbot</a>
   <a href="tts.html">Text to Speech</a>
-  <a href="whisper.html">Audio Trascriber</a>
+  <a href="whisper.html">Audio Transcriber</a>
   <a href="#" class="active">VD GPTs</a>
   
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -303,10 +326,10 @@ button:hover {
 
 <main>
   <section id="intro">
-    <h1 class="heading">VivacityGPT Complete GPTs</h1>
-  <p><i>Action first, without boundaries!</i></p><hr>
+    <h1 class="heading">VivacityGPT AI Tools</h1>
+  <p style="float: right;"><i>Action first, without boundaries!</i></p><hr>
   </section>
-  <section id="content">
+  <section id="contentGPTS">
           
 <div class="card">
 <img src="blogging.jpg" alt="Image 1" class="card-image">
@@ -320,7 +343,7 @@ button:hover {
 <div class="card">
 <img src="psycho.png" alt="Image 1" class="card-image">
 <div class="card-content">
-<h2>AI Psychoanalyst</h2>
+<h2>AI Dreams Interpreter</h2>
 <p>Write your dream, and generate a complete analysis and an oniric image.</p>
 <a href="psycho_bot.html" class="card-link"><b>Use the tool!</b></a>
 </div>
@@ -334,6 +357,24 @@ button:hover {
 <a href="img_rebuilder.html" class="card-link"><b>Use the tool!</b></a>
 </div>
 </div>  
+
+<div class="card">
+<img src="img_rebuilder.jpg" alt="Image 2" class="card-image">
+<div class="card-content">
+<h2>AI Image Modifier</h2>
+<p>Upload an image, insert your prompt for modification, and get and edited version.</p>
+<a href="img_modifier.html" class="card-link"><b>Use the tool!</b></a>
+</div>
+</div> 
+          
+<div class="card">
+<img src="img_rebuilder.jpg" alt="Image 2" class="card-image">
+<div class="card-content">
+<h2>AI Image Merger</h2>
+<p>Upload u to 3 images, insert your prompt for modification, and get a merged version.</p>
+<a href="img_joiner.html" class="card-link"><b>Use the tool!</b></a>
+</div>
+</div>           
           
 <div class="card">
 <img src="script_reader.jpg" alt="Image 1" class="card-image">
@@ -348,7 +389,7 @@ button:hover {
 <img src="langages.jpg" alt="Image 1" class="card-image">
 <div class="card-content">
 <h2>AI Language Teacher</h2>
-<p>Learn the fundamentals of 9 languages in 13 straightforward lessons!</p>
+<p>Learn the fundamentals of 16 languages in 14 straightforward lessons!</p>
 <a href="language_teacher.html" class="card-link"><b>Use the tool!</b></a>
 </div>
 </div> 
@@ -357,8 +398,8 @@ button:hover {
 <img src="chatter.jpg" alt="Image 1" class="card-image">
 <div class="card-content">
 <h2>AI Voice Chatbot</h2>
-<p>Advanced chatbot for voice chats, with web search and image generation (english only)!</p>
-<a href="voicechatter_advanced.html" class="card-link"><b>Use the tool!</b></a>
+<p>Advanced chatbot for voice chats, now with web search and image generation (english and italian)!</p>
+<a href="voicechatter_realtime.html" class="card-link"><b>Use the tool!</b></a>
 </div>
 </div>   
           
@@ -375,7 +416,7 @@ button:hover {
 <img src="interface_analyzer.jpg" alt="Image 1" class="card-image">
 <div class="card-content">
 <h2>AI Interface Analyzer</h2>
-<p>Upload a screenshot of your webpage or app and get a full professional analysis.</p>
+<p>Upload a screenshot of your webpage or app frontend and get a full professional analysis.</p>
 <a href="interface_analyzer.html" class="card-link"><b>Use the tool!</b></a>
 </div>
 </div>             
@@ -383,11 +424,20 @@ button:hover {
 <div class="card">
 <img src="interface_analyzer.jpg" alt="Image 1" class="card-image">
 <div class="card-content">
-<h2>AI Website Builder</h2>
-<p>Describe the design of your landing page and generate the visual Front-End and full code.</p>
-<a href="website_builder.html" class="card-link"><b>Use the tool!</b></a>
+<h2>AI Website Builder +</h2>
+<p>Describe the design of your landing page and generate the visual Front-End and full stack code (now with PHP!).</p>
+<a href="website_builder_plus.html" class="card-link"><b>Use the tool!</b></a>
 </div>
-</div>   
+</div> 
+          
+<div class="card">
+<img src="interface_analyzer.jpg" alt="Image 1" class="card-image">
+<div class="card-content">
+<h2>AI Website Restyler</h2>
+<p>Generate a new website by prompt or restyle and De-Wordpress existing websites. Visual generation and code download!</p>
+<a href="web_restyler.html" class="card-link"><b>Use the tool!</b></a>
+</div>
+</div>           
           
 <div class="card">
 <img src="book_creator.jpg" alt="Image 1" class="card-image">
@@ -402,7 +452,7 @@ button:hover {
 <img src="sommelier.jpg" alt="Image 1" class="card-image">
 <div class="card-content">
 <h2>AI Virtual Sommelier</h2>
-<p>Plan your perfect dinner following this Virtual Sommelier advices for courses and wines!</p>
+<p>Learn hotw to plan your perfect dinner following this Virtual Sommelier advices for courses and wines!</p>
 <a href="virtual_sommelier.html" class="card-link"><b>Use the tool!</b></a>
 </div>
 </div>
@@ -411,14 +461,58 @@ button:hover {
 <img src="skynet.jpg" alt="Image 1" class="card-image">
 <div class="card-content">
 <h2>Skynet</h2>
-<p>Chat with the most iconical and agressive artificial intelligence ever!</p>
+<p>Chat with the most iconical and agressive artificial intelligence ever! Ready for Judgement Day?!</p>
 <a href="skynet.html" class="card-link"><b>Use the tool!</b></a>
+</div>
+</div>
+          
+<div class="card">
+<img src="webslides.jpg" alt="Image 1" class="card-image">
+<div class="card-content">
+<h2>AI WebSlide Creator</h2>
+<p>Generate Web Slides for your tutorials with Dall-E, and export them in HTML format! Four styles, three templates</p>
+<a href="webslide_creator.html" class="card-link"><b>Use the tool!</b></a>
+</div>
+</div>   
+          
+<div class="card">
+<img src="xora-video.jpg" alt="Image 1" class="card-image">
+<div class="card-content">
+<h2>Xora Video Generator</h2>
+<p>Generate stunning hi quality video using OpenAI Sora 2/Pro models, from text and images!</p>
+<a href="xora.html" class="card-link"><b>Use the tool!</b></a>
+</div>
+</div> 
+          
+<div class="card">
+<img src="webdevteam.jpg" alt="Image 1" class="card-image">
+<div class="card-content">
+<h2>AI Web Agency</h2>
+<p>See a front-end and a beck-end chatbots collaborate to make the website of your project come to life!</p>
+<a href="web_agency.html" class="card-link"><b>Use the tool!</b></a>
+</div>
+</div>
+          
+<div class="card">
+<img src="debater.jpg" alt="Image 1" class="card-image">
+<div class="card-content">
+<h2>AI Master Debater</h2>
+<p>Insert a hot topic, watch the two chatbots debate in front of your eyes, and decreet the winner! Eight personalities!</p>
+<a href="master_debater.html" class="card-link"><b>Use the tool!</b></a>
+</div>
+</div>  
+          
+<div class="card">
+<img src="repo.jpg" alt="Image 1" class="card-image">
+<div class="card-content">
+<h2>AI Repo Analyzer</h2>
+<p>Insert a Github repository URL and get a complete analysis made by AI, with description of project properties and scope</p>
+<a href="repo_analyzer.html" class="card-link"><b>Use the tool!</b></a>
 </div>
 </div>           
           
 </section>
-<div class="footer">Powered by Vivacity Design Web Agency, May 2024<br>
-Torna ai <a href="../servizi_online.html">Servizi Online</a>
+<div class="footer">Powered by Vivacity Design Web Agency, May 2024 - December 2025<br>
 </div>
 </main>
 <br>

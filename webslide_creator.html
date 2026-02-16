@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>AI WebSlide Creator</title>
+
+    <style>
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f8ff;
+  color: white;
+  background: url("webslides.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+header {
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #000;
+  z-index: 100;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+
+  color: #fff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: rgba(4, 190, 109, 1);
+
+  color: black;
+}
+
+.topnav a.active {
+  background-color: rgba(4, 190, 109, 1);
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: transparent;
+            backdrop-filter: blur(4px);    
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+        
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            align-items: end;
+        }
+        
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+        
+        .form-row .form-group:first-child {
+            flex: 1;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.5);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background: #1a73e8;
+            color: black;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #1557b0;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .btn-success {
+            background: #28a745;
+        }
+        
+        .btn-success:hover {
+            background: #1e7e34;
+        }
+        
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+        
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+        
+        .templates {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .template-btn {
+            padding: 8px 16px;
+            background: #f8f9fa;
+			color: black;                
+            border: 1px solid #1a73e8;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+        
+        .template-btn:hover, .template-btn.active {
+            background: #1a73e8;
+            color: white;
+            border-color: #1a73e8;
+        }
+        
+        .progress {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            background: #1a73e8;
+            height: 100%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e3e3e3;
+            border-top: 4px solid #1a73e8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid #e1e5e9;
+        }
+        
+        .slide-header {
+            background: #1a73e8;
+            color: white;
+            padding: 20px;
+        }
+        
+        .slide-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .slide-content {
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .slide-image {
+            max-width: 320px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        
+        .slide-text {
+            font-size: 1rem;    
+            color: black;    
+            flex: 1;
+        }
+        
+        .slide-points {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .slide-points li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .slide-points li:before {
+            content: "•";
+            color: #1a73e8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e1e5e9;
+        }
+        
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .char-counter {
+            font-size: 14px;
+            color: white;
+            text-align: right;
+            margin-top: 5px;
+        }
+        
+        .char-counter.warning {
+            color: #ffc107;
+        }
+        
+        .char-counter.error {
+            color: #dc3545;
+        }
+        
+        .theme-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .theme-option {
+            width: 40px;
+            height: 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .theme-option.active {
+            border-color: #333;
+            transform: scale(1.1);
+        }
+        
+        .theme-professional { background: linear-gradient(45deg, #1a73e8, #4285f4); }
+        .theme-creative { background: linear-gradient(45deg, #ff6b6b, #4ecdc4); }
+        .theme-minimal { background: linear-gradient(45deg, #2c3e50, #34495e); }
+        
+        @media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }    
+}            
+            
+        @media screen and (max-width: 768px) {
+                
+               .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }   
+                
+            .slide-content {
+                flex-direction: column;
+            }
+            
+            .slide-image {
+                width: 100%;
+                height: 200px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .export-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="index.html">Home</a>
+  <a href="txtchatbot.html">Master Chatbot</a>
+  <a href="devbot.html">Web Dev Bot</a>        
+  <a href="dalle.html">Image Creator</a>
+  <a href="pdfchatbot.html">PDF Chatbot</a>
+  <a href="tts.html">Text to Speech</a>
+  <a href="whisper.html">Audio Transcriber</a>  
+<a href="vd_gpts.html" class="active">VD GPTs</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+        
+<header>
+  <h1>AI WebSlide Creator</h1>
+</header>        
+        
+    <div class="container">
+       
+        <div class="content">
+            <!-- Sezione Input -->
+            <div id="inputSection" class="section active">
+              
+                <div class="form-group">
+                    <label>🎨 WebSlide Theme</label>
+                    <div class="theme-selector">
+                        <div class="theme-option theme-professional active" data-theme="professional" title="Professional"></div>
+                        <div class="theme-option theme-creative" data-theme="creative" title="Creative"></div>
+                        <div class="theme-option theme-minimal" data-theme="minimal" title="Minimal"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>📋 Quick Templates</label>
+                    <div class="templates">
+                        <div class="template-btn" data-template="business">Business</div>
+                        <div class="template-btn" data-template="educational">Educational</div>
+                        <div class="template-btn" data-template="pitch">Pitch</div>
+                        <div class="template-btn" data-template="custom">Custom</div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contentInput">📝 WebSlide content</label>
+                        <textarea id="contentInput" placeholder="Insert the content for your WebSlide creation..."></textarea>
+                        <div class="char-counter" id="charCounter">0 / 5000 chars</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="slideCount">📊 Number of Slides</label>
+                        <input id="slideCount" type="number" min="1" max="10" value="5">
+                    </div>
+                </div>
+                
+                <button id="generateBtn" class="btn">🚀 Generate</button>
+            </div>
+            
+            <!-- Sezione Loading -->
+            <div id="loadingSection" class="section">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p id="loadingText">Generation in progress...</p>
+                    <div class="progress">
+                        <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sezione Slide -->
+            <div id="slidesSection" class="section">
+                <div id="slides"></div>
+                <div class="controls">
+                    <div>
+                        <button id="editBtn" class="btn btn-secondary">✏️ Edit content</button>
+                        <button id="saveProjectBtn" class="btn">💾 Save in memory</button>
+                    </div>
+                    <div class="export-buttons">
+                            <b>Export in: </b>
+                         <button id="exportHtmlBtn" class="btn btn-secondary">🌐 HTML</button>
+                        <button id="exportJsonBtn" class="btn btn-secondary">📋 JSON</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Messaggi -->
+            <div id="download-message" style="display: none; padding: 10px; background-color: #f1c40f; color: #333; border-radius: 5px; margin-top: 20px;"></div>    
+            <div id="errorMessage" class="error" style="display: none;"></div>
+            <div id="successMessage" class="success" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}            
+            
+        // Configurazione globale
+        const config = {
+            maxChars: 5000,
+            minChars: 10,
+            themes: {
+                professional: { primary: '#1a73e8', secondary: '#f8f9fa', accent: '#4285f4' },
+                creative: { primary: '#ff6b6b', secondary: '#4ecdc4', accent: '#45b7d1' },
+                minimal: { primary: '#2c3e50', secondary: '#ecf0f1', accent: '#34495e' }
+            },
+            templates: {
+                business: "Crea una presentazione business professionale e convincente su: ",
+                educational: "Crea una presentazione educativa chiara e coinvolgente su: ",
+                pitch: "Crea una presentazione pitch persuasiva e accattivante per: ",
+                custom: "Crea una presentazione su: "
+            }
+        };
+
+        // Stato globale
+        let state = {
+            currentTheme: 'professional',
+            currentTemplate: 'custom',
+            currentProject: null,
+            imageCache: new Map(),
+            isGenerating: false
+        };
+
+        // Elementi DOM
+        const elements = {
+            inputSection: document.getElementById('inputSection'),
+            loadingSection: document.getElementById('loadingSection'),
+            slidesSection: document.getElementById('slidesSection'),
+            contentInput: document.getElementById('contentInput'),
+            slideCount: document.getElementById('slideCount'),
+            generateBtn: document.getElementById('generateBtn'),
+            editBtn: document.getElementById('editBtn'),
+            errorMessage: document.getElementById('errorMessage'),
+            successMessage: document.getElementById('successMessage'),
+            slidesDiv: document.getElementById('slides'),
+            charCounter: document.getElementById('charCounter'),
+            progressBar: document.getElementById('progressBar'),
+            loadingText: document.getElementById('loadingText')
+        };
+
+        // Utility Functions
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function showError(message) {
+            elements.errorMessage.textContent = message;
+            elements.errorMessage.style.display = 'block';
+            elements.successMessage.style.display = 'none';
+            setTimeout(() => {
+                elements.errorMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        function showSuccess(message) {
+            elements.successMessage.textContent = message;
+            elements.successMessage.style.display = 'block';
+            elements.errorMessage.style.display = 'none';
+            setTimeout(() => {
+                elements.successMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        function updateProgress(step, total, message) {
+            const percentage = Math.round((step / total) * 100);
+            elements.progressBar.style.width = percentage + '%';
+            elements.progressBar.textContent = percentage + '%';
+            elements.loadingText.textContent = message;
+        }
+
+        function updateCharCounter() {
+            const length = elements.contentInput.value.length;
+            elements.charCounter.textContent = `${length} / ${config.maxChars} caratteri`;
+            
+            elements.charCounter.className = 'char-counter';
+            if (length > config.maxChars * 0.9) {
+                elements.charCounter.classList.add('warning');
+            }
+            if (length > config.maxChars) {
+                elements.charCounter.classList.add('error');
+            }
+        }
+
+        // Validation Functions
+        function validateApiKey(key) {
+            if (!key || !key.startsWith('sk-') || key.length < 40) {
+                throw new Error('Invalid API Key. Must begin with "sk-" and have a length of at least 40 chars');
+            }
+            return true;
+        }
+
+        function validateInput(content) {
+            if (!content || content.trim().length < config.minChars) {
+                throw new Error(`Il contenuto deve essere di almeno ${config.minChars} caratteri`);
+            }
+            if (content.length > config.maxChars) {
+                throw new Error(`Il contenuto è troppo lungo (max ${config.maxChars} caratteri)`);
+            }
+            return true;
+        }
+
+        // API Functions
+        async function generateStructure(text, slideCount) {
+            const apikey = localStorage.getItem("openaikey");
+			console.log(apikey);
+
+			if (apikey === "") {
+			alert("No OpenAI API Key found. Go to the index page and add your OpenAI Key to the setup panel.");
+			return; // Aggiunto per evitare ulteriori elaborazioni in caso di errore.
+			}
+            validateApiKey(apikey);
+            
+            const templatePrefix = config.templates[state.currentTemplate];
+            const fullPrompt = templatePrefix + text;
+            
+            try {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apikey}`
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-5-nano",
+                        messages: [{
+                            role: "system",
+                            content: `Sei un esperto di presentazioni. Genera una struttura per esattamente ${slideCount} slide professionali partendo dal testo fornito. Ogni slide deve avere un titolo accattivante, dai 3 ai 5 punti chiave ben strutturati, e un prompt per immagine descrittivo. Assicurati che nel prompt per immagine sia specificato di non includere testo o scritte di alcun genere nell'immagine. La risposta deve essere in formato JSON valido con questa struttura: [{"title": "string", "points": ["string"], "imagePrompt": "string"}]`
+                        }, {
+                            role: "user",
+                            content: fullPrompt
+                        }],
+                        //temperature: 0.2
+                          verbosity: "low"  
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    let errorMsg = 'Errore API';
+                    if (response.status === 401) errorMsg = 'API Key non valida o scaduta';
+                    else if (response.status === 429) errorMsg = 'Troppi tentativi, riprova tra poco';
+                    else if (response.status === 400) errorMsg = 'Richiesta non valida';
+                    throw new Error(errorMsg + ': ' + (errorData.error?.message || ''));
+                }
+
+                const data = await response.json();
+                let jsonResponse = data.choices[0].message.content;
+                
+                // Pulizia JSON più robusta
+                jsonResponse = jsonResponse.replace(/```json\s*|\s*```/g, "").trim();
+                
+                try {
+                    const structure = JSON.parse(jsonResponse);
+                    if (!Array.isArray(structure) || structure.length === 0) {
+                        throw new Error('Struttura non valida generata dall\'AI');
+                    }
+                    return structure;
+                } catch (parseError) {
+                    throw new Error('Errore nell\'analisi del JSON generato: ' + parseError.message);
+                }
+            } catch (error) {
+                console.error('Errore generazione struttura:', error);
+                throw error;
+            }
+        }
+
+        async function generateImageCached(prompt) {
+            if (state.imageCache.has(prompt)) {
+                return state.imageCache.get(prompt);
+            }
+            
+            const imageUrl = await generateImage(prompt);
+            state.imageCache.set(prompt, imageUrl);
+            return imageUrl;
+        }
+
+        async function generateImage(prompt) {
+                        const apikey = localStorage.getItem("openaikey");
+			console.log(apikey);
+            
+            try {
+                const response = await fetch('https://api.openai.com/v1/images/generations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apikey}`
+                    },
+                    body: JSON.stringify({
+                        model: "dall-e-2",
+                        prompt: `Professional presentation slide image: ${prompt}. The image must not contain any text. Clean, modern, business appropriate style.`,
+                        n: 1,
+                        size: "512x512"
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error('Errore generazione immagine: ' + (errorData.error?.message || 'Errore sconosciuto'));
+                }
+
+                const data = await response.json();
+                return data.data[0].url;
+            } catch (error) {
+                console.error('Errore nella generazione dell\'immagine:', error);
+                // Ritorna un placeholder invece di fallire
+                return `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect width="512" height="512" fill="${config.themes[state.currentTheme].primary}"/><text x="256" y="256" text-anchor="middle" dy=".3em" fill="white" font-family="system-ui" font-size="24">Immagine non disponibile</text></svg>`;
+            }
+        }
+
+        // Rendering Functions
+        function renderSlides(slides) {
+            const theme = config.themes[state.currentTheme];
+            
+            elements.slidesDiv.innerHTML = slides.map((slide, index) => `
+                <div class="slide" style="border-left: 4px solid ${theme.primary};">
+                    <div class="slide-header" style="background: ${theme.primary};">
+                        <h2 class="slide-title">Slide ${index + 1}: ${slide.title}</h2>
+                    </div>
+                    <div class="slide-content">
+                        <img src="${slide.imageUrl}" alt="${slide.title}" class="slide-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;200&quot; height=&quot;150&quot; viewBox=&quot;0 0 200 150&quot;><rect width=&quot;200&quot; height=&quot;150&quot; fill=&quot;${theme.secondary}&quot;/><text x=&quot;100&quot; y=&quot;75&quot; text-anchor=&quot;middle&quot; dy=&quot;.3em&quot; fill=&quot;${theme.primary}&quot; font-family=&quot;system-ui&quot; font-size=&quot;14&quot;>Immagine non disponibile</text></svg>'">
+                        <div class="slide-text">
+                            <ul class="slide-points">
+                                ${slide.points.map(point => `<li>${point}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function renderSlideProgressively(slide, index) {
+            const theme = config.themes[state.currentTheme];
+            const slideHtml = `
+                <div class="slide" style="border-left: 4px solid ${theme.primary};">
+                    <div class="slide-header" style="background: ${theme.primary};">
+                        <h2 class="slide-title">Slide ${index + 1}: ${slide.title}</h2>
+                    </div>
+                    <div class="slide-content">
+                        <div class="slide-image" style="width: 200px; height: 150px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                            <div class="spinner" style="width: 30px; height: 30px;"></div>
+                        </div>
+                        <div class="slide-text">
+                            <ul class="slide-points">
+                                ${slide.points.map(point => `<li>${point}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            elements.slidesDiv.insertAdjacentHTML('beforeend', slideHtml);
+            
+            // Genera immagine e aggiorna
+            try {
+                const imageUrl = await generateImageCached(slide.imagePrompt);
+                const slideElement = elements.slidesDiv.children[index];
+                const imgPlaceholder = slideElement.querySelector('.slide-content > div');
+                imgPlaceholder.outerHTML = `<img src="${imageUrl}" alt="${slide.title}" class="slide-image">`;
+            } catch (error) {
+                console.warn('Errore caricamento immagine per slide', index + 1);
+            }
+        }
+
+        // Project Management
+        function saveProject(slides) {
+            const project = {
+                content: elements.contentInput.value,
+                slideCount: parseInt(elements.slideCount.value),
+                theme: state.currentTheme,
+                template: state.currentTemplate,
+                slides: slides,
+                timestamp: new Date().toISOString()
+            };
+            state.currentProject = project;
+            showSuccess('Project saved in memory!');
+        }
+
+        // Export Functions
+
+
+// Funzione helper per convertire immagini in base64
+async function convertImageToBase64(url) {
+    try {
+        // Prova prima con fetch
+        const response = await fetch(url);
+        const blob = await response.blob();
+        
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+        });
+    } catch (error) {
+        // Fallback: usa canvas per convertire l'immagine
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                
+                ctx.drawImage(img, 0, 0);
+                
+                try {
+                    const base64 = canvas.toDataURL('image/jpeg', 0.8);
+                    resolve(base64);
+                } catch (canvasError) {
+                    reject(canvasError);
+                }
+            };
+            
+            img.onerror = () => reject(new Error('Impossibile caricare l\'immagine'));
+            img.src = url;
+        });
+    }
+}
+
+
+async function exportToHTML() {
+const slides = document.getElementById('slides').innerHTML;
+const theme = config.themes[state.currentTheme];
+
+// Mappa per le immagini
+const imageMap = {};
+let imageCount = 1;
+
+const updatedSlides = slides.replace(/src="(.*?)"/g, (match, url) => {
+const newImageName = `image${String(imageCount).padStart(3, '0')}.png`;
+imageMap[newImageName] = url; // Memorizza la mappatura
+imageCount++;
+return `src="${newImageName}"`; // Ritorna il nuovo nome dell'immagine
+});
+
+const htmlContent = `
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Generated WebSlides</title>
+<style>
+body { font-family: system-ui, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+.slide { background: white; border-radius: 12px; margin-bottom: 20px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-left: 4px solid ${theme.primary}; }
+.slide-header { background: ${theme.primary}; color: white; padding: 20px; }
+.slide-title { font-size: 1.5rem; font-weight: 600; margin: 0; }
+.slide-content { padding: 20px; display: flex; gap: 20px; }
+.slide-image { width: 200px; height: 150px; object-fit: cover; border-radius: 8px; }
+.slide-text { flex: 1; }
+.slide-points { list-style: none; padding: 0; }
+.slide-points li { padding: 8px 0; padding-left: 20px; position: relative; }
+.slide-points li:before { content: "•"; color: ${theme.primary}; font-weight: bold; position: absolute; left: 0; }
+@media print { .slide { page-break-after: always; } }
+</style>
+</head>
+<body>
+<h1 style="text-align: center; color: ${theme.primary};">Generated WebSlides</h1>
+${updatedSlides}
+</body>
+</html>`;
+
+// Crea il blob e scarica il file HTML
+const blob = new Blob([htmlContent], { type: 'text/html' });
+const url = URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+a.download = `Generated_WebSlides_${new Date().toISOString().split('T')[0]}.html`;
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+URL.revokeObjectURL(url);
+showSuccess('HTML esportato con successo!');
+
+
+// Mostra un messaggio HTML per l'utente
+const imageNames = Object.keys(imageMap).join(', ');
+const messageDiv = document.getElementById('download-message');
+messageDiv.innerHTML = `
+<strong>Warning!</strong><br>
+In order to complete the package, please download the images manually and rename them as indicated:<br>
+${imageNames}`;
+messageDiv.style.display = 'block'; // Mostra il messaggio
+}
+
+
+        function exportToJSON() {
+            if (!state.currentProject) {
+                showError('Nothing to export');
+                return;
+            }
+
+            const jsonData = JSON.stringify(state.currentProject, null, 2);
+            const blob = new Blob([jsonData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `project_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showSuccess('JSON file exported correctly!');
+        }
+
+
+        // Event Listeners
+        elements.contentInput.addEventListener('input', updateCharCounter);
+
+        elements.generateBtn.addEventListener('click', async () => {
+            if (state.isGenerating) return;
+            
+            const content = elements.contentInput.value.trim();
+            const slideCount = parseInt(elements.slideCount.value);
+                        const apikey = localStorage.getItem("openaikey");
+			console.log(apikey);    
+            
+            try {
+                validateInput(content);
+                validateApiKey(apikey);
+                
+                state.isGenerating = true;
+                elements.generateBtn.disabled = true;
+                showSection('loadingSection');
+                elements.slidesDiv.innerHTML = '';
+                
+                updateProgress(0, 3, 'WebSlide structure generation...');
+                
+                // Genera struttura
+                const structure = await generateStructure(content, slideCount);
+                updateProgress(1, 3, 'Structure generated correctly, now generating slide...');
+                
+                // Mostra immediatamente la sezione slide
+                showSection('slidesSection');
+                
+                // Genera slide progressivamente
+                for (let i = 0; i < structure.length; i++) {
+                    updateProgress(2, 3, `Generation of slide ${i + 1} di ${structure.length}...`);
+                    await renderSlideProgressively(structure[i], i);
+                }
+                
+                // Salva il progetto
+                const slidesWithImages = structure.map((slide, index) => ({
+                    ...slide,
+                    imageUrl: elements.slidesDiv.children[index]?.querySelector('img')?.src || ''
+                }));
+                
+                saveProject(slidesWithImages);
+                updateProgress(3, 3, 'WebSlide completed!');
+                
+                setTimeout(() => {
+                    showSuccess('WebSlide generated successfully!');
+                }, 500);
+                
+            } catch (error) {
+                showError(error.message);
+                setTimeout(() => showSection('inputSection'), 3000);
+            } finally {
+                state.isGenerating = false;
+                elements.generateBtn.disabled = false;
+            }
+        });
+
+        elements.editBtn.addEventListener('click', () => {
+            const messageDiv = document.getElementById('download-message');
+                if (messageDiv) {
+                messageDiv.innerHTML = '';
+                messageDiv.style.display = 'none';
+                        }
+            showSection('inputSection');
+        });
+
+        document.getElementById('saveProjectBtn').addEventListener('click', () => {
+            if (state.currentProject) {
+                showSuccess('The project is already in memory!');
+            } else {
+                showError('Nothing to save.');
+            }
+        });
+
+        // Export event listeners
+        document.getElementById('exportHtmlBtn').addEventListener('click', exportToHTML);
+        document.getElementById('exportJsonBtn').addEventListener('click', exportToJSON);
+
+        // Theme selection
+        document.querySelectorAll('.theme-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.theme-option').forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                state.currentTheme = option.dataset.theme;
+                
+                // Aggiorna colori in tempo reale se ci sono slide
+                if (elements.slidesDiv.children.length > 0) {
+                    const theme = config.themes[state.currentTheme];
+                    document.querySelectorAll('.slide').forEach(slide => {
+                        slide.style.borderLeftColor = theme.primary;
+                        const header = slide.querySelector('.slide-header');
+                        if (header) header.style.background = theme.primary;
+                    });
+                }
+            });
+        });
+
+        // Template selection
+        document.querySelectorAll('.template-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.template-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                state.currentTemplate = btn.dataset.template;
+                
+                // Auto-fill content for non-custom templates
+                if (state.currentTemplate !== 'custom' && !elements.contentInput.value.trim()) {
+                    const examples = {
+                        business: 'Analysis of digital market in 2025, strategies of growth, investments in tech, financial results of Q4',
+                        educational: 'Introduction to Artificial Itelligence, machine learning, on-field applications, use cases, future of the AI technologies',
+                        pitch: 'Innovative Startup in the fintech field, problems to solve, proposed solutions, business model, team duty and management'
+                    };
+                    elements.contentInput.value = examples[state.currentTemplate] || '';
+                    updateCharCounter();
+                }
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                switch (e.key) {
+                    case 'Enter':
+                        if (elements.inputSection.classList.contains('active')) {
+                            e.preventDefault();
+                            elements.generateBtn.click();
+                        }
+                        break;
+                    case 's':
+                        e.preventDefault();
+                        if (state.currentProject) {
+                            document.getElementById('saveProjectBtn').click();
+                        }
+                        break;
+                    case 'e':
+                        if (elements.slidesSection.classList.contains('active')) {
+                            e.preventDefault();
+                            document.getElementById('exportHtmlBtn').click();
+                        }
+                        break;
+                }
+            }
+        });
+
+        // Initialize
+        updateCharCounter();
+        
+        // Auto-save content to prevent loss
+        elements.contentInput.addEventListener('input', () => {
+            window.autoSavedContent = elements.contentInput.value;
+        });
+
+        // Restore auto-saved content on page load
+        window.addEventListener('load', () => {
+            if (window.autoSavedContent) {
+                elements.contentInput.value = window.autoSavedContent;
+                updateCharCounter();
+            }
+        });
+
+        console.log('🎨 AI Presentation Builder caricato con successo!');
+        console.log('💡 Suggerimenti:');
+        console.log('- Ctrl+Enter: Genera presentazione');
+        console.log('- Ctrl+S: Salva progetto');
+        console.log('- Ctrl+E: Esporta HTML');
+    </script>
+</body>
+</html>

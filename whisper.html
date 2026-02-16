@@ -1,329 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>VivacityGPT Complete - STT bot</title> 
+<title>VivacityGPT Complete - STT bot</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">        
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+* {
+box-sizing: border-box;
+}
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;        
-  height: 100vh;
-  width: 100%;
-  background-color: rgba(4, 190, 109, 1);
-  background-image: url("smoke_PNG965.png"),
-    url("smoke_PNG966.png"),
-    url("smoke_PNG967.png");
-  background-repeat: repeat-x;
-  background-position: 0 20%, 0 100%, 0 50%, 0 100%, 0 0;
-  background-size: 2000px, 2000px, 2000px;
-  animation: 120s smoke infinite linear;
+margin: 0;
+font-family: Arial, Helvetica, sans-serif;
+height: 100vh;
+width: 100%;
+background-color: white;
+background-image: url('vd_background.jpg');
+background-position: center;
+background-size: cover;
 }
 
-@keyframes smoke {
-  100% {
-    background-position: -5000px 20%, -800px 95%, 500px 50%, 1000px 100%,
-      400px 0;
-  }
-}        
-
 .topnav {
-  overflow: hidden;
-  background-color: #000;
-        z-index: 100;
+overflow: hidden;
+background-color: #000;
+z-index: 100;
 }
 
 .topnav a {
-  float: left;
-  display: block;
-        
-  color: #fff;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+float: left;
+display: block;
+color: #fff;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
 }
 
 .topnav a:hover {
-  background-color: rgba(4, 190, 109, 1);
-        
-  color: black;
+background-color: rgba(4, 190, 109, 1);
+color: black;
 }
 
 .topnav a.active {
-  background-color: rgba(4, 190, 109, 1);
-  color: white;
+background-color: rgba(4, 190, 109, 1);
+color: white;
 }
 
 .topnav .icon {
-  display: none;
+display: none;
+}
+
+.heading {
+font-size: 2.4rem;
+color: black;
+text-shadow: 0 2px 8px rgba(4, 190, 109, 1);
+backdrop-filter: blur(4px);
+}
+
+hr {
+background: transparent;
+height: 4px;
+border: 1px solid black;
 }
 
 main {
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        transform: translateX(-50%);
-  margin: 1rem auto;
-  width: 80%;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 24px;
-  box-shadow: 0 6px 10px black;
+margin: 2rem auto;
+width: 80%;
+height: auto;
+text-align: center;
+padding: 2rem 1rem;
+border-radius: 24px;
+box-shadow: 0 6px 10px black;
+color: white;
+font-size: 1.1rem;
 }
+.userinput {
+width: 100%;
+backdrop-filter: blur(4px);
+}
+
 #apikey {
-  width: 60%;
-  margin: 0.5rem;
-border-radius: 10px;
-padding: 4px 8px;
-}
-#prompt {
-  width: 80%;
-  margin: 0.5rem;
-  resize: none;
+width: 60%;
+margin: 0.5rem;
 border-radius: 10px;
 padding: 4px 8px;
 }
 
+#prompt, #search-input {
+width: 80%;
+margin: 0.5rem;
+resize: none;
+border-radius: 6px;
+padding: 4px 8px;
+}
 
 button {
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  cursor: pointer;
+padding: 0.5rem 1rem;
+border-radius: 10px;
+cursor: pointer;
 margin-top: 4px;
-}
-button {
-  background: #f00;
-  color: #fff;
+background: rgba(4, 190, 109, 1);
+color: #fff;
+transition: all .3s ease;
 }
 button:hover {
-  background: #fff;
-  color: #f00;
+background: transparent;
+color: rgba(4, 190, 109, 1);
+border: 2px solid rgba(4, 190, 109, 1);
+}
+
+#content {
+display: flex;
+justify-content: space-between;
+margin: 10px auto;
+width: 100%;
+height: auto;
+background: transparent;
+}
+
+.commandsFlexed {
+display: flex;
+justify-content: flex-start;
 }
 
 #transcriptionResult {
-  margin: .5rem auto;
-  display: flex;
-  flex-direction: column;
-        align-items: center;
-  height: 24rem;
-  width: 95%;
-  overflow-y: auto;
-  padding: 0.5rem;
-  font-family: "Spectral", serif;
-  border: 1px solid black;
-        text-align: justify;
+margin: 1rem auto;
+display: none;
+flex-direction: column;
+align-items: center;
+height: auto;
+min-height: 20rem;
+width: 90%;
+overflow-y: auto;
+padding: 1rem;
+font-family: 'Spectral', serif;
+text-align: justify;
+font-size: 1.1rem;
+backdrop-filter: blur(4px);
+border: 1px solid white;
+border-radius: 10px;
+color: black;
 }
 
+/* Feedback sezione costo */
+#costEstimate {
+font-size: .8rem;
+color: #000;
+margin-top: 0.5rem;
+}
 
 @media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-main {
-  margin: 10px auto;
-  width: 80%;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 24px;
-  box-shadow: 0 6px 10px black;
+.topnav a:not(:first-child) {display: none;}
+.topnav a.icon {
+float: right;
+display: block;
 }
-#transcriptionResult {
-  margin: .5rem auto;
-  display: flex;
-  flex-direction: column;
-        align-items: center;
-  height: 20rem;
-  width: 90%;
-  overflow-y: auto;
-  padding: 0.25rem;
-  font-family: "Spectral", serif;
-  border: 1px solid black;
-  text-align: justify;
-        font-size: .8rem;
-}         
-
-#commands{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        }
-        
+.preloader {width: 28px;}
 }
 
 @media screen and (max-width: 900px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-main {
-  margin: 10px auto;
-  width: 80%;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 24px;
-  box-shadow: 0 6px 10px black;
+.topnav.responsive {position: relative;}
+.topnav.responsive .icon {
+position: absolute;
+right: 0;
+top: 0;
 }
-#transcriptionResult {
-  margin: .5rem auto;
-  display: flex;
-  flex-direction: column;
-        align-items: center;
-  height: 20rem;
-  width: 90%;
-  overflow-y: auto;
-  padding: 0.5rem;
-  font-family: "Spectral", serif;
-  border: 1px solid black;
-  text-align: justify;
-        font-size: .9rem;
-}        
-        
+.topnav.responsive a {
+float: none;
+display: block;
+text-align: left;
+}
+.preloader {width: 36px;}
 }
 </style>
 </head>
 <body>
 <div class="topnav" id="myTopnav">
-  <a href="index.html">Home</a>
-        <a href="total_chatbot.html">Total Analyzer</a> 
-  <a href="txtchatbot.html">Text Chatbot</a>
-  <a href="devbot.html">Web Dev Bot</a>          
-  <a href="dalle.html">Image Creator</a>
-  <a href="pdfchatbot.html">PDF Chatbot</a>
-  <a href="tts.html">Text to Speech</a>
-  <a href="#" class="active">Audio Transcriber</a>
-<a href="vd_gpts.html">VD GPTs</a>    
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
+<a href="index.html">Home</a>
+<a href="txtchatbot.html">Master Chatbot</a>
+<a href="devbot.html">Web Dev Bot</a>
+<a href="dalle.html">Image Creator</a>
+<a href="pdfchatbot.html">PDF Chatbot</a>
+<a href="tts.html">Text to Speech</a>
+<a href="#" class="active">Audio Transcriber</a>
+<a href="vd_gpts.html">VD GPTs</a>
+<a href="script:void(0);" class="icon" onclick="myFunction()">
+<i class="fa fa-bars"></i>
+</a>
 </div>
+
 <main>
-  <h1>OpenAI Whisper</h1>
-  <hr>
+<h1 class="heading">OpenAI Whisper</h1>
+<hr>
 <label for="audioFileInput">Select an audio file (MP3, M4A, WAV):</label><br>
-<input type="file" id="audioFileInput"><br>
+<input type="file" id="audioFileInput" accept=".mp3,.m4a,.wav"><br>
+<label for="apikey">Your API key (read only):</label><br>
 <input type="password" id="apikey" placeholder="Your API key" readonly><br>
-<div id="commands">        
+<label for="languageSelect" style="color:white;">Select Target Language:</label><br>
+<select id="languageSelect" style="padding: 0.5rem; border-radius:10px; margin-bottom:1.5rem;">
+<option value="en">English</option>
+<option value="it">Italian</option>
+<option value="es">Spanish</option>
+<option value="fr">French</option>
+<option value="de">German</option>
+<option value="ja">Japanese</option>
+<option value="zh">Chinese (Mandarin)</option>
+<option value="ko">Korean</option>
+<option value="tr">Turkish</option>
+<option value="az">Azerbaijani</option>
+<option value="ru">Russian</option>
+<option value="pt">Portuguese</option>        
+</select><br>        
+<div id="commands">
 <button onclick="transcribeAudio()">Transcribe Audio</button>
-<button onclick="translateToEnglish()">Translate to English</button>        
+<button onclick="translateToLanguage()">Translate Audio</button>
 <button id="export">Save Result</button>
 </div>
+<div id="costEstimate"></div>
 <div id="transcriptionResult"></div>
 </main>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
-        
 function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}        
-        
-//whisper API interrogation for Transcription
-function transcribeAudio() {
-  const apikey = localStorage.getItem("openaikey");      
-  document.getElementById("apikey").value = apikey; 
-console.log(apikey);        
-      
+var x = document.getElementById("myTopnav");
+if (x.className === "topnav") {
+x.className += " responsive";
+} else {
+x.className = "topnav";
+}
+}
 
+// Funzione comune per Whisper
+function sendWhisperRequest(endpoint) {
+const apikey = localStorage.getItem("openaikey");
+document.getElementById("apikey").value = apikey;
 const audioFile = document.getElementById("audioFileInput").files[0];
+const resultDiv = document.getElementById('transcriptionResult');
+const costEstimate = document.getElementById('costEstimate');
 
-if (audioFile) {
+if (!audioFile) {
+alert("Please upload an audio file before continuing.");
+return;
+}
+
 const formData = new FormData();
 formData.append('file', audioFile);
 formData.append('model', 'whisper-1');
 
-fetch('https://api.openai.com/v1/audio/transcriptions', {
+// feedback visivo
+resultDiv.style.display = "flex";
+resultDiv.innerText = "⏳ Processing audio… please wait.";
+costEstimate.innerText = "Calculating cost…";
+
+// Stima costo approssimata: Whisper $0.006/minuto
+const estimatedDurationSec = audioFile.size / (16000 * 2 * 1); // stima se 16kHz mono PCM
+const estMinutes = estimatedDurationSec / 60;
+const estimatedCost = (estMinutes * 0.006).toFixed(4);
+costEstimate.innerText = "Estimated cost: about $" + estimatedCost;
+
+return fetch(`https://api.openai.com/v1/audio/${endpoint}`, {
 method: "POST",
-headers: {
-'Authorization': `Bearer ${apikey}`,
-},
+headers: { 'Authorization': `Bearer ${apikey}` },
 body: formData
 })
-.then((response) => response.json())
-.then((data) => {
-document.getElementById('transcriptionResult').innerText = data.text;
+.then(res => {
+if (!res.ok) throw new Error("HTTP " + res.status);
+return res.json();
 })
-.catch((error) => {
-console.error("Errore durante la trascrizione dell'audio: ", error);
+.then(data => {
+resultDiv.innerText = data.text || "No transcription returned.";
+})
+.catch(err => {
+resultDiv.innerText = "❌ Error: " + err.message;
 });
-} else {
-alert("Per favore, carica un file audio prima di avviare la trascrizione.");
-}
 }
 
-//whisper API interrogation for Tranlation
-function translateToEnglish() {
-const apikey = document.getElementById("apikey").value;
+function transcribeAudio() {
+sendWhisperRequest("transcriptions");
+}
+
+async function translateToLanguage() {
+const apikey = localStorage.getItem("openaikey");
+document.getElementById("apikey").value = apikey;
 const audioFile = document.getElementById("audioFileInput").files[0];
+const selectedLang = document.getElementById("languageSelect").value;
+const resultDiv = document.getElementById('transcriptionResult');
+const costEstimate = document.getElementById('costEstimate');
 
-if (audioFile) {
+if (!audioFile) {
+alert("Please upload an audio file first.");
+return;
+}
+
+resultDiv.style.display = "flex";
+resultDiv.innerText = "⏳ Step 1: Translating audio to English...";
+costEstimate.innerText = "Calculating cost…";
+
+// stima costo Whisper
+const estimatedDurationSec = audioFile.size / (16000 * 2 * 1);
+const estMinutes = estimatedDurationSec / 60;
+const estimatedCost = (estMinutes * 0.006).toFixed(4);
+costEstimate.innerText = "Estimated cost (Whisper step): about $" + estimatedCost;
+
+// 1️⃣ Traduzione Whisper → inglese
 const formData = new FormData();
 formData.append('file', audioFile);
-formData.append('model', 'whisper-1');        
-//formData.append('target_language', 'en');
+formData.append('model', 'whisper-1');
 
-fetch('https://api.openai.com/v1/audio/translations', {
+let englishText = "";
+
+try {
+const whisperResponse = await fetch("https://api.openai.com/v1/audio/translations", {
 method: "POST",
 headers: {
-'Authorization': `Bearer ${apikey}`,
+"Authorization": `Bearer ${apikey}`
 },
 body: formData
-})
-.then((response) => response.json())
-.then((data) => {
-document.getElementById('transcriptionResult').innerText = data.text;
-})
-.catch((error) => {
-console.error("Error translating audio to English: ", error);
 });
-} else {
-alert("Please upload an audio file before starting the translation.");
+
+if (!whisperResponse.ok)
+throw new Error("Error from Whisper: HTTP " + whisperResponse.status);
+
+const whisperData = await whisperResponse.json();
+englishText = whisperData.text;
+
+if (!englishText) throw new Error("No English text returned.");
+
+resultDiv.innerText = "✅ Step 1 complete.\n\n⏳ Step 2: Translating English text to " + selectedLang.toUpperCase() + "...";
+
+} catch (err) {
+resultDiv.innerText = "❌ Whisper translation error: " + err.message;
+return;
 }
-}        
-</script>
-<script>
-//Save Chat Function
+
+// 2️⃣ GPT‑4o mini → lingua scelta
+try {
+const prompt = `Translate the following English text into ${selectedLang.toUpperCase()}:\n\n${englishText}.\n\n For languages that do not use the Western European alphabet, also add a version in latin alphabet.`;
+
+const chatResponse = await fetch("https://api.openai.com/v1/chat/completions", {
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+"Authorization": `Bearer ${apikey}`
+},
+body: JSON.stringify({
+model: "gpt-4o-mini",
+messages: [
+{role: "system", content: "You are a professional translator."},
+{role: "user", content: prompt}
+]
+})
+});
+
+if (!chatResponse.ok)
+throw new Error("Error from GPT model: HTTP " + chatResponse.status);
+
+const chatData = await chatResponse.json();
+const translatedText = chatData.choices?.[0]?.message?.content || "No translation returned.";
+
+resultDiv.innerText =
+`✅ Translation completed (${selectedLang.toUpperCase()}):\n\n${translatedText}`;
+
+// stima costo GPT‑4o mini (circa $0.00015 / 1k token → testuale molto limitato)
+const addCost = 0.0005;
+costEstimate.innerText += ` + GPT step ≈ $${addCost.toFixed(4)} (total ≈ $${(parseFloat(estimatedCost) + addCost).toFixed(4)})`;
+
+} catch (err) {
+resultDiv.innerText = "❌ GPT translation error: " + err.message;
+}
+}
+// Save Chat Function
 var saveButtont = document.getElementById("export");
 saveButtont.addEventListener("click", handleSaveButtontClick);
 
 function handleSaveButtontClick() {
-  saveChatContentTxt();
+saveChatContentTxt();
 }
 
 function saveChatContentTxt() {
-  var chatContent = document.getElementById("transcriptionResult").innerText;
+var chatContent = document.getElementById("transcriptionResult").innerText;
+var currentTimestamp = new Date();
+var datetime = currentTimestamp.toISOString();
+var filename = "whisper_v" + datetime.replace(/[-:.]/g, "");
+var blob = new Blob([chatContent], { type: "text/plain" });
+var url = URL.createObjectURL(blob);
+var downloadLink = document.createElement("a");
+downloadLink.href = url;
+downloadLink.download = filename + ".txt";
+downloadLink.click();
+URL.revokeObjectURL(url);
 
-  var currentTimestamp = new Date();
-  var datetime = currentTimestamp.toISOString();
-  var filename = "whisper_v" + datetime.replace(/[-:.]/g, "");
+// --- feedback utente ---
+const resultDiv = document.getElementById("transcriptionResult");
+if (resultDiv) {
+const feedback = document.createElement("div");
+feedback.innerText = "✅ File saved successfully!";
+feedback.style.color = "white";
+feedback.style.fontSize = "1rem";
+feedback.style.marginTop = "1rem";
+feedback.style.textAlign = "center";
+feedback.style.background = "rgba(4, 190, 109, 0.6)";
+feedback.style.padding = "0.5rem 1rem";
+feedback.style.borderRadius = "6px";
+resultDiv.appendChild(feedback);
 
-  var blob = new Blob([chatContent], { type: "text/plain" });
-
-  var url = URL.createObjectURL(blob);
-
-  var downloadLink = document.createElement("a");
-  downloadLink.href = url;
-  downloadLink.download = filename + ".txt";
-  downloadLink.click();
-  URL.revokeObjectURL(url);
+// Rimozione del messaggio dopo 3 secondi
+setTimeout(() => {
+feedback.remove();
+}, 3000);
 }
-
+}
 </script>
-
 </body>
 </html>

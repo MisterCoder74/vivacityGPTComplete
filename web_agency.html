@@ -1,0 +1,690 @@
+<?php
+$configFilePath = './web_agency.json';
+$configContent = file_get_contents($configFilePath);
+$config = json_decode($configContent, true);
+
+if ($config === null || !isset($config[0])) {
+    die("Errore nel caricamento del file di configurazione.");
+}
+
+$chatbotConfig = $config[0];
+//$chatbotKey = $chatbotConfig['chatbot_apikey'];
+$headerMessage = $chatbotConfig['header_message'];
+$frontendDev = $chatbotConfig['frontend_developer'];
+$backendDev = $chatbotConfig['backend_developer'];
+$collaborationProtocol = $chatbotConfig['collaboration_protocol'];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AI Web Agency Collaboration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crea siti web professionali in secondi con VivacityGPT. AI Web Agency mette a disposizione un full-stack developmento team che lavora davanti a te.">
+    <meta name="keywords" content="AI web agency, creazione siti web, intelligenza artificiale, web design, HTML generator, web agency AI">
+    <meta name="robots" content="index, follow">
+    
+    <!-- OPEN GRAPH (FACEBOOK/LINKEDIN) -->
+    <meta property="og:title" content="VivacityGPT - AI Web Agency">
+    <meta property="og:description" content="Crea siti web professionali in secondi con la nostra AI Web Agency. Genera codice completo in maniera automatica.">
+    <meta property="og:image" content="https://www.vivacitydesign.net/vdgptscomplete/webdevteam.jpg">
+    <meta property="og:url" content="https://www.vivacitydesign.net/vdgptscomplete/web_agency.html">
+    <meta property="og:type" content="website">
+    
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VivacityGPT - AI Web Agency">
+    <meta name="twitter:description" content="Crea siti web professionali in secondi con VivacityGPT. AI Web Agency mette a disposizione un full-stack developmento team che lavora davanti a te.">
+    <meta name="twitter:image" content="https://www.vivacitydesign.net/vdgptscomplete/webdevteam.jpg">
+    
+    <!-- SCHEMA PRINCIPALE -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "VivacityGPT AI Web Agency",
+        "description": "Crea siti web professionali in secondi con la nostra AI Web Agency. Genera codice completo in maniera automatica",
+        "url": "https://www.vivacitydesign.net/vdgptscomplete/web_agency.html",
+        "applicationCategory": "WebApplication",
+        "creator": {
+            "@type": "Organization",
+            "name": "Vivacity Design",
+            "url": "https://www.vivacitydesign.net"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="canonical" href="https://www.vivacitydesign.net/vdgptscomplete/web_agency.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f8ff;
+  color: black;
+  background: url("webdevteam.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+            
+header {
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}     
+
+.topnav {
+  overflow: hidden;
+  background-color: #000;
+        z-index: 100;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+        
+  color: #fff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: rgba(4, 190, 109, 1);
+        
+  color: black;
+}
+
+.topnav a.active {
+  background-color: rgba(4, 190, 109, 1);
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+            
+        
+        .container {
+            background: transparent;
+            backdrop-filter: blur(3px);    
+            max-width: 1480px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 12px;
+            font-size: 2.2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .controls {
+            display: flex;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .control-group {
+            width: 60%;    
+            margin-bottom: 10px;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .control-group input {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .control-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }            
+        
+        .button-group {
+            margin-left: 12px;
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 4px 16px;
+            height: 46px;
+            font-size: 10px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        #startBtn {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        #startBtn:hover {
+            background: #45a049;
+        }
+        
+        #stopBtn {
+            background: #f44336;
+            color: white;
+        }
+        
+        #stopBtn:hover {
+            background: #da190b;
+        }
+        
+        #stopBtn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        #saveBtn {
+            background: #2196F3;
+            color: white;
+        }
+        
+        #saveBtn:hover {
+            background: #0b7dda;
+        }
+        
+        .chatbots-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .chatbot-wrapper {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            height: 680px;
+        }
+        
+        .chatbot-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .chatbot-header.bot1 {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+        }
+        
+        .chatbot-header.bot2 {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+        }
+        
+        .chatbox {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            background: #f5f5f5;
+        }
+        
+        .message {
+            margin-bottom: 10px;
+            padding: 6px 12px;
+            border-radius: 10px;
+            max-width: 85%;
+            word-wrap: break-word;
+            animation: fadeIn 0.3s;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message.from-bot1 {
+            background: #ffe0e0;
+            margin-left: 0;
+            border-left: 4px solid #FF6B6B;
+            overflow-x: auto;
+        }
+        
+        .message.from-bot2 {
+            background: #e0f7f4;
+            margin-right: 0;
+            margin-left: auto;
+            border-right: 4px solid #4ECDC4;
+            overflow-x: auto;
+        }
+        
+        .message.thinking {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            font-style: italic;
+            color: #856404;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 10px;
+            background: #e3f2fd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1976d2;
+        }
+
+        .exchange-counter {
+            text-align: center;
+            padding: 8px;
+            background: #fff9c4;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #f57f17;
+            font-size: 1.1em;
+        }
+        
+        @media (max-width: 768px) {
+            .chatbots-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .chatbot-wrapper {
+                height: 400px;
+            }
+        }
+            
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+      
+        
+}
+
+@media screen and (max-width: 900px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+     
+}
+            
+    </style>
+</head>
+<body>
+    <div class="topnav" id="myTopnav">
+  <a href="index.html">Home</a>
+  <a href="txtchatbot.html">Master Chatbot</a>
+  <a href="devbot.html">Web Dev Bot</a>        
+  <a href="dalle.html">Image Creator</a>
+  <a href="pdfchatbot.html">PDF Chatbot</a>
+  <a href="tts.html">Text to Speech</a>
+  <a href="whisper.html">Audio Transcriber</a>  
+<a href="vd_gpts.html" class="active">VD GPTs</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+<header>
+  <h1>👨‍💻 Web Agency Collaboration Tool 👩‍💻</h1>
+        
+</header>    
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="startPhrase">Project Requirements:</label>
+                <textarea id="startPhrase" rows="3" placeholder="Describe the website or landing page to build, be as specific as you can..."></textarea>
+            </div>
+            
+            <div class="button-group">
+                <button id="startBtn">
+                    <span class="material-symbols-outlined">play_arrow</span>
+                    START
+                </button>
+                <button id="stopBtn" disabled>
+                    <span class="material-symbols-outlined">stop</span>
+                    STOP
+                </button>
+                <button id="saveBtn">
+                    <span class="material-symbols-outlined">save</span>
+                    SAVE CODE
+                </button>
+            </div>
+        </div>
+        
+        <div id="exchangeCounter" class="exchange-counter" style="display: none;">
+            Exchange: <span id="exchangeNum">0</span> / 15
+        </div>
+        
+        <div id="status" class="status" style="display: none;"></div>
+        
+        <div class="chatbots-container">
+            <div class="chatbot-wrapper">
+                <div class="chatbot-header bot1">🎨 Frontend Developer</div>
+                <div class="chatbox" id="chatbox1"></div>
+            </div>
+            
+            <div class="chatbot-wrapper">
+                <div class="chatbot-header bot2">⚙️ Backend Developer</div>
+                <div class="chatbox" id="chatbox2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_KEY = localStorage.getItem("openaikey");
+   
+        console.log(API_KEY);
+
+  if (API_KEY === "") {
+    alert("No OpenAI API Key found.");
+  } else {
+    console.log(API_KEY);
+  }
+        const FRONTEND_DEV = `<?php echo addslashes($frontendDev); ?>`;
+        const BACKEND_DEV = `<?php echo addslashes($backendDev); ?>`;
+        const COLLABORATION_PROTOCOL = `<?php echo addslashes($collaborationProtocol); ?>`;
+        
+        let conversationHistory1 = [];
+        let conversationHistory2 = [];
+        let isRunning = false;
+        let currentTurn = 1;
+        let exchangeCount = 0;
+        const MAX_EXCHANGES = 15;
+        
+        const chatbox1 = document.getElementById('chatbox1');
+        const chatbox2 = document.getElementById('chatbox2');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const startPhrase = document.getElementById('startPhrase');
+        const status = document.getElementById('status');
+        const exchangeCounter = document.getElementById('exchangeCounter');
+        const exchangeNum = document.getElementById('exchangeNum');
+            
+        function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}    
+        
+        function showStatus(message) {
+            status.textContent = message;
+            status.style.display = 'block';
+        }
+        
+        function hideStatus() {
+            status.style.display = 'none';
+        }
+
+        function updateExchangeCounter() {
+            exchangeNum.textContent = exchangeCount;
+            exchangeCounter.style.display = 'block';
+            if (exchangeCount >= MAX_EXCHANGES) {
+                exchangeCounter.style.background = '#ffcdd2';
+                exchangeCounter.style.color = '#c62828';
+            }
+        }
+        
+        function addMessage(chatbox, message, className) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${className}`;
+            messageDiv.textContent = message;
+            chatbox.appendChild(messageDiv);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+        
+        async function generateResponse(personality, conversationHistory, userMessage) {
+            const API_URL = "https://api.openai.com/v1/chat/completions";
+            
+            const messages = [
+                {role: "system", content: personality + "\n\n" + COLLABORATION_PROTOCOL},
+                ...conversationHistory,
+                {role: "user", content: userMessage}
+            ];
+            
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${API_KEY}`
+                },
+                body: JSON.stringify({
+                    model: "gpt-4o-mini",
+                    messages: messages,
+                })
+            };
+            
+            try {
+                const response = await fetch(API_URL, requestOptions);
+                const data = await response.json();
+                return data.choices[0].message.content.trim();
+            } catch (error) {
+                console.error('Error:', error);
+                return "Error generating response.";
+            }
+        }
+        
+        async function conversationLoop(initialMessage) {
+            let currentMessage = initialMessage;
+            
+            addMessage(chatbox1, `Project Request: ${initialMessage}`, 'from-bot1');
+            
+            while (isRunning && exchangeCount < MAX_EXCHANGES) {
+                if (currentTurn === 1) {
+                    showStatus('Frontend Developer is analyzing...');
+                    addMessage(chatbox1, 'Analyzing...', 'thinking');
+                    
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    if (!isRunning) break;
+                    
+                    const response1 = await generateResponse(FRONTEND_DEV, conversationHistory1, currentMessage);
+                    
+                    const thinkingMsg = chatbox1.querySelector('.thinking');
+                    if (thinkingMsg) thinkingMsg.remove();
+                    
+                    addMessage(chatbox1, response1, 'from-bot1');
+                    conversationHistory1.push({role: "user", content: currentMessage});
+                    conversationHistory1.push({role: "assistant", content: response1});
+                    
+                    currentMessage = response1;
+                    currentTurn = 2;
+                    exchangeCount++;
+                    updateExchangeCounter();
+                    
+                } else {
+                    showStatus('Backend Developer is responding...');
+                    addMessage(chatbox2, 'Processing...', 'thinking');
+                    
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    if (!isRunning) break;
+                    
+                    const response2 = await generateResponse(BACKEND_DEV, conversationHistory2, currentMessage);
+                    
+                    const thinkingMsg = chatbox2.querySelector('.thinking');
+                    if (thinkingMsg) thinkingMsg.remove();
+                    
+                    addMessage(chatbox2, response2, 'from-bot2');
+                    conversationHistory2.push({role: "user", content: currentMessage});
+                    conversationHistory2.push({role: "assistant", content: response2});
+                    
+                    currentMessage = response2;
+                    currentTurn = 1;
+                    exchangeCount++;
+                    updateExchangeCounter();
+                }
+            }
+            
+            if (exchangeCount >= MAX_EXCHANGES) {
+                showStatus('⚠️ Maximum exchanges reached! Generating final code...');
+                await generateFinalCode();
+            }
+            
+            hideStatus();
+        }
+
+        async function generateFinalCode() {
+            showStatus('Frontend generating final code...');
+            
+            const frontendFinalPrompt = "Agreement phase complete. Now generate the complete, production-ready code with NO comments, NO explanations. Output only the pure code ready to copy-paste.";
+            const frontendCode = await generateResponse(FRONTEND_DEV, conversationHistory1, frontendFinalPrompt);
+            
+            addMessage(chatbox1, '=== FINAL CODE ===', 'from-bot1');
+            addMessage(chatbox1, frontendCode, 'from-bot1');
+            
+            showStatus('Backend generating final code...');
+            
+            const backendFinalPrompt = "Agreement phase complete. Now generate the complete, production-ready PHP code with NO comments, NO explanations. Output only the pure code ready to copy-paste.";
+            const backendCode = await generateResponse(BACKEND_DEV, conversationHistory2, backendFinalPrompt);
+            
+            addMessage(chatbox2, '=== FINAL CODE ===', 'from-bot2');
+            addMessage(chatbox2, backendCode, 'from-bot2');
+            
+            showStatus('✅ Code generation complete! Use SAVE CODE button.');
+        }
+        
+        startBtn.addEventListener('click', () => {
+            const initialMessage = startPhrase.value.trim();
+            
+            if (!initialMessage) {
+                alert('Please describe the project requirements!');
+                return;
+            }
+            
+            chatbox1.innerHTML = '';
+            chatbox2.innerHTML = '';
+            conversationHistory1 = [];
+            conversationHistory2 = [];
+            currentTurn = 1;
+            exchangeCount = 0;
+            
+            isRunning = true;
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+            startPhrase.disabled = true;
+            
+            updateExchangeCounter();
+            showStatus('Development team initialized!');
+            conversationLoop(initialMessage);
+        });
+        
+        stopBtn.addEventListener('click', () => {
+            isRunning = false;
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+            startPhrase.disabled = false;
+            showStatus('Development stopped!');
+            setTimeout(hideStatus, 2000);
+        });
+        
+        saveBtn.addEventListener('click', () => {
+            if (conversationHistory1.length === 0 && conversationHistory2.length === 0) {
+                alert('No conversation to save!');
+                return;
+            }
+            
+            let conversationText = '=== DEV TEAM COLLABORATION LOG ===\n\n';
+            conversationText += 'Date: ' + new Date().toLocaleString('en-US') + '\n';
+            conversationText += 'Project: ' + startPhrase.value + '\n';
+            conversationText += 'Total Exchanges: ' + exchangeCount + '\n\n';
+            conversationText += '--- COLLABORATION TRANSCRIPT ---\n\n';
+            
+            const maxLength = Math.max(conversationHistory1.length, conversationHistory2.length);
+            
+            for (let i = 0; i < maxLength; i += 2) {
+                if (i < conversationHistory1.length) {
+                    conversationText += `FRONTEND DEV (receives): ${conversationHistory1[i].content}\n`;
+                    if (i + 1 < conversationHistory1.length) {
+                        conversationText += `FRONTEND DEV (responds): ${conversationHistory1[i + 1].content}\n\n`;
+                    }
+                }
+                
+                if (i < conversationHistory2.length) {
+                    conversationText += `BACKEND DEV (receives): ${conversationHistory2[i].content}\n`;
+                    if (i + 1 < conversationHistory2.length) {
+                        conversationText += `BACKEND DEV (responds): ${conversationHistory2[i + 1].content}\n\n`;
+                    }
+                }
+            }
+            
+            conversationText += '\n--- END OF COLLABORATION ---';
+            
+            const blob = new Blob([conversationText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `dev_team_log_${new Date().getTime()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showStatus('Collaboration log saved!');
+            setTimeout(hideStatus, 2000);
+        });
+    </script>
+</body>
+</html>

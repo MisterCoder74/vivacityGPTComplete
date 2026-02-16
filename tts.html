@@ -1,42 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <title>VivacityGPT Complete - TTS bot</title>  
+<title>VivacityGPT Complete - TTS bot</title>  
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;        
   height: 100vh;
   width: 100%;
-  background-color: rgba(4, 190, 109, 1);
-  background-image: url("smoke_PNG965.png"),
-    url("smoke_PNG966.png"),
-    url("smoke_PNG967.png");
-  background-repeat: repeat-x;
-  background-position: 0 20%, 0 100%, 0 50%, 0 100%, 0 0;
-  background-size: 2000px, 2000px, 2000px;
-  animation: 120s smoke infinite linear;
+  background-color: white;
+  background-image: url('vd_background.jpg');
+  background-position: center;
+  background-size: cover;
 }
-
-@keyframes smoke {
-  100% {
-    background-position: -5000px 20%, -800px 95%, 500px 50%, 1000px 100%,
-      400px 0;
-  }
-}        
 
 .topnav {
   overflow: hidden;
   background-color: #000;
-        z-index: 100;
+  z-index: 100;
 }
 
 .topnav a {
   float: left;
   display: block;
-        
   color: #fff;
   text-align: center;
   padding: 14px 16px;
@@ -46,7 +38,6 @@ body {
 
 .topnav a:hover {
   background-color: rgba(4, 190, 109, 1);
-        
   color: black;
 }
 
@@ -58,54 +49,220 @@ body {
 .topnav .icon {
   display: none;
 }
-
+        
+.heading {
+  font-size: 2.4rem;
+  color: black;
+  text-shadow: 0 2px 8px rgba(4, 190, 109, 1);
+  backdrop-filter: blur(4px);        
+}  
+        
+hr {
+  background: transparent;
+  height: 4px;
+  border: 1px solid black inset;
+}
+        
 main {
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        transform: translateX(-50%);
   margin: 1rem auto;
   width: 80%;
+  height: auto;
   text-align: center;
   padding: 1rem;
   border-radius: 24px;
   box-shadow: 0 6px 10px black;
 }
+
+.userinput {
+  width: 100%;
+  backdrop-filter: blur(4px);  
+}        
+
 #apikey {
   width: 60%;
   margin: 0.5rem;
-border-radius: 10px;
-padding: 4px 8px;
+  border-radius: 10px;
+  padding: 4px 8px;
 }
+
 #prompt {
-  width: 90%;
+  width: 80%;
   margin: 0.5rem;
   resize: none;
-border-radius: 10px;
-padding: 4px 8px;
+  border-radius: 6px;
+  padding: 4px 8px;
 }
-audio {
-  margin-top: 1rem;
-}
-audio::-webkit-media-controls-panel {
-background: #fff;
-}
-select,
+
 button {
   padding: 0.5rem 1rem;
   border-radius: 10px;
   cursor: pointer;
-margin-top: 4px;
-}
-button {
-  background: #f00;
+  margin-top: 4px;
+  background: rgba(4, 190, 109, 1);
   color: #fff;
-}
-button:hover {
-  background: #fff;
-  color: #f00;
+  transition: all .3s ease;
+  border: 2px solid transparent;
 }
 
+button:hover {
+  background: transparent;
+  color: rgba(4, 190, 109, 1);
+  border: 2px solid rgba(4, 190, 109, 1);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.preloader {
+  width: 48px;
+  margin: 10px 0;
+  display: none;
+}
+
+.preloader.active {
+  display: inline-block;
+}
+
+select {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+    
+#audioPlayerContainer {
+  margin-top: 1rem;
+  display: none;
+}
+
+#audioPlayerContainer.active {
+  display: block;
+}
+
+audio {
+  margin-top: 1rem;
+  width: 80%;
+  max-width: 500px;
+}
+
+audio::-webkit-media-controls-panel {
+  background: #fff;
+}
+
+.audio-controls {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.success-message {
+  background-color: rgba(4, 190, 109, 0.3);
+  border: 1px solid rgba(4, 190, 109, 1);
+  padding: 10px;
+  border-radius: 6px;
+  margin: 10px auto;
+  color: black;
+  font-weight: bold;
+  max-width: 80%;
+}
+
+.error-message {
+  background-color: rgba(255, 0, 0, 0.2);
+  border: 1px solid rgba(255, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 6px;
+  margin: 10px auto;
+  color: black;
+  font-weight: bold;
+  max-width: 80%;
+}
+
+.info-section {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px auto;
+  max-width: 80%;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.info-section h3 {
+  margin-top: 0;
+  color: black;
+}
+
+.voice-option {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.voice-option .voice-name {
+  font-weight: bold;
+}
+
+.voice-option .voice-desc {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.voice-preview-btn {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+.audio-history {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 15px auto;
+  max-width: 80%;
+  text-align: left;
+}
+
+.audio-history h3 {
+  margin-top: 0;
+  color: black;
+}
+
+.history-item {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.history-item .history-info {
+  flex: 1;
+}
+
+.history-item .history-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.history-item button {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  margin: 0;
+}
 
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}
@@ -113,14 +270,30 @@ button:hover {
     float: right;
     display: block;
   }
-main {
-  margin: 10px auto;
-  width: 80%;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 24px;
-  box-shadow: 0 6px 10px black;
-}
+  
+  main {
+    margin: 10px auto;
+    width: 95%;
+    padding: 1rem;
+  }
+
+  #prompt {
+    width: 95%;
+    rows: 8;
+  }
+
+  .preloader {
+    width: 32px;
+  }
+
+  audio {
+    width: 95%;
+  }
+
+  .info-section,
+  .audio-history {
+    max-width: 95%;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -135,61 +308,109 @@ main {
     display: block;
     text-align: left;
   }
-main {
-  margin: 10px auto;
-  width: 80%;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 24px;
-  box-shadow: 0 6px 10px black;
-}
+  
+  main {
+    margin: 10px auto;
+    width: 90%;
+  }
+
+  #prompt {
+    rows: 10;
+  }
 }
 </style>
-        <script>
-        function loadContent() {
-            var content = localStorage.getItem("fromTxtchatbot");
-            if (content) {
-                document.getElementById("prompt").value = content;
-            }
-        }
-    </script>    
+
+<script>
+function loadContent() {
+  var content = localStorage.getItem("fromTxtchatbot");
+  if (content) {
+    document.getElementById("prompt").value = content;
+  }
+}
+
+function clearContent() {
+  if (confirm("Are you sure you want to reset the content?")) {
+    localStorage.setItem("fromTxtchatbot", '');
+    document.getElementById("prompt").value = '';
+    showMessage("Content cleared successfully!", "success");
+  }
+}
+</script>    
         
 </head>
 <body onload="loadContent()">
 
 <div class="topnav" id="myTopnav">
   <a href="index.html">Home</a>
-        <a href="total_chatbot.html">Total Analyzer</a> 
-  <a href="txtchatbot.html">Text Chatbot</a>
+  <a href="txtchatbot.html">Master Chatbot</a>
   <a href="devbot.html">Web Dev Bot</a>          
   <a href="dalle.html">Image Creator</a>
   <a href="pdfchatbot.html">PDF Chatbot</a>
   <a href="#" class="active">Text to Speech</a>
-        <a href="whisper.html">Audio Trascriber</a>
-<a href="vd_gpts.html">VD GPTs</a>
+  <a href="whisper.html">Audio Transcriber</a>
+  <a href="vd_gpts.html">VD GPTs</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
 </div>
 
 <main>
-  <h1>OpenAI TTS Maker</h1>
+  <h1 class="heading">OpenAI TTS Maker</h1>
   <hr>
+  
+  <div class="info-section">
+    <h3>ℹ️ Information</h3>
+    <p><strong>Character Limit:</strong> 4096 characters per request</p>
+    <p><strong>Cost:</strong> ~$0.015 per 1000 characters (gpt-4o-mini-tts)</p>
+    <p><strong>Supported Formats:</strong> MP3, Opus, AAC, FLAC, WAV, PCM</p>
+  </div>
+
   <label for="voiceSelect">Select a voice:</label><br>
   <select id="voiceSelect">
-    <option value="alloy" selected>Alloy</option>
-    <option value="nova">Nova</option>
-    <option value="echo">Echo</option>
-    <option value="fable">Fable</option>
-    <option value="onyx">Onyx</option>
-    <option value="shimmer">Shimmer</option>      
+    <option value="alloy" selected>Alloy (Neutral, balanced)</option>
+    <option value="nova">Nova (Warm, friendly)</option>
+    <option value="echo">Echo (Clear, professional)</option>
+    <option value="fable">Fable (Expressive, storytelling)</option>
+    <option value="onyx">Onyx (Deep, authoritative)</option>
+    <option value="shimmer">Shimmer (Soft, gentle)</option>
+    <option value="ash">Ash (Natural, conversational)</option> 
+    <option value="coral">Coral (Bright, energetic)</option>           
+    <option value="ballad">Ballad (Melodic, smooth)</option>  
+    <option value="sage">Sage (Wise, calm)</option>           
+  </select>
+  <button class="voice-preview-btn" onclick="previewVoice()">Preview Voice</button>
+  <br>
+
+  <label for="formatSelect">Audio Format:</label><br>
+  <select id="formatSelect">
+    <option value="mp3" selected>MP3</option>
+    <option value="opus">Opus</option>
+    <option value="aac">AAC</option>
+    <option value="flac">FLAC</option>
+    <option value="wav">WAV</option>
+    <option value="pcm">PCM</option>
   </select><br>
-  <audio controls id="audioPlayer"></audio><br>
+
+  <div id="audioPlayerContainer">
+    <audio controls id="audioPlayer" aria-label="Generated audio player"></audio>
+    <div class="audio-controls">
+      <button id="downloadBtn" onclick="downloadAudio()">Download Audio</button>
+    </div>
+  </div>
+
+  <img src="preloader.gif" class="preloader" id="preloader" alt="Loading...">
+  <div id="messageContainer"></div>
 
   <input type="password" id="apikey" placeholder="Your API key" readonly><br>
 
-  <textarea id="prompt" placeholder="Your prompt" rows=14></textarea><br>
-  <button onclick="convertiTestoInAudio()">Convert Text to Audio</button>
+  <textarea id="prompt" placeholder="Your prompt (max 4096 characters)" rows="14"></textarea><br>
+  <button id="convertBtn" onclick="convertiTestoInAudio()">Convert Text to Audio</button> 
+  <button onclick="clearContent()">Reset Memory</button>
+
+  <div class="audio-history" id="audioHistory" style="display: none;">
+    <h3>📜 Audio History (Current Session)</h3>
+    <div id="historyList"></div>
+  </div>
 </main>
 
 <script>
@@ -202,40 +423,210 @@ function myFunction() {
   }
 }
 
-function convertiTestoInAudio() {
-  const apikey = localStorage.getItem("openaikey"); 
-  document.getElementById("apikey").value = apikey;
-  console.log(apikey);
-  const prompt = document.getElementById("prompt").value;
-  const selectedvoice = document.getElementById("voiceSelect").value;
+// Traccia blob URLs e cronologia
+let currentAudioBlob = null;
+let currentAudioURL = null;
+let audioHistory = [];
 
-  if (prompt) {
-    fetch("https://api.openai.com/v1/audio/speech", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apikey}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        model: "gpt-4o-mini-tts",
-        input: prompt,
-        voice: selectedvoice
-      })
-    })
-      .then((response) => response.blob())
-      .then((blob) => {
-        const audioUrl = URL.createObjectURL(blob);
-        const audioPlayer = document.getElementById("audioPlayer");
-        audioPlayer.src = audioUrl;
-        audioPlayer.play();
-      })
-      .catch((error) => {
-        console.error("Errore while converting TTS: ", error);
-      });
-  } else {
-    alert("Please insert a text prompt before converting.");
+function revokeCurrentAudio() {
+  if (currentAudioURL) {
+    URL.revokeObjectURL(currentAudioURL);
+    currentAudioURL = null;
   }
 }
+
+function showMessage(message, type = "success") {
+  const container = document.getElementById("messageContainer");
+  const msgDiv = document.createElement("div");
+  msgDiv.className = type === "success" ? "success-message" : "error-message";
+  msgDiv.textContent = message;
+  container.appendChild(msgDiv);
+  
+  setTimeout(() => {
+    if (msgDiv.parentNode) {
+      msgDiv.parentNode.removeChild(msgDiv);
+    }
+  }, 4000);
+}
+
+function addToHistory(voice, format, text, blob) {
+  const timestamp = new Date().toLocaleString();
+  const historyItem = {
+    timestamp,
+    voice,
+    format,
+    text: text.substring(0, 50) + (text.length > 50 ? "..." : ""),
+    blob,
+    url: URL.createObjectURL(blob)
+  };
+  
+  audioHistory.unshift(historyItem);
+  if (audioHistory.length > 5) {
+    const removed = audioHistory.pop();
+    URL.revokeObjectURL(removed.url);
+  }
+  
+  updateHistoryDisplay();
+}
+
+function updateHistoryDisplay() {
+  const historyContainer = document.getElementById("audioHistory");
+  const historyList = document.getElementById("historyList");
+  
+  if (audioHistory.length === 0) {
+    historyContainer.style.display = "none";
+    return;
+  }
+  
+  historyContainer.style.display = "block";
+  historyList.innerHTML = "";
+  
+  audioHistory.forEach((item, index) => {
+    const itemDiv = document.createElement("div");
+    itemDiv.className = "history-item";
+    itemDiv.innerHTML = `
+      <div class="history-info">
+        <strong>${item.timestamp}</strong><br>
+        Voice: ${item.voice} | Format: ${item.format}<br>
+        Text: "${item.text}"
+      </div>
+      <div class="history-actions">
+        <button onclick="playHistoryAudio(${index})">Play</button>
+        <button onclick="downloadHistoryAudio(${index})">Download</button>
+      </div>
+    `;
+    historyList.appendChild(itemDiv);
+  });
+}
+
+function playHistoryAudio(index) {
+  const item = audioHistory[index];
+  const audioPlayer = document.getElementById("audioPlayer");
+  const playerContainer = document.getElementById("audioPlayerContainer");
+  
+  revokeCurrentAudio();
+  currentAudioURL = item.url;
+  currentAudioBlob = item.blob;
+  
+  audioPlayer.src = item.url;
+  playerContainer.classList.add("active");
+  audioPlayer.play();
+}
+
+function downloadHistoryAudio(index) {
+  const item = audioHistory[index];
+  const link = document.createElement("a");
+  link.href = item.url;
+  link.download = `tts_audio_${item.voice}_${Date.now()}.${item.format}`;
+  link.click();
+  showMessage("Audio downloaded successfully!", "success");
+}
+
+function previewVoice() {
+  const selectedVoice = document.getElementById("voiceSelect").value;
+  const sampleText = "Hello! This is a preview of my voice. I hope you like how I sound.";
+  const tempPrompt = document.getElementById("prompt").value;
+  
+  document.getElementById("prompt").value = sampleText;
+  convertiTestoInAudio(true);
+  
+  setTimeout(() => {
+    document.getElementById("prompt").value = tempPrompt;
+  }, 500);
+}
+
+function convertiTestoInAudio(isPreview = false) {
+  const apikey = localStorage.getItem("openaikey"); 
+  document.getElementById("apikey").value = apikey;
+  
+  const prompt = document.getElementById("prompt").value;
+  const selectedVoice = document.getElementById("voiceSelect").value;
+  const selectedFormat = document.getElementById("formatSelect").value;
+  
+  if (!prompt.trim()) {
+    showMessage("Please insert a text prompt before converting.", "error");
+    return;
+  }
+
+  if (prompt.length > 4096) {
+    showMessage("Text exceeds 4096 characters limit. Please shorten your text.", "error");
+    return;
+  }
+
+  const convertBtn = document.getElementById("convertBtn");
+  const preloader = document.getElementById("preloader");
+  
+  convertBtn.disabled = true;
+  preloader.classList.add("active");
+
+  fetch("https://api.openai.com/v1/audio/speech", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apikey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini-tts",
+      input: prompt,
+      voice: selectedVoice,
+      response_format: selectedFormat,
+      instructions: "Speak in a pitchy and childish tone with a deep indian accent.",
+    })
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`API Error: ${response.status} ${response.statusText}`);
+    }
+    return response.blob();
+  })
+  .then((blob) => {
+    revokeCurrentAudio();
+    
+    currentAudioBlob = blob;
+    currentAudioURL = URL.createObjectURL(blob);
+    
+    const audioPlayer = document.getElementById("audioPlayer");
+    const playerContainer = document.getElementById("audioPlayerContainer");
+    
+    audioPlayer.src = currentAudioURL;
+    playerContainer.classList.add("active");
+    audioPlayer.play();
+    
+    if (!isPreview) {
+      addToHistory(selectedVoice, selectedFormat, prompt, blob);
+      showMessage("Audio generated successfully!", "success");
+    }
+    
+    convertBtn.disabled = false;
+    preloader.classList.remove("active");
+  })
+  .catch((error) => {
+    convertBtn.disabled = false;
+    preloader.classList.remove("active");
+    showMessage(`Error while converting TTS: ${error.message}`, "error");
+  });
+}
+
+function downloadAudio() {
+  if (!currentAudioBlob) {
+    showMessage("No audio available to download.", "error");
+    return;
+  }
+  
+  const selectedVoice = document.getElementById("voiceSelect").value;
+  const selectedFormat = document.getElementById("formatSelect").value;
+  const link = document.createElement("a");
+  link.href = currentAudioURL;
+  link.download = `tts_audio_${selectedVoice}_${Date.now()}.${selectedFormat}`;
+  link.click();
+  showMessage("Audio downloaded successfully!", "success");
+}
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+  revokeCurrentAudio();
+  audioHistory.forEach(item => URL.revokeObjectURL(item.url));
+});
 
 </script>
 

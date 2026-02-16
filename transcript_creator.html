@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">        
   <title>VivacityGPT Complete - AI Transcript Creator</title>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <style>
 * {
           margin: 0;
@@ -149,20 +149,83 @@ fieldset {
            
 fieldset legend {
 color: white;           
+}  
+           
+@media screen and (max-width: 600px) {
+              html,  body {
+        height: 100vh;
+        }
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+.preloader {
+  width: 28px;
+}  
+        
+.characterInputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+        flex-wrap: wrap;
+}  
+button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: .9rem;
+  transition: all 0.2s linear;
+          margin: 1rem auto;
+ }        
+        
+#convcommands {
+display: flex;
+        justify-content: space-between;
+        width: auto;
+        margin: .5rem auto;
+}        
+        
+}
+
+@media screen and (max-width: 900px) {
+        body {
+        height: 100vh;
+        }
+        
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+.preloader {
+  width: 36px;
+}    
 }           
+           
    </style>
 </head>
 <body>
         
 <div class="topnav" id="myTopnav">
   <a href="index.html">Home</a>
-        <a href="total_chatbot.html">Total Analyzer</a> 
-  <a href="txtchatbot.html">Text Chatbot</a>
+  <a href="txtchatbot.html">Master Chatbot</a>
   <a href="devbot.html">Web Dev Bot</a>        
   <a href="dalle.html">Image Creator</a>
   <a href="pdfchatbot.html">PDF Chatbot</a>
   <a href="tts.html">Text to Speech</a>
-  <a href="whisper.html">Audio Trascriber</a>  
+  <a href="whisper.html">Audio Transcriber</a>  
 <a href="vd_gpts.html" class="active">VD GPTs</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
@@ -182,27 +245,41 @@ color: white;
         <option value="alloy">Alloy (M)</option>
         <option value="echo">Echo (M)</option>
         <option value="onyx">Onyx (M)</option>
+        <option value="ballad">Ballad (M)</option> 
+        <option value="ash">Ash (M)</option>               
         <option value="fable">Fable (F)</option>
         <option value="nova">Nova (F)</option>
         <option value="shimmer">Shimmer (F)</option>
+        <option value="coral">Coral (F)</option>
+		<option value="sage">Sage (F)</option>         
+ 
+		<option value="sage">Sage (F)</option>               
       </select>
       <input type="text" id="character2" placeholder="Character 2 Name">
       <select id="voiceSelect2">
         <option value="alloy">Alloy (M)</option>
         <option value="echo">Echo (M)</option>
         <option value="onyx">Onyx (M)</option>
+        <option value="ballad">Ballad (M)</option> 
+        <option value="ash">Ash (M)</option>               
         <option value="fable">Fable (F)</option>
         <option value="nova">Nova (F)</option>
         <option value="shimmer">Shimmer (F)</option>
+        <option value="coral">Coral (F)</option>
+		<option value="sage">Sage (F)</option>             
       </select>
       <input type="text" id="character3" placeholder="Character 3 Name">
       <select id="voiceSelect3">
         <option value="alloy">Alloy (M)</option>
         <option value="echo">Echo (M)</option>
         <option value="onyx">Onyx (M)</option>
+        <option value="ballad">Ballad (M)</option> 
+        <option value="ash">Ash (M)</option>               
         <option value="fable">Fable (F)</option>
         <option value="nova">Nova (F)</option>
         <option value="shimmer">Shimmer (F)</option>
+        <option value="coral">Coral (F)</option>
+		<option value="sage">Sage (F)</option>              
       </select>
     </div>
     <div class="characterInputs">
@@ -211,36 +288,47 @@ color: white;
         <option value="alloy">Alloy (M)</option>
         <option value="echo">Echo (M)</option>
         <option value="onyx">Onyx (M)</option>
+        <option value="ballad">Ballad (M)</option> 
+        <option value="ash">Ash (M)</option>               
         <option value="fable">Fable (F)</option>
         <option value="nova">Nova (F)</option>
         <option value="shimmer">Shimmer (F)</option>
+        <option value="coral">Coral (F)</option>
+		<option value="sage">Sage (F)</option>             
       </select>
       <input type="text" id="character5" placeholder="Character 5 Name">
       <select id="voiceSelect5">
         <option value="alloy">Alloy (M)</option>
         <option value="echo">Echo (M)</option>
         <option value="onyx">Onyx (M)</option>
+        <option value="ballad">Ballad (M)</option> 
+        <option value="ash">Ash (M)</option>               
         <option value="fable">Fable (F)</option>
         <option value="nova">Nova (F)</option>
         <option value="shimmer">Shimmer (F)</option>
+        <option value="coral">Coral (F)</option>
+		<option value="sage">Sage (F)</option>              
       </select>
       <input type="text" id="character6" placeholder="Character 6 Name">
       <select id="voiceSelect6">
-        <option value="alloy">Alloy</option>
         <option value="alloy">Alloy (M)</option>
         <option value="echo">Echo (M)</option>
         <option value="onyx">Onyx (M)</option>
+        <option value="ballad">Ballad (M)</option> 
+        <option value="ash">Ash (M)</option>               
         <option value="fable">Fable (F)</option>
         <option value="nova">Nova (F)</option>
         <option value="shimmer">Shimmer (F)</option>
+        <option value="coral">Coral (F)</option>
+		<option value="sage">Sage (F)</option>              
       </select>
     </div>
   </fieldset>
 </div>
 
-<textarea id="scriptInput" placeholder="Paste your movie script here... actors names bust be enclosed in [], i.e.: 
-[Mark]: Hello June!
-[June]: Hello Mark, how are you?">
+<textarea id="scriptInput" placeholder="Paste your movie script here... actors names and emotions/instuction must be enclosed in [], i.e.: 
+[Mark]: Hello June! :[happy and friendly]
+[June]: Hello Mark, how are you? :[uneasy and sarcastic]">
 </textarea>
 <div id="convcommands">        
 <button id="convertButton">Generate Conversation</button>
@@ -288,10 +376,11 @@ async function convertToAudio(script) {
 const apikey = localStorage.getItem("openaikey");
 
 for (const line of script) {
-const match = line.match(/^\[(.+?)\]: (.+)$/);
+const match = line.match(/^\[(.+?)\]: (.+?) :\[(.*?)\]$/);
 if (match) {
 const character = match[1].trim(); // Extract character name
 const dialogue = match[2].trim(); // Extract dialogue
+const instruction = match[3].trim(); // Istruzione, può essere vuota        
 const selectedVoice = voiceMapping[character]; // Look up voice
 
 if (selectedVoice) {
@@ -305,7 +394,8 @@ Authorization: `Bearer ${apikey}`,
 body: JSON.stringify({
 model: "gpt-4o-mini-tts",
 input: dialogue,
-voice: selectedVoice
+voice: selectedVoice,
+instructions: instruction,        
 })
 });
 
