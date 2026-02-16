@@ -1,0 +1,18 @@
+CHANGELOG
+V20 - Feb. 10-16, 2026
+
+Main changes
+- Total Analyzer deleted - no longer part of the suite (obsolete and redundant tool)
+- TXT Chatbot renamed as Master Chatbot
+- PDF analysis added to Master Chatbot via aPDF Free API service
+- New dynamic spinner implemented in Master Chatbot
+- GPTs: Culture selection in Voice Chatter for Speech Recognition
+- GPTs: AI Image Merger added
+
+Minor changes:
+- Web Dev Bot: specialized and structured new prompt added
+- Web Dev Bot: General CSS refactoring
+- Homepage: minimal CSS refactoring 
+
+Bugs solved
+
