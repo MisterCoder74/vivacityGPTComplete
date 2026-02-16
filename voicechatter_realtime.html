@@ -1,6 +1,3 @@
-<?php
-include '../logger.php';
-?>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -8,377 +5,31 @@ include '../logger.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">        
   <title>VivacityGPT Complete - AI voice chatbot</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'>
-<style>
-
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f0f8ff;
-  color: white;
-  background: url("chatter.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-        
-}
-        
-header {
-  background-color: transparent;
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
-
-.topnav {
-  overflow: hidden;
-  background-color: #000;
-  z-index: 100;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-
-  color: #fff;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: rgba(4, 190, 109, 1);
-
-  color: black;
-}
-
-.topnav a.active {
-  background-color: rgba(4, 190, 109, 1);
-  color: white;
-}
-
-.topnav .icon {
-  display: none;
-} 
-        
-#lateral-panel {
-    display: none; /* Initially hide the panel */
-    width: 15%; /* Set the width of the panel */
-    height: 36rem;
-    overflow-Y: auto;
-    background-color: transparent; /* Background color */
-    padding: 10px; /* Padding */
-    border-radius: 12px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(197, 235, 234, .7);
-    backdrop-filter: blur(2px);
-    position: fixed; /* Fixed position */
-    top: 180px; /* Position from the top */
-    left: 10px; /* Position from the left */
-} 
-        
-#lateral-panel ul li {
-font-size: .8rem;        
-}
-#lateral-panel h3 {
-text-align: center;        
-}        
-.chatlink {
-        color: black;
-        text-decoration: none;
-        }        
-.chatlink:hover {
-        color: black;
-        text-decoration: underline;
-        } 
-.chatlistlink {
-        color: white;
-        text-decoration: none;
-        }        
-.chatlistlink:hover {
-        color: rgba(197, 235, 234, .7);
-        text-decoration: underline;
-        }          
-        
-main {
-  max-width: 80%;
-  min-height: 40rem;
-  margin: 2rem auto;
-  padding: 20px;
-  background-color: transparent;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(197, 235, 234, .7);
-        backdrop-filter: blur(4px);
-}
-        
-     
-          
-.preloader {
-  width: 48px;
-}           
-
-h2, h1, h3, h4{
-  color: white;
-  text-shadow: 2px 4px 10px black;
-  margin: .5rem;      
-}
-h1 {
-  font-size: 2.4rem;
-}
-        
-#search-form {
-  width: 50%;
-  margin: 0 auto;
-  position: relative;
-}
-#search-form input {
-  width: 100%;
-  font-size: 1.2rem;
-  padding: 10px 15px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-}
-#search-form button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  width: 3rem;
-  text-align: center;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #333;
-}
-#saveChatBtn {
-        display: none;
-        margin: 8px auto;
-        text-align: center;
-        padding: 8px 12px;
-        border-radius: 8px;
-        background: rgba(197, 235, 234, .7);
-        color: black;
-        cursor: pointer;
-        }  
-#saveChatBtn:hover {
-        display: block;
-        background: black;
-        color: rgba(197, 235, 234, .7);
-        }          
-        
-.user-message {
-  background-color: rgba(197, 235, 234, 1);
-  padding: .25rem;
-  width: 100%;
-  align-self: start;
-  text-align: left;
-  border: 1px solid black;
-  color: black;
-  font-size: 1rem;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  line-height: 1;
-}
-
-.chatgpt-message {
-  background-color: rgba(197, 235, 288, 1);
-  padding: .25rem;
-  width: 100%;
-  align-self: start;
-  text-align: justify;
-  color: black;
-  font-size: 1rem;
-  border: 1px solid black;
-  box-shadow: 0 4px 8px black;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: start;
-  line-height: 1;
-} 
-
-select{
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-margin: 0 auto;
-}          
-        
-#chathistory {
-   border: 1px solid rgba(197, 235, 234, .8);
-        padding: 10px;
-        margin-top: 10px;
-        height: 600px;
-        overflow-y: auto;     
-}   
-        
-#userrequest {
-  border: 1px solid black;
-        padding: 10px;
-        margin-top: 10px;
-        height: auto;      
-}  
-        
-.info {
-        background-color: rgba(4, 190, 109, .5);
-        padding: .3rem 0;
-        line-height: 1.5;
-  margin-top: 0.5rem;
-  text-align: center;
-  font-size: 0.8rem;
-        color: black;
-}
-        
-.generatedimg { width: 250px; border-radius: 8px; box-shadow: 0 2px 10px black;  }        
-        
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-
-.preloader {
-  width: 28px;
-} 
-h1 {
-  font-size: 1.6rem;
-}
-           
-main {
-  max-width: 95%;
-  min-height: 40rem;
-  margin: 1rem auto;
-  padding: 10px;
-  background-color: transparent;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(197, 235, 234, .7);
-        backdrop-filter: blur(2px);
-} 
-        
-#search-form {
-  width: 80%;
-  margin: 0 auto;
-  position: relative;
-}
-#search-form input, {
-  width: 100%;
-  font-size: 1rem;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}        
- .info {
-         width: 100%;
-        background-color: rgba(4, 190, 109, .9);
-        padding: .2rem 4px;
-        line-height: 1.5;
-  margin-top: 0.5rem;
-  text-align: justify;
-  font-size: 0.8rem;
-        color: white;
-}  
-        
-.user-message {
-  background-color: rgba(197, 235, 234, 1);
-  padding: .2rem;
-  width: 100%;
-  align-self: start;
-  text-align: left;
-  border: 1px solid black;
-  color: black;
-  font-size: .9rem;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  line-height: 1;
-}
-
-.chatgpt-message {
-  background-color: rgba(197, 235, 288, 1);
-  padding: .2rem;
-  width: 100%;
-  align-self: start;
-  text-align: justify;
-  color: black;
-  font-size: .9rem;
-  border: 1px solid black;
-  box-shadow: 0 4px 8px black;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: start;
-  line-height: 1;
-} 
-.generatedimg {
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        }        
-        
-}
-
-@media screen and (max-width: 900px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-
-.preloader {
-  width: 36px;
-}    
-}
-        
-
-
-
-</style>
-
+  <link rel="stylesheet" href="css/core.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
 </head>
 <body>
 <div class="topnav" id="myTopnav">
   <a href="index.html">Home</a>
-  <a href="txtchatbot.html">Text Chatbot</a>
-  <a href="devbot.html">Web Dev Bot</a>        
+  <a href="txtchatbot.html">Master Chatbot</a>
+  <a href="devbot.html">Web Dev Bot</a>
   <a href="dalle.html">Image Creator</a>
   <a href="pdfchatbot.html">PDF Chatbot</a>
   <a href="tts.html">Text to Speech</a>
-  <a href="whisper.html">Audio Trascriber</a>  
-<a href="vd_gpts.html" class="active">VD GPTs</a>
+  <a href="whisper.html">Audio Transcriber</a>
+  <a href="vd_gpts.html" class="active">VD GPTs</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
 </div>         
-        
-<header>
-  <h1>AI Voice Chatbot</h1>  
-        <p class="info"></p>
-</header>          
-        
-       
-<main>
-<!-- <form action="https://www.google.com/search" method="get" target="_blank" id="search-form"> -->
+
+<main class="main-container">
+  <h1 class="heading">AI Voice Chatbot</h1>
+  <p class="info"></p>
+
 <form  id="search-form">  
-       
+
 <input id="prompt" type="text" placeholder="Activate Microphone to chat..." autocomplete="off" autofocus disabled><br>
 
 </form>
@@ -390,11 +41,10 @@ main {
 <option value="es-ES">Español</option>
 <option value="de-DE">Deutsch</option>
 </select>         
-<button id="saveChatBtn" type="button" style="display: inline-block;">Save Chat</button> 
+<button id="saveChatBtn" type="button" class="btn">Save Chat</button> 
 </section>        
 <div id="chathistory">
-<!-- <div id="userrequest"></div> -->
-</div> <!-- Div per la cronologia chat -->
+</div>
 
 <audio controls id="audioPlayer" style="display: none;"></audio>
       
@@ -532,7 +182,7 @@ if (userInput === "") return;
 
 showMessage("Guest", userInput, "");
 
-// ⛔️ Ferma l’ascolto mentre il bot elabora/parla
+// ⛔️ Ferma l'ascolto mentre il bot elabora/parla
 if (recognition) try { recognition.stop(); } catch (_) {}
 
 const typingIndicator = document.createElement("p");
@@ -591,7 +241,7 @@ player.onended = () => {
 try {
 recognition.start();
 } catch (e) {
-console.log("Recognition not restarted (already active or not supported).");
+console.log("Recognition not restarted (already active or not supported).")
 }
 };
 } else {
@@ -763,7 +413,7 @@ return chatMemory;
 } catch (error) {
 console.error(error);
 alert("Error during web search or API connetion.");
-// Riattiva comunque il microfono se l’esecuzione si interrompe
+// Riattiva comunque il microfono se l'esecuzione si interrompe
 try { recognition.start(); } catch (_) {}
 }
 }
@@ -780,7 +430,15 @@ link.download = `${filename}.txt`;
 link.click();
 URL.revokeObjectURL(url);
 });
-        
+
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
 
 </script>
 
