@@ -1,37 +1,93 @@
+<?php
+include '../logger.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
-        <title>VivacityGPT Complete</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- META TAGS PRINCIPALI -->
+    <title>VivacityGPT Complete v.20 | Discover the Future with our 25+ AI Tools Suite</title>
+    <meta name="description" content="Discover the Future with VivacityGPT Complete - La suite definitiva con oltre 25 strumenti AI per sviluppo web, analisi, automazione e creatività. Website builder, code generator, analyzer e molto altro.">
+    <meta name="keywords" content="VivacityGPT Complete, AI tools suite, intelligenza artificiale, strumenti AI, website builder AI, code generator, web development AI, automation tools, creative AI">
+    <meta name="robots" content="index, follow">
+    
+    <!-- OPEN GRAPH (FACEBOOK/LINKEDIN) -->
+    <meta property="og:title" content="VivacityGPT Complete | Discover the Future with 25+ AI Tools">
+    <meta property="og:description" content="Discover the Future with VivacityGPT Complete - Suite definitiva con oltre 25 strumenti AI per sviluppo, automazione e creatività. Tutto quello che serve per il futuro digitale.">
+    <meta property="og:image" content="https://www.vivacitydesign.net/vdgptscomplete/vgptcomplete.jpg">
+    <meta property="og:url" content="https://www.vivacitydesign.net/vdgptscomplete/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="VivacityGPT Complete">
+    
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VivacityGPT Complete | Discover the Future with AI">
+    <meta name="twitter:description" content="Suite completa con 25+ strumenti AI per sviluppo web, automazione e creatività. Discover the Future with VivacityGPT Complete.">
+    <meta name="twitter:image" content="https://www.vivacitydesign.net/vdgptscomplete/vgptcomplete.jpg">
+    <meta name="twitter:site" content="@VivacityDesign">
+    
+    <!-- SCHEMA PRINCIPALE -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "VivacityGPT Complete",
+        "description": "Discover the Future with VivacityGPT Complete - Suite definitiva con oltre 25 strumenti AI per sviluppo web, analisi, automazione e creatività digitale",
+        "url": "https://www.vivacitydesign.net/vdgptscomplete/index.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "Vivacity Design",
+            "url": "https://www.vivacitydesign.net"
+        },
+        "featureList": [
+            "AI Website Builder",
+            "Code Generator",
+            "Interface Analyzer", 
+            "Automation Tools",
+            "Creative AI Tools",
+            "Development Suite",
+            "25+ Integrated AI Tools"
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "150"
+        }
+    }
+    </script>
+    
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="canonical" href="https://www.vivacitydesign.net/vdgptscomplete/index.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;        
+  font-family: Arial, Helvetica, sans-serif;
   height: 100vh;
   width: 100%;
-  background-color: rgba(4, 190, 109, 1);
-  background-image: url("smoke_PNG965.png"),
-    url("smoke_PNG966.png"),
-    url("smoke_PNG967.png");
-  background-repeat: repeat-x;
-  background-position: 0 20%, 0 100%, 0 50%, 0 100%, 0 0;
-  background-size: 2000px, 2000px, 2000px;
-  animation: 120s smoke infinite linear;
+  background-color: white;
+  background-image: url("vd_background.jpg");
+  background-position: center;
+  background-size: cover;
 }
-
-@keyframes smoke {
-  100% {
-    background-position: -5000px 20%, -800px 95%, 500px 50%, 1000px 100%,
-      400px 0;
-  }
-}        
 
 .topnav {
   overflow: hidden;
   background-color: #000;
-        z-index: 100;
+  z-index: 100;
 }
 
 .topnav a {
@@ -46,7 +102,7 @@ body {
 
 .topnav a:hover {
   background-color: rgba(4, 190, 109, 1);
-        
+
   color: black;
 }
 
@@ -58,156 +114,163 @@ body {
 .topnav .icon {
   display: none;
 }
-        
-.heading {
-        font-size: 2.4rem;
-        }  
-        
-        hr {
-        background: transparent;
-                height: 4px;
-                border: 1px solid black inset;
-        }
-#intro, #content {
-        margin: 0 auto;
-        width: 80%;
-        font-size: 1rem;
-        text-align: justify;
-        } 
-.avatar {
-        width: 120px;
-        height: auto;
-        padding: 4px;
-        margin: .5rem 0;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px black;
-        }    
-.avatar img{
-border-radius: 10px;
 
-        }        
-        
+.heading {
+  font-size: 2.4rem;
+  color: black;
+  text-shadow: 0 2px 8px rgba(4, 190, 109, 1);
+  backdrop-filter: blur(4px);
+}
+
+hr {
+  background: transparent;
+  height: 4px;
+  border: 1px solid black inset;
+}
+#intro,
+#content {
+  margin: 0 auto;
+  width: 85%;
+  font-size: 0.9rem;
+  text-align: justify;
+  backdrop-filter: blur(4px);
+}
+
+.avatar {
+  max-width: 180px;
+  height: auto;
+  padding: 4px;
+  margin: 0.5rem 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px black;
+}
+.avatar img {
+  border-radius: 10px;
+}
+
 main {
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        transform: translateX(-50%);
   margin: 1rem auto;
-  width: 80%;
+  width: 85%;
   text-align: center;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
   border-radius: 24px;
-  box-shadow: 0 6px 10px black;
-        margin-bottom: 1rem;
-        }
+  box-shadow: 0 -4px 10px black inset;
+  margin-bottom: 1rem;
+}
 .footer {
-        font-size: .9rem;
-        text-align: center;
-        margin: 2rem 0 .5rem 0;
-        width: 100%;
-        } 
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 2rem 0 0.5rem 0;
+  width: 100%;
+}
 
 #setupmodal {
-        margin: .25rem auto;
-        padding: .5rem;
-        
-        }        
+  margin: 0.25rem auto;
+  padding: 0.5rem;
+}
 
 button {
   padding: 0.5rem 1rem;
   border-radius: 10px;
   cursor: pointer;
-margin-top: 4px;
-  background: #f00;
+  margin-top: 4px;
+  background: rgba(4, 190, 109, 1);
   color: #fff;
+  transition: all 0.3s ease;
 }
 button:hover {
-  background: #fff;
-  color: #f00;
+  background: transparent;
+  color: rgba(4, 190, 109, 1);
+  border: 2px solid rgba(4, 190, 109, 1);
 }
-        
+
 .setupmodal {
-display: none;
-position: fixed;
-z-index: 1;
-left: 0;
-top: 0;
-width: 100%;
-height: 100%;
-overflow: auto;
-background-color: rgba(4, 190, 109, .5);
-color: #000;        
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(4, 190, 109, 0.5);
+  color: #000;
 }
-        
 
 .modal-content {
-background-color: rgba(4, 190, 109, 1);
-        color: #000;
-margin: 15% auto;
-padding: 2rem;
-border: 1px solid #888;
-width: 50%;
-box-shadow: 0 4px 10px black;
-border-radius: 18px;        
+  background-color: rgba(4, 190, 109, 1);
+  color: #000;
+  margin: 15% auto;
+  padding: 2rem;
+  border: 1px solid #888;
+  width: 50%;
+  box-shadow: 0 4px 10px black;
+  border-radius: 18px;
 }
-        
-#openaikeyInput, #chatpdfkeyInput {
+
+#openaikeyInput,
+#chatpdfkeyInput,
+#chatapdfkeyInput {
   width: 80%;
   margin: 0.5rem;
   resize: none;
-border-radius: 10px;
-padding: 4px 8px;
-}        
+  border-radius: 10px;
+  padding: 4px 8px;
+}
 
 .close {
-color: #000;
-float: center;
-font-size: 2rem;
-font-weight: bold;
-
+  color: #000;
+  float: center;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-color: black;
-cursor: pointer;
-}        
-        
+  color: black;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {display: none;}
+  .topnav a:not(:first-child) {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
   }
-main {
-  margin: 20px auto;
-  width: 80%;
-  text-align: center;
-  padding: .5rem;
-  border-radius: 24px;
-  box-shadow: 0 6px 10px black;
-        margin-bottom: 1rem;
-}
-.heading {
-        font-size: 1.8rem;
-        } 
-#intro, #content {
-        margin: 0 auto;
-        width: 80%;
-        font-size: .9rem;
-        text-align: justify;
-        }  
-        
-.footer {
-        font-size: .7rem;
-        text-align: center;
-        margin: .5rem auto;
-        width: 100%;
-        }        
+  main {
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 24px;
+    box-shadow: 0 6px 10px black;
+    margin-bottom: 1rem;
+  }
+  .heading {
+    font-size: 1.8rem;
+  }
+  #intro,
+  #content {
+    margin: 0 auto;
+    width: 85%;
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+
+  .footer {
+    font-size: 0.7rem;
+    text-align: center;
+    margin: 0.5rem auto;
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 800px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -218,30 +281,31 @@ main {
     display: block;
     text-align: left;
   }
-main {
-  margin: 10px auto;
-  width: 80%;
-  text-align: center;
-  padding: .5rem;
-  border-radius: 24px;
-  box-shadow: 0 6px 10px black;
-        margin-bottom: 1rem;
-}
-.heading {
-        font-size: 2rem;
-        }
-#intro, #content {
-        margin: 0 auto;
-        width: 80%;
-        font-size: .9rem;
-        text-align: justify;
-        } 
-.footer {
-        font-size: .7rem;
-        text-align: center;
-        margin: .5rem auto;
-        width: 100%;
-        }         
+  main {
+    margin: 10px auto;
+    width: 80%;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 24px;
+    box-shadow: 0 6px 10px black;
+    margin-bottom: 1rem;
+  }
+  .heading {
+    font-size: 2rem;
+  }
+  #intro,
+  #content {
+    margin: 0 auto;
+    width: 85%;
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+  .footer {
+    font-size: 0.7rem;
+    text-align: center;
+    margin: 0.5rem auto;
+    width: 100%;
+  }
 }
 </style>
 </head>
@@ -249,13 +313,12 @@ main {
 
 <div class="topnav" id="myTopnav">
   <a href="#" class="active">Home</a>
-        <a href="total_chatbot.html">Total Analyzer</a> 
-  <a href="txtchatbot.html">Text Chatbot</a>
+  <a href="txtchatbot.html">Master Chatbot</a>
   <a href="devbot.html">Web Dev Bot</a>          
   <a href="dalle.html">Image Creator</a>
   <a href="pdfchatbot.html">PDF Chatbot</a>
   <a href="tts.html">Text to Speech</a>
-  <a href="whisper.html">Audio Trascriber</a>
+  <a href="whisper.html">Audio Transcriber</a>
   <a href="vd_gpts.html">VD GPTs</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
@@ -263,67 +326,111 @@ main {
 </div>
 
 <main>
-  <section id="intro">
-    <h1 class="heading">VivacityGPT Complete v.15</h1>
-  <p><i>Action first, without boundaries!</i></p><hr>
-  </section>
-  <section id="content">
-  Vivacity Design uses the most modern Artificial Intelligence techniques for the creation and development of apps and web pages. We believe so much in what we develop that around 40% of our site was built by our team using the initial tool engine that later became our VivacityGPT!<br>
-In this series of pages we make available to all users our AI tools created through integration with OpenAI and <a href="https://www.chatpdf.com/?via=alessandro-demontis" target="_blank" style="color: black;">ChatPDF</a>, and brought together for the first time in a collection called <i>VivacityGPT Complete</i><br>
-          <br><b>News:</b> <i>Text Chatbot</i> now has <i>search the web</i> capability by using OpenAI new functionality. New GPTs added.<br>
-          <br>
-          <small>Last update: v.15, June 10-20, 2025.</small><br>
-          <center>
-                  <img src="chatbot_face_03.jpg" class="avatar">
-                  <div id="setupmodal">
-                          <button id="openModal">API Keys Setup</button>
-                  </div>
-                  
-                  	<div id="modal" class="setupmodal">
-					<div class="modal-content">
-					<div class="close">&times;</div><br>
-					<input type="text" id="openaikeyInput" placeholder="Enter OpenAI key"><br>
-					<input type="text" id="chatpdfkeyInput" placeholder="Enter ChatPDF key">
-                            <p id="modalfeedback"></p>
-					<button id="saveKeys">Save Keys</button><button id="resetKeys">Reset Keys</button>
-                            
-                    <script>
-                            function checkLocalStorageKeys() {
-							if(localStorage.getItem('openaikey')) {
-							var openaiKey = localStorage.getItem('openaikey');
-							document.getElementById('openaikeyInput').value = openaiKey;
-							} else {
-							document.getElementById('modalfeedback').innerText = "Configura le API key";
-							}
+<section id="intro">
+<h1 class="heading">VivacityGPT Complete v.20</h1>
+<p style="float: right;"><i>Action first, without boundaries!</i></p>
+<hr>
+</section>
 
-							if(localStorage.getItem('chatpdfkey')) {
-							var chatpdfKey = localStorage.getItem('chatpdfkey');
-							document.getElementById('chatpdfkeyInput').value = chatpdfKey;
-							} else {
-							document.getElementById('modalfeedback').innerText = "Configura le API key";
-							}
-							}
+<section id="content">
+<span style="line-height: 1.3; font-size: .9rem;">
+Welcome to <strong>Vivacity Design</strong> — where innovation meets intelligence.<br>
+We’re redefining the development of web and app experiences through the latest advances in <strong>Artificial Intelligence</strong>.<br><br>
 
-							checkLocalStorageKeys();
-                    </script>        
-					</div>
-					</div>
-          </center>
-  			<p>
-         <b>Disclaimer:</b><br>
-<small>To use the service, you must sign up for an OpenAI and a <a href="https://www.chatpdf.com/?via=alessandro-demontis" target="_blank" style="color: black;">ChatPDF</a> accounts and insert your personal API keys into our tools.<br>
-While <b>our tools are completely free</b>, OpenAI and <a href="https://www.chatpdf.com/?via=alessandro-demontis" target="_blank" style="color: black;">ChatPDF</a> accounts may charge the users for their API requests.<br>
-Please consult the providers policies on ratings and billings.</small>
-          </p>
-          
-  </section>
-<div class="footer">
-        <img src="button_poweredby.png"><br>
-        Created by Vivacity Design Web Agency, May 2024 - June 2025<br>
-Torna ai <a href="../servizi_online.html">Servizi Online</a>
-        </div></main>
+Remarkably, almost <b>45% of this very website</b> was built using the early tools that have evolved into our current <strong>VivacityGPT Master Chatbot</strong> <small>(formerly TXT Chatbot up to v.19)</small>!
+<br>As of February 2026, <strong>over 86% of the website and of the tools</strong> were built using VivacityGPT Complete: <i>a suite of tools that builds itself!</i> <br><br>      
+        
+
+Explore our suite of <strong>integrated AI tools</strong> — powered by <a href="https://openai.com/api/" target="_blank" style="color: black;">OpenAI</a>, 
+<a href="https://www.chatpdf.com/?via=alessandro-demontis" target="_blank" style="color: black;">ChatPDF</a> and <a href="https://apdf.io/" target="_blank" style="color: black;">aPDF.io</a> —
+all brought together for the first time in the <i>VivacityGPT Complete</i> collection.<br><br>
+
+Get ready to harness AI and elevate your next project!
+</span>
+
+<p>
+<small>
+<strong>Models used:</strong><br>
+<code>gpt-5-nano, gpt-5-chat-latest, gpt-4.1-nano, gpt-4o-mini, gpt-4o-mini-search-preview, gpt-4o-mini-tts, tts1, sora-2, sora-2-pro, gpt-image-1.5, gpt-image-1, gpt-image-1-mini, dall-e-3, chatPDF, aPDF</code>
+</small>
+<br><br>
+<small>
+<strong>Latest News:</strong> Introducing <code>aPDF.io pdf2text API</code> and <code>Master Chatbot</code>.
+</small>
+</p>
+
+<small>
+<i>VivacityGPT Complete</i> was conceived in May 2024.<br>
+Last update: v.20 — February 10th–16th, 2026.<br>
+View the <a href="v20.txt" title="See v.20 Changelog" target="_blank" style="color: black;">Change Log</a> or access the
+<a href="#" title="VivacityGPT Complete Handbook" target="_blank" style="color: black;">Reference Handbook (under preparaion)</a>.
+</small>
+<br><br>
+
+<center>
+<img src="ai_mind.jpg" class="avatar"><br><br>
+
+<div id="setupmodal">
+<button id="openModal">API Keys Setup</button>
+</div>
+
+<div id="modal" class="setupmodal">
+<div class="modal-content">
+<div class="close">&times;</div><br>
+<input type="text" id="openaikeyInput" placeholder="Enter OpenAI key"><br>
+<input type="text" id="chatpdfkeyInput" placeholder="Enter ChatPDF key"><br>
+<input type="text" id="chatapdfkeyInput" placeholder="Enter aPDF key"><br>        
+<p id="modalfeedback"></p>
+<button id="saveKeys">Save Keys</button>
+<button id="resetKeys">Reset Keys</button>
+
+<script>
+function checkLocalStorageKeys() {
+if (localStorage.getItem('openaikey')) {
+document.getElementById('openaikeyInput').value = localStorage.getItem('openaikey');
+} else {
+document.getElementById('modalfeedback').innerText = "Setup API keys";
+}
+
+if (localStorage.getItem('chatpdfkey')) {
+document.getElementById('chatpdfkeyInput').value = localStorage.getItem('chatpdfkey');
+} else {
+document.getElementById('modalfeedback').innerText = "Setup API keysy";
+}
+        
+if (localStorage.getItem('chatapdfkey')) {
+document.getElementById('chatapdfkeyInput').value = localStorage.getItem('chatapdfkey');
+} else {
+document.getElementById('modalfeedback').innerText = "Setup API keys";
+}        
+}
+
+checkLocalStorageKeys();
+</script>
+</div>
+</div>
+</center>
 <br>
 
+<p>
+<span class="heading">Disclaimer:</span><br>
+<small>
+Access to our services requires active accounts with <a href="https://www.openai.com" target="_blank" style="color: black;">OpenAI</a>, 
+<a href="https://www.chatpdf.com/?via=alessandro-demontis" target="_blank" style="color: black;">ChatPDF</a>  and <a href="https://apdf.io/" target="_blank" style="color: black;">aPDF.io</a>.<br>
+You’ll need to enter your personal API keys into the setup interface above.<br><br>
+Our tools are completely free to use, but note that <strong>OpenAI</strong>, <strong>ChatPDF</strong> and <strong>aPDF</strong> may charge for API usage.<br>
+Please refer to each provider’s terms and billing policies before use.
+</small>
+</p>
+</section>
+
+<div class="footer">
+<img src="button_poweredby.png"><br>
+Created by Vivacity Design Web Agency, May 2024 – February 2026<br>
+Back to <a href="https://www.vivacitydesign.net/" style="color: black;">Vivacity Design Homepage</a>
+</div>
+<br>
+</main>
 <script>
 function myFunction() {
   var x = document.getElementById("myTopnav");
@@ -341,6 +448,7 @@ const saveKeysBtn = document.getElementById('saveKeys');
 const resetKeysBtn = document.getElementById('resetKeys');        
 const openaikeyInput = document.getElementById('openaikeyInput');
 const chatpdfkeyInput = document.getElementById('chatpdfkeyInput');
+const chatapdfkeyInput = document.getElementById('chatapdfkeyInput');        
 
 openModalBtn.addEventListener('click', () => {
 modal.style.display = 'block';
@@ -353,18 +461,22 @@ modal.style.display = 'none';
 saveKeysBtn.addEventListener('click', () => {
 localStorage.setItem('openaikey', openaikeyInput.value);
 localStorage.setItem('chatpdfkey', chatpdfkeyInput.value);
+localStorage.setItem('chatapdfkey', chatapdfkeyInput.value);        
 var apikey1 = localStorage.getItem("openaikey"); 
-var apikey2 = localStorage.getItem("chatpdfkey");        
+var apikey2 = localStorage.getItem("chatpdfkey");
+var apikey3 = localStorage.getItem("chatapdfkey");         
 
-        console.log(apikey1, apikey2);
+        console.log(apikey1, apikey2, apikey3);
         modal.style.display = 'none';
 });
 
 resetKeysBtn.addEventListener('click', () => {
 localStorage.setItem('openaikey', '');
 localStorage.setItem('chatpdfkey', '');
+localStorage.setItem('chatapdfkey', '');        
 document.getElementById('openaikeyInput').value = "";
-document.getElementById('chatpdfkeyInput').value = "";       
+document.getElementById('chatpdfkeyInput').value = ""; 
+document.getElementById('chatapdfkeyInput').value = "";         
 
 });        
         

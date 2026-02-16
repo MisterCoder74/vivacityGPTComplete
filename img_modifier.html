@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VivacityGPT Complete - AI Image Rebuilder</title>
+    <title>VivacityGPT Complete - AI Image Modifier</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">        
     <style>
 * {
@@ -59,9 +58,10 @@ header {
 }
 
 .container {
+  max-width: 1200px;
   display: flex;
   justify-content: space-around;
-  margin-bottom: 20px;
+  margin: 20px auto;
 }
 
 .image-box {
@@ -93,25 +93,18 @@ header {
 #uploaded-image {
   border-radius: 24px;
   border: 1px solid red;
-}            
+}          
             
 #text-box {
-  width: 100%;
+  width: 60%;
+  border: 1px solid white;
   border-radius: 12px;
-  box-shadow: 0 2px 10px white;
+  box-shadow: 0 4px 10px white;
   padding: 0.5rem;
   margin: 1rem auto;
   color: white;
   backdrop-filter: blur(2px);
 }
-            
-.preloader {
-  width: 48px;
-}             
-
-.image-box img.preloader {
-  width: 48px;
-} 
 
 h2,
 h1,
@@ -122,6 +115,14 @@ h3 {
 h1 {
   font-size: 2.4rem;
 }
+
+.preloader {
+  width: 48px;
+}
+            
+.image-box img.preloader {
+  width: 48px;
+} 
 
 button {
   background-color: black;
@@ -139,56 +140,64 @@ button:hover {
 }
 
 #vfeedback {
-  color: white;
+  color: black;
 }
             
 #voperations, #commands {
-  width: 100%;
-        backdrop-filter: blur(2px);
         box-shadow: 0 2px 10px white;
+  width: 100%;
+        text-align: center;
+        backdrop-filter: blur(2px);
   padding: 0.5rem;
   margin: 0 auto;
   text-align: center;
 }
-            
+
+textarea {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px black;
+  padding: 8px 6px;
+} 
+
 @media screen and (max-width: 600px) {
-  body {
-    height: 100vh;
-  }
-        
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {
     float: right;
     display: block;
   }
-
+  header {
+    padding: 10px 20px;
+  }
   .preloader {
     width: 28px;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    margin-bottom: 20px;
-  }        
-  
-  .image-box {
-    width: 28rem;
-    min-height: 80px;
-    height: auto;
-    margin: 12px;
-    border: 1px solid white;
-    border-radius: 16px;
-    padding: 8px;
-    box-shadow: 0 4px 10px white;
-    text-align: center;
-    background: transparent;
-    backdrop-filter: blur(2px);
   }  
-  
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .image-box {
+    width: 80%;
+    max-height: 400px;
+  }
+
   #text-box {
-    width: 90%;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  h2,
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  button {
+    width: 100%;
+    font-size: 0.9rem;
   }
 } 
             
@@ -204,36 +213,44 @@ button:hover {
     display: block;
     text-align: left;
   }
-  
+
   .preloader {
     width: 36px;
   } 
-        
-  .image-box {
-    width: 28rem;
-    height: auto;
-    margin: 12px;
-    border: 1px solid white;
-    border-radius: 16px;
-    padding: 8px;
-    box-shadow: 0 4px 10px white;
-    text-align: center;
-    background: transparent;
-    backdrop-filter: blur(2px);
-  }          
-}            
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .image-box {
+    width: 80%;
+    max-height: 480px;
+  }
+
+  #text-box {
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+}
     </style>
 </head>
 <body>
 <div class="topnav" id="myTopnav">
   <a href="index.html">Home</a>
   <a href="txtchatbot.html">Master Chatbot</a>
-  <a href="devbot.html">Web Dev Bot</a>        
+  <a href="devbot.html">Web Dev Bot</a>          
   <a href="dalle.html">Image Creator</a>
   <a href="pdfchatbot.html">PDF Chatbot</a>
   <a href="tts.html">Text to Speech</a>
-  <a href="whisper.html">Audio Transcriber</a>  
+  <a href="whisper.html">Audio Transcriber</a>
   <a href="vd_gpts.html" class="active">VD GPTs</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
@@ -241,34 +258,30 @@ button:hover {
 </div>
         
 <header>
-  <h1>AI Image Rebuilder</h1>
+  <h1>AI Image Modifier</h1>
 </header>
 
 <div class="container">
-  <div class="image-box" id="original-image">
-    <img id="uploaded-image" src="" alt="Uploaded Image" style="display: none;">
-  </div>
-  <div class="image-box" id="generated-image">
-  </div>
+	<div class="image-box" id="original-image">
+		<img id="uploaded-image" src="" alt="Uploaded Image" style="display: none;">
+	</div>
+ 
+	<div class="image-box" id="generated-image">
+	</div>
 </div>
 
 <div id="voperations">
   <form enctype="multipart/form-data" method="POST">
     <input class="fixedwidth" type="file" accept=".jpg,.png" name="file" id="vfile-input">
     <div id="vfeedback"></div>
-    <button id="vuploadBtn" type="submit"> Upload the image</button>
-    <button type="button" onclick="getChatGPTResponseIMG();"> Analyze the image</button>
-           
+    <button id="vuploadBtn" type="submit"> Upload the image</button><p><br></p>
+    <button type="button" onclick="getChatGPTResponseIMG();"> Generate</button>
   </form>
-</div>
+</div> 
 
 <div id="text-box">
-  <b>Your Image analysis will appear here...</b>
-  <p id="image-analysis-output"></p>
-</div>
-
-<div id="commands">
-<button type="button" onclick="generateImage();"> Rebuild the image</button> 
+  <b>Insert your prompt</b><br>
+  <textarea id="prompt" rows="6"></textarea>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -313,19 +326,18 @@ $(document).ready(function () {
         const data = JSON.parse(response);
         if (data.status === "success") {
           $('#vfeedback').html("Your file was uploaded.");
-          
           var fileInput = document.getElementById('vfile-input');
           var file = fileInput.files[0];
 
           if (file) {
-            var originalimageUrl = URL.createObjectURL(file);
+            var originalImageUrl = URL.createObjectURL(file);
             var img = $('#uploaded-image')[0];
-            img.src = originalimageUrl;
+            img.src = originalImageUrl;
             
             // Quando l'immagine è caricata, ridimensionala
             img.onload = function() {
               const container = $('#original-image')[0];
-              const containerWidth = container.clientWidth - 16;
+              const containerWidth = container.clientWidth - 16; // sottrai padding
               const containerHeight = container.clientHeight - 16;
               resizeImage(img, containerWidth, containerHeight);
               $(img).show();
@@ -341,144 +353,45 @@ $(document).ready(function () {
   });
 });
 
-function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-
-// Creation of the memory array with system prompt
-let chatMemory = [];
-chatMemory = createMemory([{
-    role: "system",
-    content: "You are an AI image analyzer and rebuilder."
-}]);
-
-// Definition of structure for context memory
-function createMemory(messages) {
-    const memory = [];
-    for (const msg of messages) {
-        memory.push({
-            role: msg.role,
-            content: msg.content
-        });
-    }
-    return memory;
-}
-
-// VISION
-async function submitImage(imgUrl) {
-  return await getChatGPTResponseIMG("https://www.vivacitydesign.net/vdgptscomplete/" + imgUrl, chatMemory);
-}        
+async function submitImage() {
+  const chatContainer = document.getElementById("generated-image");
+  chatContainer.innerHTML = "";        
+  const typingIndicator = document.createElement("p");
+  typingIndicator.id = "typing-indicator";
+  typingIndicator.innerHTML = '<img src="preloader.gif" class="preloader" alt="Loading...">';
+  chatContainer.appendChild(typingIndicator);        
         
-// Function to interrogate OpenAI model and get response
-async function getChatGPTResponseIMG(fileUrl, chatMemory) {
-  console.log(fileUrl);
-  const apikey = localStorage.getItem("openaikey");
-  console.log(apikey);
+  const fileInput = document.getElementById('vfile-input');
+  const file = fileInput.files[0];
 
-  if (apikey === "") {
-    alert("No OpenAI API Key found.");
+  if (!file) {
+    alert('Please upload an image file first.');
     return;
   }
 
-  const chatContainer = document.getElementById("text-box");
-  const typingIndicator = document.createElement("p");
-  typingIndicator.id = "typing-indicator";
-  typingIndicator.innerHTML = '<img src="preloader.gif" class="preloader" alt="Loading...">';
-  chatContainer.appendChild(typingIndicator);
+  const formData = new FormData();
+  formData.append("model", "gpt-image-1-mini");
+  formData.append("image", file);
+  formData.append("prompt", document.getElementById('prompt').value);
+
+  const apikey = localStorage.getItem("openaikey");
 
   try {
-    response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("https://api.openai.com/v1/images/edits", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + apikey
+        "Authorization": `Bearer ${apikey}`
       },
-      body: JSON.stringify({
-        model: "gpt-4.1-nano",
-        messages: [
-          ...chatMemory.map((item) => ({ ...item })),
-          {
-            role: "user",
-            content: [
-              {
-                type: "text",
-                text: "Provide a detailed description of the image content. Don't thank, greet or propose the user to ask further questions, only provide the image description. If there are any people in the image, make sure to highlight their hair length and color, and their body type."
-              },
-              {
-                type: "image_url",
-                image_url: {
-                  url: fileUrl
-                }
-              }
-            ]
-          }
-        ],
-        max_tokens: 450
-      })
+      body: formData
     });
 
     if (!response.ok) {
-      throw new Error("Error while requesting to the API.");
+      const errorData = await response.json();
+      throw new Error(`Error: ${errorData.error.message}`);
     }
 
     const data = await response.json();
-    if (!data.choices || !data.choices.length || !data.choices[0].message || !data.choices[0].message.content) {
-      throw new Error("Invalid API response.");
-    }
-
-    var chatGPTResponse = data.choices[0].message.content;
-    chatGPTResponse = chatGPTResponse.replace(/\*\*(.*?)\*\*/g, "$1");        
-
-    chatContainer.removeChild(typingIndicator);
-    const responsediv = document.getElementById("image-analysis-output");
-    responsediv.innerHTML = `<div contenteditable="true" style="border: 1px solid #ccc; padding: 8px; min-height: 50px;">${chatGPTResponse}</div>`;
-
-    chatMemory.push({ role: "user", content: fileUrl });
-    chatMemory.push({ role: "assistant", content: chatGPTResponse });
-
-    return chatMemory;
-  } catch (error) {
-    console.error(error);
-    alert("An error occurred during the request. Check your OpenAI account or try later.");
-  }
-}
-// END VISION
-
-// DALL-E
-async function generateImage() {
-  const apikey = localStorage.getItem("openaikey");       
-  console.log(apikey);
-  const prompt = document.getElementById("image-analysis-output").textContent;
-  const chatContainer = document.getElementById("generated-image");
-  chatContainer.innerHTML = "";
-  const typingIndicator = document.createElement("p");
-  typingIndicator.id = "typing-indicator";
-  typingIndicator.innerHTML = '<img src="preloader.gif" class="preloader" alt="Loading...">';
-  chatContainer.appendChild(typingIndicator);
-  console.log(prompt);
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/images/generations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + apikey
-      },
-      body: JSON.stringify({
-        model: "dall-e-3",
-        prompt: prompt,
-        n: 1,
-        size: "1024x1024"
-      })
-    });
-
-    const data = await response.json();
-    const imageUrl = data.data[0].url;
+    const imageBase64 = data.data[0].b64_json;
 
     const responseDiv = document.createElement("div");
     responseDiv.style.width = "100%";
@@ -489,7 +402,7 @@ async function generateImage() {
     responseDiv.style.justifyContent = "center";
     
     const image = document.createElement("img");
-    image.src = imageUrl;
+    image.src = `data:image/png;base64,${imageBase64}`;
     image.alt = "Generated Image";
     
     // Quando l'immagine generata è caricata, ridimensionala
@@ -504,22 +417,49 @@ async function generateImage() {
     responseDiv.appendChild(image);
 
     const downloadLink = document.createElement("a");
-    downloadLink.href = imageUrl;
-    downloadLink.target = "_blank";
+    downloadLink.href = `data:image/png;base64,${imageBase64}`;
+    downloadLink.download = "edited_image.png";
     downloadLink.textContent = "Download Image";
     downloadLink.style.marginTop = "10px";
     downloadLink.style.color = "white";
     responseDiv.appendChild(downloadLink);
 
-    chatContainer.removeChild(typingIndicator);
+    chatContainer.removeChild(typingIndicator);        
     chatContainer.innerHTML = "";
     chatContainer.appendChild(responseDiv);
   } catch (error) {
     console.error(error);
-    alert("An error occurred during the request. Check your OpenAI account or try later.");
+    alert("An error occurred: " + error.message);
   }
-}   
-//END DALL-E
+}
+
+// Creation of the memory array with system prompt
+let chatMemory = [];
+chatMemory = createMemory([{
+  role: "system",
+  content: "You are an AI image analyzer and rebuilder."
+}]);
+
+// Definition of structure for context memory
+function createMemory(messages) {
+  const memory = [];
+  for (const msg of messages) {
+    memory.push({
+      role: msg.role,
+      content: msg.content
+    });
+  }
+  return memory;
+}
+
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
 
 // Gestisci il resize della finestra
 window.addEventListener('resize', function() {

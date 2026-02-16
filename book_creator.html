@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Book Summary Creator</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body {
 margin: 0;
@@ -145,18 +146,49 @@ pre {
 white-space: pre-wrap;
 word-wrap: break-word;
 }
+        
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+.preloader {
+  width: 28px;
+}  
+}
+
+@media screen and (max-width: 900px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+.preloader {
+  width: 36px;
+}    
+}        
+        
+        
 </style>
 </head>
 <body>
 <div class="topnav" id="myTopnav">
   <a href="index.html">Home</a>
-  <a href="total_chatbot.html">Total Analyzer</a> 
-  <a href="txtchatbot.html">Text Chatbot</a>
+  <a href="txtchatbot.html">Master Chatbot</a>
   <a href="devbot.html">Web Dev Bot</a>        
   <a href="dalle.html">Image Creator</a>
   <a href="pdfchatbot.html">PDF Chatbot</a>
   <a href="tts.html">Text to Speech</a>
-  <a href="whisper.html">Audio Trascriber</a>  
+  <a href="whisper.html">Audio Transcriber</a>  
 <a href="vd_gpts.html" class="active">VD GPTs</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
@@ -207,7 +239,7 @@ function myFunction() {
         
 // --- Function to generate prompt based on user input ---
 function buildBookPrompt(title, genre, mainIdea) {
-return `Create a detailed book outline diding the plot in chapters.
+return `Create a detailed book outline dividing the plot in chapters.
 Use Markdown formatting with headers, bold, italics, and paragraphs**.
 
 Details:
@@ -215,7 +247,7 @@ Details:
 - Genre: "${genre}"
 - Main Idea: "${mainIdea}"
 
-Format your response with headings for chapters, bold for section titles, italics for emphasis, and paragraphs for narrative. Make sure to characterize the main actors of the story, and make the secondary plots, if any, coherent. Use a stotytelling style for chapters`;
+Format your response with headings for chapters, bold for section titles, italics for emphasis, and paragraphs for narrative. Make sure to characterize the main actors of the story, and make the secondary plots, if any, coherent. Use a fluid stotytelling style for chapters.`;
 }
 
 // --- Function to communicate with OpenAI ---
@@ -241,8 +273,9 @@ headers: {
 Authorization: "Bearer " + apikey,
 },
 body: JSON.stringify({
-model: "gpt-4.1-nano", // or another model you have access to
+model: "gpt-5-nano", // or another model you have access to
 messages: [...chatMemory, { role: "user", content: userInput }],
+verbosity: "high"        
 }),
 });
 

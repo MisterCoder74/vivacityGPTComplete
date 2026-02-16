@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Joiner - AI Image Merger</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+* {
+box-sizing: border-box;
+}
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #f0f8ff;
+color: white;
+background: url("img_rebuilder.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+}
+
+header {
+background-color: transparent;
+color: white;
+text-align: center;
+padding: 20px;
+}
+
+.topnav {
+overflow: hidden;
+background-color: #000;
+z-index: 100;
+}
+
+.topnav a {
+float: left;
+display: block;
+color: #fff;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+}
+
+.topnav a:hover {
+background-color: rgba(4, 190, 109, 1);
+color: black;
+}
+
+.topnav a.active {
+background-color: rgba(4, 190, 109, 1);
+color: white;
+}
+
+.topnav .icon {
+display: none;
+}
+
+.container {
+max-width: 1200px;
+margin: 20px auto;
+padding: 0 20px;
+}
+
+.upload-section {
+border: 1px solid white;
+border-radius: 12px;
+box-shadow: 0 4px 10px white;
+padding: 1.5rem;
+margin: 1rem auto;
+backdrop-filter: blur(2px);
+background: transparent;
+text-align: center;
+}
+
+.preview-container {
+display: flex;
+justify-content: center;
+gap: 15px;
+margin: 20px 0;
+flex-wrap: wrap;
+}
+
+.preview-box {
+position: relative;
+border: 2px solid white;
+border-radius: 8px;
+padding: 5px;
+background: rgba(0, 0, 0, 0.3);
+backdrop-filter: blur(2px);
+}
+
+.preview-box img {
+width: 100px;
+height: 100px;
+object-fit: cover;
+border-radius: 5px;
+display: block;
+}
+
+.preview-box .remove-btn {
+position: absolute;
+top: -8px;
+right: -8px;
+background-color: red;
+color: white;
+border: none;
+border-radius: 50%;
+width: 24px;
+height: 24px;
+cursor: pointer;
+font-size: 14px;
+font-weight: bold;
+line-height: 24px;
+padding: 0;
+}
+
+.preview-box .remove-btn:hover {
+background-color: darkred;
+}
+
+.image-box {
+width: 100%;
+max-width: 800px;
+min-height: 600px;
+margin: 1rem auto;
+border: 1px solid white;
+border-radius: 24px;
+padding: 8px;
+box-shadow: 0 4px 10px white;
+text-align: center;
+background: transparent;
+backdrop-filter: blur(2px);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+}
+
+.image-box img {
+max-width: 100%;
+max-height: 500px;
+width: auto;
+height: auto;
+border-radius: 24px;
+object-fit: contain;
+}
+
+#text-box {
+width: 90%;
+max-width: 800px;
+border: 1px solid white;
+border-radius: 12px;
+box-shadow: 0 4px 10px white;
+padding: 0.5rem;
+margin: 1rem auto;
+color: white;
+backdrop-filter: blur(2px);
+}
+
+h2, h1, h3 {
+color: white;
+text-shadow: 2px 4px 10px black;
+}
+
+h1 {
+font-size: 2.4rem;
+}
+
+.preloader {
+width: 48px;
+}
+
+button {
+background-color: black;
+color: white;
+border: none;
+padding: 10px 15px;
+border-radius: 5px;
+cursor: pointer;
+font-size: 1.1rem;
+transition: all 0.2s linear;
+margin: 5px;
+}
+
+button:hover {
+background-color: #6a0dad;
+}
+
+button:disabled {
+background-color: #666;
+cursor: not-allowed;
+}
+
+#feedback {
+color: #00ff00;
+margin: 10px 0;
+font-weight: bold;
+}
+
+.error {
+color: #ff4444 !important;
+}
+
+textarea {
+width: 100%;
+border-radius: 12px;
+box-shadow: 0 4px 10px black;
+padding: 8px 6px;
+}
+
+.file-input-wrapper {
+position: relative;
+overflow: hidden;
+display: inline-block;
+}
+
+.file-input-wrapper input[type=file] {
+position: absolute;
+left: -9999px;
+}
+
+.file-input-label {
+background-color: black;
+color: white;
+padding: 10px 15px;
+border-radius: 5px;
+cursor: pointer;
+font-size: 1.1rem;
+transition: all 0.2s linear;
+display: inline-block;
+}
+
+.file-input-label:hover {
+background-color: #6a0dad;
+}
+
+@media screen and (max-width: 600px) {
+.topnav a:not(:first-child) {display: none;}
+.topnav a.icon {
+float: right;
+display: block;
+}
+header {
+padding: 10px 20px;
+}
+.preloader {
+width: 28px;
+}
+h1 {
+font-size: 1.7rem;
+}
+h2, h3 {
+font-size: 1.4rem;
+}
+button, .file-input-label {
+width: 100%;
+font-size: 0.9rem;
+}
+.preview-box img {
+width: 80px;
+height: 80px;
+}
+}
+
+@media screen and (max-width: 900px) {
+.topnav.responsive {position: relative;}
+.topnav.responsive .icon {
+position: absolute;
+right: 0;
+top: 0;
+}
+.topnav.responsive a {
+float: none;
+display: block;
+text-align: left;
+}
+.preloader {
+width: 36px;
+}
+h1 {
+font-size: 2rem;
+}
+button, .file-input-label {
+font-size: 1rem;
+padding: 8px 12px;
+}
+}
+</style>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+<a href="index.html">Home</a>
+<a href="txtchatbot.html">Master Chatbot</a>
+<a href="devbot.html">Web Dev Bot</a>
+<a href="dalle.html">Image Creator</a>
+<a href="pdfchatbot.html">PDF Chatbot</a>
+<a href="tts.html">Text to Speech</a>
+<a href="whisper.html">Audio Transcriber</a>
+<a href="vd_gpts.html" class="active">VD GPTs</a>
+<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+<i class="fa fa-bars"></i>
+</a>
+</div>
+
+<header>
+<h1>AI Image Merger</h1>
+<h3>Upload up to 3 images and merge them with AI</h3>
+</header>
+
+<div class="container">
+<div class="upload-section">
+<h2>Step 1: Upload Images (Max 3)</h2>
+<div class="file-input-wrapper">
+<input type="file" id="file-input" accept=".jpg,.jpeg,.png" multiple>
+<label for="file-input" class="file-input-label">
+<i class="fa fa-upload"></i> Choose Images
+</label>
+</div>
+<div id="feedback"></div>
+<div class="preview-container" id="preview-container"></div>
+<button id="upload-btn" onclick="uploadImages()" disabled>Upload to Server</button>
+</div>
+
+<div id="text-box">
+<h3>Step 2: Describe Your Modification</h3>
+<b>Insert your prompt to merge or modify the images:</b><br>
+<textarea id="prompt" rows="6" placeholder="Example: Merge these images side by side with a smooth transition..."></textarea>
+</div>
+
+<div class="upload-section">
+<h3>Step 3: Generate Result</h3>
+<button id="generate-btn" onclick="generateImage()" disabled>
+<i class="fa fa-magic"></i> Generate Merged Image
+</button>
+</div>
+
+<div class="image-box" id="result-container">
+<p style="color: white; text-shadow: 2px 2px 5px black;">Your merged image will appear here</p>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+let uploadedFiles = [];
+let uploadedUrls = [];
+
+document.getElementById('file-input').addEventListener('change', function(e) {
+const files = Array.from(e.target.files);
+
+if (uploadedFiles.length + files.length > 3) {
+showFeedback('Maximum 3 images allowed!', true);
+return;
+}
+
+files.forEach(file => {
+if (uploadedFiles.length < 3) {
+uploadedFiles.push(file);
+createPreview(file);
+}
+});
+
+updateUploadButton();
+});
+
+function createPreview(file) {
+const reader = new FileReader();
+reader.onload = function(e) {
+const previewBox = document.createElement('div');
+previewBox.className = 'preview-box';
+previewBox.dataset.filename = file.name;
+
+const img = document.createElement('img');
+img.src = e.target.result;
+
+const removeBtn = document.createElement('button');
+removeBtn.className = 'remove-btn';
+removeBtn.innerHTML = '×';
+removeBtn.onclick = function() {
+removeImage(file.name);
+};
+
+previewBox.appendChild(img);
+previewBox.appendChild(removeBtn);
+document.getElementById('preview-container').appendChild(previewBox);
+};
+reader.readAsDataURL(file);
+}
+
+function removeImage(filename) {
+uploadedFiles = uploadedFiles.filter(f => f.name !== filename);
+const previewBox = document.querySelector(`[data-filename="${filename}"]`);
+if (previewBox) {
+previewBox.remove();
+}
+updateUploadButton();
+document.getElementById('file-input').value = '';
+}
+
+function updateUploadButton() {
+const uploadBtn = document.getElementById('upload-btn');
+uploadBtn.disabled = uploadedFiles.length === 0;
+}
+
+function showFeedback(message, isError = false) {
+const feedback = document.getElementById('feedback');
+feedback.textContent = message;
+feedback.className = isError ? 'error' : '';
+}
+
+async function uploadImages() {
+if (uploadedFiles.length === 0) {
+showFeedback('Please select at least one image!', true);
+return;
+}
+
+const formData = new FormData();
+uploadedFiles.forEach((file, index) => {
+formData.append(`file${index}`, file);
+});
+formData.append('count', uploadedFiles.length);
+
+showFeedback('Uploading images...');
+document.getElementById('upload-btn').disabled = true;
+
+try {
+const response = await fetch('upload_multiple.php', {
+method: 'POST',
+body: formData
+});
+
+const data = await response.json();
+
+if (data.status === 'success') {
+uploadedUrls = data.urls;
+showFeedback(`Successfully uploaded ${uploadedUrls.length} image(s)!`);
+document.getElementById('generate-btn').disabled = false;
+} else {
+showFeedback('Upload failed: ' + (data.message || 'Unknown error'), true);
+document.getElementById('upload-btn').disabled = false;
+}
+} catch (error) {
+showFeedback('Upload error: ' + error.message, true);
+document.getElementById('upload-btn').disabled = false;
+}
+}
+
+async function generateImage() {
+const prompt = document.getElementById('prompt').value.trim();
+const resultContainer = document.getElementById('result-container');
+
+if (!prompt) {
+alert('Please enter a prompt describing how you want to merge the images!');
+return;
+}
+
+if (uploadedFiles.length === 0) {
+alert('Please upload images first!');
+return;
+}
+
+resultContainer.innerHTML = '<img src="preloader.gif" class="preloader" alt="Loading...">';
+document.getElementById('generate-btn').disabled = true;
+
+const apikey = localStorage.getItem("openaikey");
+if (!apikey) {
+alert('Please set your OpenAI API key in localStorage with key "openaikey"');
+document.getElementById('generate-btn').disabled = false;
+return;
+}
+
+try {
+const formData = new FormData();
+formData.append("model", "gpt-image-1.5");
+formData.append("image", uploadedFiles[0]);
+formData.append("prompt", prompt);
+
+const response = await fetch("https://api.openai.com/v1/images/edits", {
+method: "POST",
+headers: {
+"Authorization": `Bearer ${apikey}`
+},
+body: formData
+});
+
+if (!response.ok) {
+const errorData = await response.json();
+throw new Error(`Error: ${errorData.error.message}`);
+}
+
+const data = await response.json();
+const imageBase64 = data.data[0].b64_json;
+
+const responseDiv = document.createElement("div");
+responseDiv.style.width = "100%";
+responseDiv.style.display = "flex";
+responseDiv.style.flexDirection = "column";
+responseDiv.style.alignItems = "center";
+responseDiv.style.justifyContent = "center";
+responseDiv.style.gap = "15px";
+
+const image = document.createElement("img");
+image.src = `data:image/png;base64,${imageBase64}`;
+image.alt = "Merged Image";
+
+const downloadLink = document.createElement("a");
+downloadLink.href = `data:image/png;base64,${imageBase64}`;
+downloadLink.download = "merged_image.png";
+downloadLink.textContent = "💾 Download Merged Image";
+downloadLink.style.color = "white";
+downloadLink.style.textDecoration = "none";
+downloadLink.style.backgroundColor = "black";
+downloadLink.style.padding = "10px 20px";
+downloadLink.style.borderRadius = "5px";
+downloadLink.style.fontWeight = "bold";
+
+responseDiv.appendChild(image);
+responseDiv.appendChild(downloadLink);
+
+resultContainer.innerHTML = "";
+resultContainer.appendChild(responseDiv);
+document.getElementById('generate-btn').disabled = false;
+} catch (error) {
+console.error(error);
+resultContainer.innerHTML = `<p style="color: #ff4444; text-shadow: 2px 2px 5px black;">Error: ${error.message}</p>`;
+document.getElementById('generate-btn').disabled = false;
+}
+}
+
+function myFunction() {
+var x = document.getElementById("myTopnav");
+if (x.className === "topnav") {
+x.className += " responsive";
+} else {
+x.className = "topnav";
+}
+}
+</script>
+</body>
+</html>
