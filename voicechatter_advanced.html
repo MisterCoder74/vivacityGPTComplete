@@ -20,265 +20,28 @@ $user = $_SESSION['user'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">        
   <title>VivacityGPT Complete - AI voice chatbot</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'>
-<style>
-
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f0f8ff;
-  color: white;
-  background: url("chatter.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-        
-header {
-  background-color: transparent;
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
-
-.topnav {
-  overflow: hidden;
-  background-color: #000;
-  z-index: 100;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-
-  color: #fff;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: rgba(4, 190, 109, 1);
-
-  color: black;
-}
-
-.topnav a.active {
-  background-color: rgba(4, 190, 109, 1);
-  color: white;
-}
-
-.topnav .icon {
-  display: none;
-} 
-        
-#lateral-panel {
-    display: none; /* Initially hide the panel */
-    width: 15%; /* Set the width of the panel */
-    height: 36rem;
-    overflow-Y: auto;
-    background-color: transparent; /* Background color */
-    padding: 10px; /* Padding */
-    border-radius: 12px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(197, 235, 234, .7);
-    backdrop-filter: blur(2px);
-    position: fixed; /* Fixed position */
-    top: 180px; /* Position from the top */
-    left: 10px; /* Position from the left */
-} 
-        
-#lateral-panel ul li {
-font-size: .8rem;        
-}
-#lateral-panel h3 {
-text-align: center;        
-}        
-.chatlink {
-        color: black;
-        text-decoration: none;
-        }        
-.chatlink:hover {
-        color: black;
-        text-decoration: underline;
-        } 
-.chatlistlink {
-        color: white;
-        text-decoration: none;
-        }        
-.chatlistlink:hover {
-        color: rgba(197, 235, 234, .7);
-        text-decoration: underline;
-        }          
-        
-main {
-  max-width: 80%;
-  min-height: 40rem;
-  margin: 2rem auto;
-  padding: 20px;
-  background-color: transparent;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(197, 235, 234, .7);
-        backdrop-filter: blur(2px);
-}
-        
-.logged-in {
-            width: 65%;
-        }        
-          
-.preloader {
-  width: 48px;
-}           
-
-h2, h1, h3, h4{
-  color: white;
-  text-shadow: 2px 4px 10px black;
-  margin: .5rem;      
-}
-h1 {
-  font-size: 2.4rem;
-}
-        
-#search-form {
-  width: 50%;
-  margin: 0 auto;
-  position: relative;
-}
-#search-form input {
-  width: 100%;
-  font-size: 1.2rem;
-  padding: 10px 15px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-}
-#search-form button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  width: 3rem;
-  text-align: center;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #333;
-}
-#saveChatBtn {
-        display: none;
-        margin: 8px auto;
-        text-align: center;
-        padding: 8px 12px;
-        border-radius: 8px;
-        background: rgba(197, 235, 234, .7);
-        color: black;
-        cursor: pointer;
-        }  
-#saveChatBtn:hover {
-        display: block;
-        background: black;
-        color: rgba(197, 235, 234, .7);
-        }          
-        
-.user-message {
-  background-color: rgba(197, 235, 234, 1);
-  padding: .25rem;
-  width: 100%;
-  align-self: start;
-  text-align: left;
-  border: 1px solid black;
-  color: black;
-  font-size: 1rem;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  line-height: 1;
-}
-
-.chatgpt-message {
-  background-color: rgba(197, 235, 288, 1);
-  padding: .25rem;
-  width: 100%;
-  align-self: start;
-  text-align: justify;
-  color: black;
-  font-size: 1rem;
-  border: 1px solid black;
-  box-shadow: 0 4px 8px black;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: start;
-  line-height: 1;
-} 
-         
-        
-#chathistory {
-   border: 1px solid rgba(197, 235, 234, .8);
-        padding: 10px;
-        margin-top: 10px;
-        height: 600px;
-        overflow-y: auto;     
-}   
-        
-#userrequest {
-  border: 1px solid black;
-        padding: 10px;
-        margin-top: 10px;
-        height: auto;      
-}  
-        
-.info {
-        background-color: #99ccff;
-        padding: .3rem 0;
-  margin-top: 0.5rem;
-  text-align: center;
-  font-size: 0.8rem;
-        color: black;
-}
-
-@media (max-width: 1200px) {
-  #search-form { width: 50%; }
-}
-@media (max-width: 768px) {
-  .container { padding: 30px 35px; }
-  #search-form { width: 100%; }
-  .info { font-size: 0.5rem; }
-}
-
-</style>
-
+  <link rel="stylesheet" href="css/core.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
 </head>
 <body>
 <div class="topnav" id="myTopnav">
   <a href="index.html">Home</a>
-  <a href="total_chatbot.html">Total Analyzer</a> 
-  <a href="txtchatbot.html">Text Chatbot</a>
-  <a href="devbot.html">Web Dev Bot</a>        
+  <a href="txtchatbot.html">Master Chatbot</a>
+  <a href="devbot.html">Web Dev Bot</a>
   <a href="dalle.html">Image Creator</a>
   <a href="pdfchatbot.html">PDF Chatbot</a>
   <a href="tts.html">Text to Speech</a>
-  <a href="whisper.html">Audio Trascriber</a>  
-<a href="vd_gpts.html" class="active">VD GPTs</a>
+  <a href="whisper.html">Audio Transcriber</a>
+  <a href="vd_gpts.html" class="active">VD GPTs</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
 </div>         
-        
-<header>
-  <h1>AI Voice Chatbot</h1>  
-        <p class="info"></p>
-</header>          
-        
+
+<main class="main-container">
+  <h1 class="heading">AI Voice Chatbot</h1>
+  <p class="info"></p>
 
 <div id="lateral-panel" style="<?php echo $isLoggedIn ? 'display: block;' : 'display: none;'; ?>">
 <h3>User panel</h3>
@@ -290,16 +53,14 @@ h1 {
 <ul id="chatHistoryList"></ul> <!-- Target this list for updates -->
 <br>
 </div>
-        
-<main class="<?php echo $isLoggedIn ? 'logged-in' : ''; ?>">
-<form action="https://www.google.com/search" method="get" target="_blank" id="search-form">
+
+<form  id="search-form">        
 <input id="prompt" type="text" placeholder="Activate Microphone to chat..." autocomplete="off" autofocus><br>
 
 </form>
-<button id="saveChatBtn" type="button" style="<?php echo $isLoggedIn ? 'display: block;' : 'display: none;'; ?>">Save Chat</button> <!-- Add Save Chat Button -->        
+<button id="saveChatBtn" type="button" class="btn" style="<?php echo $isLoggedIn ? 'display: block;' : 'display: none;'; ?>">Save Chat</button>          
 <div id="chathistory">
-<!-- <div id="userrequest"></div> -->
-</div> <!-- Div per la cronologia chat -->
+</div>
 
 <audio controls id="audioPlayer" style="display: none;"></audio>
       
@@ -744,7 +505,7 @@ async function generateImage(prompt) {
   } catch (error) {
     console.error(error);
     alert(
-      "An error occurred during the Image generation. Check your prompt, your account availability, or try later."
+      "An error occurred during the Image generation. Check your prompt, your account availability, or later."
     );
   }
 }
@@ -1061,6 +822,15 @@ async function loadChatContent(filename) {
 document.addEventListener("DOMContentLoaded", function () {
   updateChatHistoryList(); // Call this function when the DOM is fully loaded
 });
+
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
 
 </script>
 
