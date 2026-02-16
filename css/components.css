@@ -224,3 +224,77 @@ label {
     background-color: var(--light-gray);
     border-radius: var(--border-radius);
 }
+
+/* Language Teacher Page Components */
+.language-select {
+    margin-bottom: 1.5rem;
+}
+
+.language-select label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--dark-text);
+}
+
+.language-select select {
+    max-width: 300px;
+}
+
+.lessons-panel {
+    background-color: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow);
+}
+
+.lessons-panel h3 {
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
+
+.buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.lesson-content {
+    background-color: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow);
+    text-align: left;
+    min-height: 150px;
+}
+
+.lesson-content h2 {
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
+
+.lesson-content p {
+    line-height: 1.8;
+    color: var(--dark-text);
+}
+
+#ttsgenerator {
+    margin-top: 1rem;
+}
+
+#audioPlayer {
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+#typing-indicator {
+    text-align: center;
+    padding: 1rem;
+}
+
+#typing-indicator img {
+    max-width: 48px;
+}
