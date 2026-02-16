@@ -4,460 +4,16 @@
 <title>VivacityGPT Complete - Web Dev Bot</title>        
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;        
-  height: 100vh;
-  width: 100%;
-  background-color: white;
-  background-image: url('vd_background.jpg');
-  background-position: center;
-  background-size: cover;
-}
-
-.topnav {
-  overflow: hidden;
-  background-color: #000;
-  z-index: 100;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #fff;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: rgba(4, 190, 109, 1);
-  color: black;
-}
-
-.topnav a.active {
-  background-color: rgba(4, 190, 109, 1);
-  color: white;
-}
-
-.topnav .icon {
-  display: none;
-}
-        
-.heading {
-  font-size: 2.4rem;
-  color: black;
-  text-shadow: 0 2px 8px rgba(4, 190, 109, 1);
-  backdrop-filter: blur(4px);        
-}  
-        
-hr {
-  background: transparent;
-  height: 4px;
-  border: 1px solid black inset;
-}
-        
-main {
-  margin: 1rem auto;
-  width: 80%;
-  height: auto;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 24px;
-  box-shadow: 0 6px 10px black;
-}
-
-.userinput {
-  width: 100%;
-  backdrop-filter: blur(4px);  
-}        
-
-#apikey {
-  width: 60%;
-  margin: 0.5rem;
-  border-radius: 10px;
-  padding: 4px 8px;
-}
-
-#prompt, #search-input {
-  width: 80%;
-  margin: 0.5rem;
-  resize: none;
-  border-radius: 6px;
-  padding: 4px 8px;
-}
-
-button {
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 4px;
-  background: rgba(4, 190, 109, 1);
-  color: #fff;
-  transition: all .3s ease;
-}
-
-button:hover {
-  background: transparent;
-  color: rgba(4, 190, 109, 1);
-  border: 2px solid rgba(4, 190, 109, 1);
-}
-
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-        
-.user-message {
-  background-color: rgba(4, 190, 109, .7);
-  padding: 8px;
-  width: 70%;
-  align-self: start;
-  text-align: left;
-  border: 1px solid black;
-  color: black;
-  font-size: .9rem;
-  border-radius: 6px;
-  margin-bottom: 4px;
-  line-height: 1.5;
-}
-
-.chatgpt-message {
-  background-color: transparent;
-  padding: 8px;
-  width: 100%;
-  align-self: start;
-  text-align: justify;
-  color: black;
-  font-size: .9rem;
-  border: 1px solid black;
-  box-shadow: 0 4px 8px black;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: start;
-  line-height: 1.5;
-  backdrop-filter: blur(4px);       
-} 
-
-.iframe-container {
-  width: 100%;
-  margin: 10px 0;
-}
-
-.iframe-container iframe {
-  width: 100%;
-  height: 650px;
-  border: 1px solid black;
-  border-radius: 4px;
-  resize: vertical;
-  overflow: auto;
-}
-
-.code-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-
-.code-actions button,
-.code-actions a {
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-  background: rgba(4, 190, 109, 1);
-  color: #fff;
-  text-decoration: none;
-  border: 2px solid transparent;
-  transition: all .3s ease;
-  display: inline-block;
-}
-
-.code-actions button:hover,
-.code-actions a:hover {
-  background: transparent;
-  color: rgba(4, 190, 109, 1);
-  border: 2px solid rgba(4, 190, 109, 1);
-}
-
-.success-message {
-  background-color: rgba(4, 190, 109, 0.3);
-  border: 1px solid rgba(4, 190, 109, 1);
-  padding: 10px;
-  border-radius: 6px;
-  margin: 10px 0;
-  color: black;
-  font-weight: bold;
-}
-        
-.commandsFlexed {
-  display: flex;
-  justify-content: flex-start;
-}        
-        
-#content {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px auto;
-  width: 100%;
-  height: auto;
-  background: transparent;
-}
-
-#menu {
-  width: 28%;
-  height: 40rem;
-  padding: 0.5rem;
-  border-right: 1px solid black;
-  border-radius: 8px;
-}        
-        
-.preloader {
-  width: 48px;
-} 
-
-select {
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 4px;
-}        
-
-#chathistory {
-  margin: 0 auto;
-  padding: .5rem;
-  width: 90%;
-  height: 44rem;
-  overflow-Y: auto;
-}  
-
-.menunotice {
-  padding: .5rem;
-  width: 100%;
-  height: auto;
-  box-shadow: 0 2px 4px black;
-}
-        
-#operations {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
-  padding-top: 60px;
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto;
-  padding: 20px;
-  border: 1px solid black;
-  border-radius: 14px;
-  width: 80%;
-  max-height: 80%;
-  overflow-y: auto;
-}
-
-.usermemory {
-  font-size: 1rem;
-  width: 100%;
-  float: left;
-  text-align: justify;
-  background: rgba(4, 190, 109, 1);
-  color: black;
-  box-shadow: 0 4px 8px black;
-  padding: .5rem;
-  margin-bottom: .25rem;
-}
-        
-.assistantmemory {
-  font-size: .9rem;
-  width: 100%;
-  float: left;
-  text-align: justify;
-  background: white;
-  color: black;
-  box-shadow: 0 4px 8px black;
-  padding: .5rem;
-  margin-bottom: .25rem;
-}        
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}     
-
-.response-container {
-  background-color: transparent;
-  border: 1px solid black;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.formatted-message {
-  font-size: .9rem;
-  margin-bottom: 10px;
-}
-
-.citation-section {
-  padding: 10px 4px;        
-  font-size: 12px;
-  color: #222;
-}
-
-.token-section {
-  padding: 10px 4px; 
-  font-size: .7rem;
-  color: black;
-}
-
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-  
-  main {
-    margin: 10px auto;
-    width: 95%;
-    height: auto;
-    text-align: center;
-    padding: 1rem;
-    border-radius: 24px;
-    box-shadow: 0 6px 10px black;
-  }
-  
-  .preloader {
-    width: 28px;
-  }  
-        
-  #content {
-    margin: 10px auto;
-    border: 1px solid purple;
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    background: transparent;
-  }  
-        
-  #chathistory {
-    margin: .5rem auto;
-    padding: .5rem;
-    width: 95%;
-    height: 24rem;
-    overflow-y: auto;
-    box-shadow: 0 2px 4px black;
-  }   
-        
-  .user-message {
-    background-color: rgba(4, 190, 109, 1);
-    padding: 8px;
-    width: 90%;
-    align-self: start;
-    text-align: left;
-    border: 1px solid black;
-    color: black;
-    font-size: .8rem;
-    border-radius: 0;
-    margin-bottom: 4px;
-    line-height: 1;
-  }
-
-  .chatgpt-message {
-    background-color: transparent;
-    padding: 8px;
-    width: 100%;
-    align-self: start;
-    text-align: justify;
-    color: black;
-    font-size: .8rem;
-    border: 1px solid black;
-    box-shadow: 0 4px 8px black;
-    border-radius: 5px;
-    margin-bottom: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: start;
-    line-height: 1;
-  }
-
-  .iframe-container iframe {
-    max-height: 380px;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  
-  main {
-    margin: 10px auto;
-    width: 80%;
-    height: auto;
-    text-align: center;
-    padding: 1rem;
-    border-radius: 24px;
-    box-shadow: 0 6px 10px black;
-  }
-  
-  .preloader {
-    width: 36px;
-  }
-
-  .iframe-container iframe {
-    max-height: 550px;
-  }
-}
-</style>
+<link rel="stylesheet" href="css/core.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/layout.css">
 </head>
 <body>
 
 <div class="topnav" id="myTopnav">
   <a href="index.html">Home</a>
   <a href="txtchatbot.html">Master Chatbot</a>
-  <a href="#" class="active">Web Dev Bot</a>        
+  <a href="devbot.html" class="active">Web Dev Bot</a>
   <a href="dalle.html">Image Creator</a>
   <a href="pdfchatbot.html">PDF Chatbot</a>
   <a href="tts.html">Text to Speech</a>
@@ -468,17 +24,17 @@ select {
   </a>
 </div>
 
-<main>
+<main class="main-container">
   <h1 class="heading">OpenAI Web Dev Bot</h1>
   <hr>
-  <div class="userinput">
+  <div class="card mb-2">
     <input type="password" id="apikey" placeholder="Your API key" readonly><br>
     <textarea rows=6 type="text" id="prompt" placeholder="Your prompt" autocomplete="off" autofocus></textarea><br>
-    <button class="btncopy" id="sendBtn" onclick="sendMessage()">Send</button>
-    <button class="btncopy" id="savetxt">Save</button>
+    <button class="btn btn-primary" id="sendBtn" onclick="sendMessage()">Send</button>
+    <button class="btn btn-primary" id="savetxt">Save</button>
   </div>
   <section id="content">
-    <div id="chathistory"></div>
+    <div id="chathistory" class="card"></div>
   </section>
 </main>
 
@@ -670,11 +226,12 @@ ${message}
     messageElement.appendChild(separator);
 
     const actionsDiv = document.createElement("div");
-    actionsDiv.className = "code-actions";
+    actionsDiv.className = "flex flex-wrap gap-1";
     actionsDiv.innerHTML = downloadLink;
     
     // Aggiungi bottone Copy Code
     const copyBtn = document.createElement("button");
+    copyBtn.classList.add("btn", "btn-secondary");
     copyBtn.textContent = "Copy Code";
     copyBtn.onclick = () => copyCodeToClipboard(rawCode);
     actionsDiv.appendChild(copyBtn);
@@ -757,7 +314,7 @@ async function getChatGPTResponse(userInput, chatMemory = []) {
     const blob = new Blob([cleanResponse], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     trackBlobURL(url);
-    const downloadLink = `<a href="${url}" download="generated_code.html">Download HTML</a>`;
+    const downloadLink = `<a class="btn btn-secondary" href="${url}" download="generated_code.html">Download HTML</a>`;
 
     showMessage("VivacityGPT", cleanResponse, tokenCount.innerHTML, downloadLink, cleanResponse);
 

@@ -4,461 +4,57 @@
 <title>VivacityGPT Complete - Master Chatbot</title>        
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-        * {
-        box-sizing: border-box;
-        }
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;        
-  height: 100vh;
-  width: 100%;
-  background-color: white;
-  background-image: url('vd_background.jpg');
-        background-position: center;
-        background-size: cover;
-}
-
-      
-
-.topnav {
-  overflow: hidden;
-  background-color: #000;
-        z-index: 100;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #fff;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: rgba(4, 190, 109, 1);
-        
-  color: black;
-}
-
-.topnav a.active {
-  background-color: rgba(4, 190, 109, 1);
-  color: white;
-}
-
-.topnav .icon {
-  display: none;
-}
-        
-.heading {
-        font-size: 2.4rem;
-        color: black;
-        text-shadow: 0 2px 8px rgba(4, 190, 109, 1);
-        backdrop-filter: blur(4px);        
-        }  
-        
-        hr {
-        background: transparent;
-                height: 4px;
-                border: 1px solid black inset;
-        }
-        
-main {
-        /*position: absolute;
-        top: 10%;
-        left: 50%;
-        transform: translateX(-50%);*/
-  margin: 1rem auto;
-  width: 80%;
-        height: auto;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 24px;
-  box-shadow: 0 6px 10px black;
-}
-.userinput {
-        width: 100%;
-        backdrop-filter: blur(4px);  
-        
-        }        
-#apikey {
-  width: 60%;
-  margin: 0.5rem;
-border-radius: 10px;
-padding: 4px 8px;
-}
-#prompt, #search-input {
-  width: 80%;
-  margin: 0.5rem;
-  resize: none;
-border-radius: 6px;
-padding: 4px 8px;
-}
-button {
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-	margin-top: 4px;
-  background: rgba(4, 190, 109, 1);
-  color: #fff;
-        transition: all .3s ease;
-}
-button:hover {
-  background: transparent;
-  color: rgba(4, 190, 109, 1);
-        border: 2px solid rgba(4, 190, 109, 1);
-}
-        
-.user-message {
-  background-color: rgba(4, 190, 109, .7);
-  padding: 8px;
-  width: 70%;
-  align-self: start;
-  text-align: left;
-  border: 1px solid black;
-  color: black;
-  font-size: .9rem;
-  border-radius: 6px;
-  margin-bottom: 4px;
-  line-height: 1.5;
-}
-
-.chatgpt-message {
-  background-color: transparent;
-  padding: 8px;
-  width: 100%;
-  align-self: start;
-  text-align: justify;
-  color: black;
-  font-size: .9rem;
-  border: 1px solid black;
-  box-shadow: 0 4px 8px black;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: start;
-  line-height: 1.5;
-  backdrop-filter: blur(4px);       
-} 
-        
-.commandsFlexed {
-        display: flex;
-        justify-content: flex-start
-        }        
-        
-#content {
-  display: flex;
-        justify-content: space-between;
-  margin: 10px auto;
-  width: 100%;
-  height: auto;
-  background: transparent;
-}
-#menu {
-  width: 28%;
-  height: 40rem;
-  padding: 0.5rem;
-  border-right: 1px solid black;
-        border-radius: 8px;
-}        
-        
-.preloader {
-  width: 48px;
-} 
-select{
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-margin-top: 4px;
-}        
-#chathistory {
-   margin: 0 auto;
-  padding: .5rem;
-  width: 70%;
-  height: 40rem;
-  overflow-Y: auto;
-}  
-.menunotice {
-  padding: .5rem;
-  width: 100%;
-  height: auto;
-  box-shadow: 0 2px 4px black;
-}
-        
-  #operations {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* Stile per il modale */
-.modal {
-display: none;
-position: fixed;
-z-index: 1;
-left: 0;
-top: 0;
-width: 100%;
-height: 100%;
-overflow: auto;
-background-color: rgb(0,0,0);
-background-color: rgba(0,0,0,0.4);
-padding-top: 60px;
-}
-
-.modal-content {
-background-color: #fefefe;
-margin: 5% auto;
-padding: 20px;
-border: 1px solid black;
-border-radius: 14px;
-width: 80%;
-max-height: 80%;
-overflow-y: auto;
-}
-.usermemory{
-        font-size: 1rem;
-        width: 100%;
-        float: left;
-        text-align: justify;
-        background: rgba(4, 190, 109, 1);
-        color: black;
-        box-shadow: 0 4px 8px black;
-        padding: .5rem;
-        margin-bottom: .25rem;
-        }
-        
-.assistantmemory{
-        font-size: .9rem;
-        width: 100%;
-        float: left;
-        text-align: justify;
-        background: white;
-        color: black;
-        box-shadow: 0 4px 8px black;
-        padding: .5rem;
-        margin-bottom: .25rem;
-        }        
-
-.close {
-color: #aaa;
-float: right;
-font-size: 28px;
-font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-color: black;
-text-decoration: none;
-cursor: pointer;
-}     
-        
-
-.response-container {
-background-color: transparent;
-border: 1px solid black;
-margin: 10px 0;
-padding: 10px;
-border-radius: 5px;
-}
-
-.formatted-message {
-font-size: .9rem;
-margin-bottom: 10px;
-}
-
-.citation-section {
-padding: 10px 4px;        
-font-size: 12px;
-color: #222;
-}
-
-.token-section {
-padding: 10px 4px; 
-font-size: .7rem;
-color: black;
-}
-       
-
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-main {
-  margin: 10px auto;
-  width: 95%;
-        height: auto;
-/*max-height: 80rem;*/
-  text-align: center;
-  padding: .5rem;
-  border-radius: 24px;
-  box-shadow: 0 6px 10px black;
-}
-.preloader {
-  width: 28px;
-}  
-        
-#content {
-  margin: 10px auto;
-  border: 1px solid purple;
-  width: 100%;
-  max-height: 46rem;      
-  display: flex;
-  flex-direction: column;
-  background: transparent;
-}  
-        
-#menu {
-margin: .5rem auto;        
-  width: 90%;
-  height: auto%;
-  padding: 0.5rem;
-        border: 0;
-}        
-        
-
-select{
-  padding: 0.5rem;
-  border-radius: 10px;
-  cursor: pointer;
-margin-top: 4px;
-}        
-#chathistory {
- margin: .25rem auto;
-  padding: .25rem;
-  width: 98%;
-  height: 34rem;
-  overflow-y: auto;
-  border-top: 1px solid black;
-}   
-        
-.user-message {
-  background-color: rgba(4, 190, 109, 1);
-  padding: 8px;
-  width: 90%;
-  align-self: start;
-  text-align: left;
-  border: 1px solid black;
-  color: black;
-  font-size: .8rem;
-  border-radius: 0;
-  margin-bottom: 4px;
-  line-height: 1;
-}
-
-.chatgpt-message {
-  background-color: transparent;
-  padding: 8px;
-  width: 100%;
-  align-self: start;
-  text-align: justify;
-  color: black;
-  font-size: .8rem;
-  border: 1px solid black;
-  box-shadow: 0 4px 8px black;
-  border-radius: 5px;
-  margin-bottom: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: start;
-  line-height: 1;
-}         
-        
-}
-
-@media screen and (max-width: 900px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-main {
-  margin: 10px auto;
-  width: 90%;
-        height: auto;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 24px;
-  box-shadow: 0 6px 10px black;
-}
-.preloader {
-  width: 36px;
-}    
-        
-select{
-  padding: 0.25rem;
-        width: 10rem;
-        font-size: .8rem;
-  border-radius: 10px;
-  cursor: pointer;
-margin-top: 4px;
-}         
-}
-</style>
+<link rel="stylesheet" href="css/core.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/layout.css">
 </head>
 <body>
 
 <div class="topnav" id="myTopnav">
   <a href="index.html">Home</a>
-  <a href="#" class="active">Master Chatbot</a>
-  <a href="devbot.html">Web Dev Bot</a>          
+  <a href="txtchatbot.html" class="active">Master Chatbot</a>
+  <a href="devbot.html">Web Dev Bot</a>
   <a href="dalle.html">Image Creator</a>
   <a href="pdfchatbot.html">PDF Chatbot</a>
   <a href="tts.html">Text to Speech</a>
-        <a href="whisper.html">Audio Transcriber</a>
-<a href="vd_gpts.html">VD GPTs</a>
+  <a href="whisper.html">Audio Transcriber</a>
+  <a href="vd_gpts.html">VD GPTs</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
 </div>
 
-<main>
+<main class="main-container">
 <h1 class="heading">OpenAI Master Chatbot</h1>
         <small>Now based on gpt-5-nano, gpt-4.1-nano and gpt-4o-mini-search-preview models</small>
 <hr>
-      <div class="userinput">
+      <div class="card mb-2">
               <input type="password" id="apikey" placeholder="Your API key" readonly><br>
         <textarea rows=8 type="text" id="prompt" placeholder="Your prompt" autocomplete="off" autofocus></textarea><br>
-        <button class="btncopy" onclick="sendMessage()">Send</button>
-        <button class="btncopy" onclick="sendWeb()">Search the Web</button>      
+        <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+        <button class="btn btn-primary" onclick="sendWeb()">Search the Web</button>      
       </div>
-      <section id="content">
-        <aside id="menu">
-          <details class="menunotice">
+      <section id="content" class="grid grid-2 gap-2">
+        <aside id="menu" class="flex flex-column gap-2">
+          <details class="card">
             <summary>&#128195; Document Analyzer</summary>
             <div id="operations">
               <form enctype="multipart/form-data" method="POST">
                 <input class="fixedwidth" type="file" accept=".txt,.pdf,.rtf,.xml,.html,.css,.js,.json,vb,.php" name="file" id="file-input">
                 <div id="feedback"></div>
-                <button id="uploadBtn" type="submit"> Upload the file</button>
-                <button type="button" onclick="analyzeFile();"> Analyze the file</button>
+                <button class="btn btn-primary" id="uploadBtn" type="submit">Upload the file</button>
+                <button class="btn btn-primary" type="button" onclick="analyzeFile();">Analyze the file</button>
               </form>
             </div>
           </details>
-                <br>
-            <details class="menunotice">
+            <details class="card">
             <summary>&#128202; Image Analyzer</summary>
             <div id="voperations">
               <form enctype="multipart/form-data" method="POST">
                 <input class="fixedwidth" type="file" accept=".jpg,.png" name="file" id="vfile-input">
                 <div id="vfeedback"></div>
-                <button id="vuploadBtn" type="submit"> Upload the image</button>
-                <button type="button" onclick="getChatGPTResponseIMG();"> Analyze the image</button>
+                <button class="btn btn-primary" id="vuploadBtn" type="submit">Upload the image</button>
+                <button class="btn btn-primary" type="button" onclick="getChatGPTResponseIMG();">Analyze the image</button>
               </form>
             </div>
           </details>      
@@ -474,14 +70,14 @@ margin-top: 4px;
                   processData: false,
                   contentType: false,
                   success: function (response) {
-                    	const data = JSON.parse(response); // Parsing the JSON response
-					if (data.status === "success") {
-					$('#feedback').html("Your file was uploaded.");
-					// Pass the URL of the uploaded document to the analyze function
-					$('#operations button[type="button"]').attr('onclick', `analyzeFile("${data.url}");`);
-					} else {
-					$('#feedback').html(data); // In caso di errori, mostra l'errore
-				 }
+                        const data = JSON.parse(response); // Parsing the JSON response
+                    if (data.status === "success") {
+                    $('#feedback').html("Your file was uploaded.");
+                    // Pass the URL of the uploaded document to the analyze function
+                    $('#operations button[type="button"]').attr('onclick', `analyzeFile("${data.url}");`);
+                    } else {
+                    $('#feedback').html(data); // In caso di errori, mostra l'errore
+                 }
                   }
                 });
               });
@@ -489,36 +85,37 @@ margin-top: 4px;
                   
 //Vision JQuery
             $(document).ready(function () {
-			 $('#vuploadBtn').click(function (e) {
-				e.preventDefault();
-				$.ajax({
-			     url: 'vupload.php', // make sure you have the upload script in the folder
-				 type: 'POST',
-				 data: new FormData($('form')[1]),
-				 processData: false,
-				 contentType: false,
-				 success: function (response) {
+             $('#vuploadBtn').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                 url: 'vupload.php', // make sure you have the upload script in the folder
+                 type: 'POST',
+                 data: new FormData($('form')[1]),
+                 processData: false,
+                 contentType: false,
+                 success: function (response) {
                          //console.log(fileURL);
-					const data = JSON.parse(response); // Parsing the JSON response
-					if (data.status === "success") {
-					$('#vfeedback').html("Your file was uploaded.");
-					// Pass the URL of the uploaded image to the analyze function
-					$('#voperations button[type="button"]').attr('onclick', `submitImage("${data.url}");`);
-					} else {
-					$('#vfeedback').html(data); // In caso di errori, mostra l'errore
-				 }
-				}
-			});
-			});
-			});
+                    const data = JSON.parse(response); // Parsing the JSON response
+                    if (data.status === "success") {
+                    $('#vfeedback').html("Your file was uploaded.");
+                    // Pass the URL of the uploaded image to the analyze function
+                    $('#voperations button[type="button"]').attr('onclick', `submitImage("${data.url}");`);
+                    } else {
+                    $('#vfeedback').html(data); // In caso di errori, mostra l'errore
+                 }
+                }
+            });
+            });
+            });
 //end Vision JQuery
                   
           </script>
           <hr>
-          <button id="showChatButton">Show Chatbot Memory</button><br>
-          <button id="savetxt"> Export Chat </button>
+          <button class="btn btn-primary" id="showChatButton">Show Chatbot Memory</button><br>
+          <button class="btn btn-primary" id="savetxt">Export Chat</button>
           <button
-            onclick="responsiveVoice.speak(window.getSelection().toString(), 'Italian Female', {rate: 1.1});" value="Play"> Repeat
+            class="btn btn-primary"
+            onclick="responsiveVoice.speak(window.getSelection().toString(), 'Italian Female', {rate: 1.1});" value="Play">Repeat
             text</button>
           <hr>
           <select id="selectOption">
@@ -545,10 +142,9 @@ margin-top: 4px;
             <option value="17">Contrarian Analyst</option>
             <option value="18">Book Architect</option>       
           </select>
-          <br><input type="text" id="search-input" placeholder="Search in the chats..."><button id="search-button">Search</button>
+          <br><input type="text" id="search-input" placeholder="Search in the chats..."><button class="btn btn-primary" id="search-button">Search</button>
 
                 
-                <!-- Modale -->
 <div id="chatModal" class="modal">
 <div class="modal-content">
 <span class="close">&times;</span>
@@ -558,7 +154,7 @@ margin-top: 4px;
 </div>
 </div>
         </aside>
-        <div id="chathistory">
+        <div id="chathistory" class="card">
           
         </div>
       </section>
@@ -789,18 +385,20 @@ function showMessage(sender, message, tokens) {
   } else if (sender === "VivacityGPT") {
     messageElement.classList.add("chatgpt-message");
           
-	// Control panel for buttons is created          
-	const commands = document.createElement("div");
-    commands.classList.add("commandsFlexed");
+    // Control panel for buttons is created          
+    const commands = document.createElement("div");
+    commands.classList.add("flex", "gap-1");
           
     // Copy button is created
     const copyButton = document.createElement("button");
+    copyButton.classList.add("btn", "btn-secondary");
     copyButton.innerText = "Copy";
     copyButton.dataset.message = message;
     copyButton.addEventListener("click", handleCopyButtonClick);
 
     // Send to TTS button is created
     const transferButton = document.createElement("button");
+    transferButton.classList.add("btn", "btn-secondary");
     transferButton.innerText = "Send to TTS";
     transferButton.dataset.message = message;
     transferButton.addEventListener("click", handleTransferButtonClick);
@@ -808,12 +406,12 @@ function showMessage(sender, message, tokens) {
     // Action buttons are added to the control panel
     commands.appendChild(copyButton);
     commands.appendChild(transferButton);
-	
+    
     // Control panel is added to the message structure          
     messageElement.appendChild(commands);
           
   }
-  // the message structure is added to the chat container	
+  // the message structure is added to the chat container    
   chatContainer.appendChild(messageElement);
   chatContainer.scrollTop = chatContainer.scrollHeight;
 }
@@ -850,7 +448,7 @@ console.log(apikey);
               max_tokens: 15999
         /*  reactivate these parameters if you switch to 5-nano
         reasoning_effort: "medium", 
-		verbosity: "medium" */
+        verbosity: "medium" */
       })
     });
     if (!response.ok) {
@@ -876,10 +474,10 @@ console.log(apikey);
     cleanResponse = cleanResponse.replace(/```/g, "");
     //cleanResponse = cleanResponse.replace(/\*\*(.*?)\*\*/g, "$1");      
     cleanResponse = cleanResponse
-		// rimuove i grassetti testo
-		.replace(/\*\*(.*?)\*\*/g, "$1")
-		// rimuove i # all'inizio di riga (Markdown heading)
-		.replace(/^#{1,6}\s*(.+)$/gm, "$1");
+        // rimuove i grassetti testo
+        .replace(/\*\*(.*?)\*\*/g, "$1")
+        // rimuove i # all'inizio di riga (Markdown heading)
+        .replace(/^#{1,6}\s*(.+)$/gm, "$1");
       
 
     // manages token from the response
@@ -889,11 +487,11 @@ console.log(apikey);
     // Verifica che "completion_tokens" sia presente nella struttura degli oggetti restituiti dalla tua API
     if (data.usage.completion_tokens) {
             const requestTokens = data.usage.prompt_tokens;
-      		const responseTokens = data.usage.completion_tokens;
-      		const totalTokens = data.usage.total_tokens;      
-			const pricepertokenprompt = 1.25/1000000; //uses gpt-5-chat input price of 1.25/Mt USD
-			const pricepertokenresponse = 10/1000000; //uses gpt-5-chat input price of 10/Mt USD            
-			const priceperrequest = pricepertokenprompt*requestTokens;
+              const responseTokens = data.usage.completion_tokens;
+              const totalTokens = data.usage.total_tokens;      
+            const pricepertokenprompt = 1.25/1000000; //uses gpt-5-chat input price of 1.25/Mt USD
+            const pricepertokenresponse = 10/1000000; //uses gpt-5-chat input price of 10/Mt USD            
+            const priceperrequest = pricepertokenprompt*requestTokens;
             const priceperresponse = pricepertokenresponse*responseTokens;
             const totalExpense = priceperrequest + priceperresponse;
       tokenCount.innerHTML = `<hr>Your request used ${requestTokens} tokens and costed ${priceperrequest.toFixed(6)}USD<br>This response used ${responseTokens} tokens and costed ${priceperresponse.toFixed(6)}USD<br>Total Tokens: ${totalTokens}. This interaction costed you: ${totalExpense.toFixed(6)}USD.`;
@@ -972,7 +570,7 @@ console.log(chatGPTResponse);
             .replace(/(```html|```css|```javascript|```php|```python|```vb|```vb.net|cpp|java|csharp)(.*?)/gs, "$2")
             .replace(/```/g, "")
             .replace(/\*\*(.*?)\*\*/g, "$1")
-			.replace(/^#{1,6}\s*(.+)$/gm, "$1");
+            .replace(/^#{1,6}\s*(.+)$/gm, "$1");
             
 
         // Crea i link di citazione
@@ -1116,7 +714,7 @@ responseContainer.appendChild(tokenSection);
 messageElement.innerHTML = `-[${new Date().toLocaleTimeString()}] - ${sender}: `;
 messageElement.appendChild(responseContainer);
 } else {
-messageElement.innerText = `+[${new Date().toLocaleTimeString()}] - ${sender}: ${message}`;
+    messageElement.innerText = `+[${new Date().toLocaleTimeString()}] - ${sender}: ${message}`;
 }
 
 
@@ -1125,19 +723,21 @@ messageElement.innerText = `+[${new Date().toLocaleTimeString()}] - ${sender}: $
     messageElement.classList.add("user-message");
   } else if (sender === "VivacityGPT") {
     messageElement.classList.add("chatgpt-message");
-          
-	// Control panel for buttons is created          
-	const commands = document.createElement("div");
-    commands.classList.add("commandsFlexed");
-          
+
+    // Control panel for buttons is created
+    const commands = document.createElement("div");
+    commands.classList.add("flex", "gap-1");
+
     // Copy button is created
     const copyButton = document.createElement("button");
+    copyButton.classList.add("btn", "btn-secondary");
     copyButton.innerText = "Copy";
     copyButton.dataset.message = message;
     copyButton.addEventListener("click", handleCopyButtonClick);
 
     // Send to TTS button is created
     const transferButton = document.createElement("button");
+    transferButton.classList.add("btn", "btn-secondary");
     transferButton.innerText = "Send to TTS";
     transferButton.dataset.message = message;
     transferButton.addEventListener("click", handleTransferButtonClick);
@@ -1145,12 +745,12 @@ messageElement.innerText = `+[${new Date().toLocaleTimeString()}] - ${sender}: $
     // Action buttons are added to the control panel
     commands.appendChild(copyButton);
     commands.appendChild(transferButton);
-	
+    
     // Control panel is added to the message structure          
     messageElement.appendChild(commands);
           
   }
-  // the message structure is added to the chat container	
+  // the message structure is added to the chat container    
   chatContainer.appendChild(messageElement);
   chatContainer.scrollTop = chatContainer.scrollHeight;
 } 
@@ -1336,11 +936,11 @@ async function getChatGPTResponseTXT(fileContent, chatMemory = []) {
 
     var chatGPTResponse = data.choices[0].message.content;
     //chatGPTResponse = chatGPTResponse.replace(/\*\*(.*?)\*\*/g, "$1");        
-	chatGPTResponse = chatGPTResponse
-		// rimuove i grassetti testo
-		.replace(/\*\*(.*?)\*\*/g, "$1")
-		// rimuove i # all'inizio di riga (Markdown heading)
-		.replace(/^#{1,6}\s*(.+)$/gm, "$1");
+    chatGPTResponse = chatGPTResponse
+        // rimuove i grassetti testo
+        .replace(/\*\*(.*?)\*\*/g, "$1")
+        // rimuove i # all'inizio di riga (Markdown heading)
+        .replace(/^#{1,6}\s*(.+)$/gm, "$1");
 
     // tokens management from response
     const tokenCount = document.createElement("p");
@@ -1348,11 +948,11 @@ async function getChatGPTResponseTXT(fileContent, chatMemory = []) {
 
     if (data.usage.completion_tokens) {
             const requestTokens = data.usage.prompt_tokens;
-      		const responseTokens = data.usage.completion_tokens;
-      		const totalTokens = data.usage.total_tokens;      
-			const pricepertokenprompt = 0.10/1000000; //uses gpt-4.1-nano price of 0.10/Mt USD for input request
-			const pricepertokenresponse = 0.40/1000000; //uses gpt-4.1-nano price of 0.40/Mt USD for output response            
-			const priceperrequest = pricepertokenprompt*requestTokens;
+              const responseTokens = data.usage.completion_tokens;
+              const totalTokens = data.usage.total_tokens;      
+            const pricepertokenprompt = 0.10/1000000; //uses gpt-4.1-nano price of 0.10/Mt USD for input request
+            const pricepertokenresponse = 0.40/1000000; //uses gpt-4.1-nano price of 0.40/Mt USD for output response            
+            const priceperrequest = pricepertokenprompt*requestTokens;
             const priceperresponse = pricepertokenresponse*responseTokens;
             const totalExpense = priceperrequest + priceperresponse;
       tokenCount.innerHTML = `<hr>Your document is ${txtchars} chars long, equal to ${requestTokens} tokens and costed ${priceperrequest.toFixed(6)}USD<br>Response tokens: ${responseTokens} costed: ${priceperresponse.toFixed(6)}USD<br>Total Tokens: ${totalTokens}. This interaction costed you: ${totalExpense.toFixed(6)}USD.`;
@@ -1434,7 +1034,7 @@ url: fileUrl // Usa l'URL fornito come fileUrl
 ]
         /*  reactivate these parameters if you switch to 5-nano
         reasoning_effort: "medium", 
-		verbosity: "medium" */
+        verbosity: "medium" */
 })
 });
 
@@ -1450,10 +1050,10 @@ throw new Error("Invalid API response.");
 var chatGPTResponse = data.choices[0].message.content;
 //chatGPTResponse = chatGPTResponse.replace(/\*\*(.*?)\*\*/g, "$1");        
         chatGPTResponse = chatGPTResponse
-		// rimuove i grassetti testo
-		.replace(/\*\*(.*?)\*\*/g, "$1")
-		// rimuove i # all'inizio di riga (Markdown heading)
-		.replace(/^#{1,6}\s*(.+)$/gm, "$1");
+        // rimuove i grassetti testo
+        .replace(/\*\*(.*?)\*\*/g, "$1")
+        // rimuove i # all'inizio di riga (Markdown heading)
+        .replace(/^#{1,6}\s*(.+)$/gm, "$1");
 
     // tokens management from response
     const tokenCount = document.createElement("p");
