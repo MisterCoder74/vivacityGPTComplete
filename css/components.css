@@ -1,0 +1,226 @@
+.topnav {
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-teal));
+    z-index: 100;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: var(--white);
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 17px;
+    position: relative;
+}
+
+.topnav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+}
+
+.topnav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-yellow);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.topnav a:hover::after {
+    width: 80%;
+}
+
+.topnav a.active {
+    background-color: var(--primary-teal);
+}
+
+.topnav a.active::after {
+    width: 80%;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+button, .btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin-top: 4px;
+    background-color: var(--accent-yellow);
+    color: var(--dark-text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button:hover, .btn:hover {
+    background-color: #d9db4f;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+button:active, .btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background-color: var(--primary-teal);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #0b7a6e;
+}
+
+.btn-secondary {
+    background-color: var(--primary-dark);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background-color: #1e4a5a;
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(37, 86, 104, 0.7);
+    color: var(--dark-text);
+}
+
+.modal-content {
+    background-color: var(--white);
+    color: var(--dark-text);
+    margin: 15% auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    width: 50%;
+    max-width: 600px;
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--border-radius-lg);
+    position: relative;
+}
+
+.close {
+    color: var(--dark-text);
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--primary-teal);
+}
+
+.user-message {
+    background-color: rgba(13, 143, 129, 0.15);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--primary-teal);
+}
+
+.chatgpt-message {
+    background-color: var(--white);
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.heading {
+    font-size: 2.4rem;
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.avatar {
+    max-width: 180px;
+    height: auto;
+    padding: 4px;
+    margin: 0.5rem auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-teal);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    max-width: 80%;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.footer {
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 2rem 0 0.5rem 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius);
+}
