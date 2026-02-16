@@ -4,6 +4,9 @@
 <title>VivacityGPT Complete - AI Web Restyler</title>        
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/core.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/layout.css">
 <style>
 * {
   box-sizing: border-box;
@@ -13,55 +16,20 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f8ff;
-  color: white;
-  background: url("interface_analyzer.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-.topnav {
-  overflow: hidden;
-  background-color: #000;
-  z-index: 100;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #fff;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: rgba(4, 190, 109, 1);
-  color: black;
-}
-
-.topnav a.active {
-  background-color: rgba(4, 190, 109, 1);
-  color: white;
-}
-
-.topnav .icon {
-  display: none;
+  background-color: var(--light-gray);
+  color: var(--dark-text);
 }
 
 .heading {
   font-size: 2.4rem;
-  color: black;
-  text-shadow: 0 2px 8px rgba(4, 190, 109, 1);
+  color: var(--primary-dark);
   margin: 0 0 1rem 0;
 }
 
 hr {
   background: transparent;
   height: 4px;
-  border: 1px solid black inset;
+  border: 1px solid var(--primary-dark) inset;
   margin: 1rem 0;
 }
 
@@ -70,16 +38,14 @@ main {
   width: 95%;
   padding: 1rem;
   border-radius: 24px;
-  box-shadow: 0 6px 10px black;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(2px);
+  box-shadow: var(--shadow);
+  background: var(--white);
 }
 
 .input-section,
 .controls-section {
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(4px);
-  border: 1px solid black;
+  background-color: var(--white);
+  border: 1px solid var(--primary-dark);
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
@@ -87,7 +53,7 @@ main {
 
 .input-section h3,
 .controls-section h4 {
-  color: black;
+  color: var(--primary-dark);
   margin-top: 0;
 }
 
@@ -102,20 +68,20 @@ main {
   border-radius: 10px;
   cursor: pointer;
   background: transparent;
-  color: black;
-  border: 2px solid black;
+  color: var(--primary-dark);
+  border: 2px solid var(--primary-dark);
   transition: all .3s ease;
   font-size: 0.95rem;
 }
 
 .tab-btn:hover {
-  background: rgba(4, 190, 109, 0.2);
+  background: rgba(13, 143, 129, 0.15);
 }
 
 .tab-btn.active {
-  background: rgba(4, 190, 109, 1);
-  color: white;
-  border-color: rgba(4, 190, 109, 1);
+  background: var(--primary-teal);
+  color: var(--white);
+  border-color: var(--primary-teal);
 }
 
 .tab-content {
@@ -129,16 +95,16 @@ main {
 input[type="file"] {
   width: 100%;
   padding: 0.8rem;
-  border: 2px solid black;
+  border: 2px solid var(--primary-dark);
   border-radius: 8px;
-  background: white;
+  background: var(--white);
 }
 
 textarea {
   width: 100%;
   min-height: 120px;
   padding: 0.8rem;
-  border: 2px solid black;
+  border: 2px solid var(--primary-dark);
   border-radius: 8px;
   resize: vertical;
   font-family: Arial, sans-serif;
@@ -146,34 +112,34 @@ textarea {
 }
 
 .file-info {
-  background: rgba(4, 190, 109, 0.2);
-  border: 1px solid rgba(4, 190, 109, 1);
+  background: rgba(13, 143, 129, 0.15);
+  border: 1px solid var(--primary-teal);
   padding: 0.8rem;
   margin-top: 0.8rem;
   border-radius: 6px;
-  color: black;
+  color: var(--dark-text);
 }
 
 .wordpress-detection {
-  background: #fff3cd;
-  border: 1px solid #ffc107;
+  background: rgba(237, 239, 93, 0.45);
+  border: 1px solid var(--accent-yellow);
   padding: 0.8rem;
   margin-top: 0.8rem;
   border-radius: 6px;
-  color: black;
+  color: var(--primary-dark);
 }
 
 .mode-section {
   margin-top: 1rem;
   padding: 1rem;
-  background: #f0f8ff;
+  background: var(--light-gray);
   border-radius: 8px;
-  border: 1px solid rgba(4, 190, 109, 1);
+  border: 1px solid var(--primary-teal);
 }
 
 .mode-section h4 {
   margin: 0 0 0.8rem 0;
-  color: rgba(4, 190, 109, 1);
+  color: var(--primary-teal);
   font-size: 0.95rem;
 }
 
@@ -189,8 +155,8 @@ textarea {
   display: flex;
   align-items: center;
   padding: 0.6rem;
-  background: white;
-color: black;        
+  background: var(--white);
+  color: var(--dark-text);
   border: 2px solid #ddd;
   border-radius: 6px;
   cursor: pointer;
@@ -199,8 +165,8 @@ color: black;
 
 .radio-group label:hover,
 .checkbox-grid label:hover {
-  border-color: rgba(4, 190, 109, 1);
-  background: rgba(4, 190, 109, 0.1);
+  border-color: var(--primary-teal);
+  background: rgba(13, 143, 129, 0.1);
 }
 
 .radio-group input[type="radio"],
@@ -233,13 +199,13 @@ color: black;
 .color-picker-item label {
   font-weight: bold;
   font-size: 0.9rem;
-  color: black;
+  color: var(--primary-dark);
 }
 
 .color-picker-item input[type="color"] {
   width: 100%;
   height: 50px;
-  border: 2px solid black;
+  border: 2px solid var(--primary-dark);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -249,8 +215,8 @@ button {
   border-radius: 10px;
   cursor: pointer;
   margin: 0.5rem 0.5rem 0.5rem 0;
-  background: rgba(4, 190, 109, 1);
-  color: #fff;
+  background: var(--primary-teal);
+  color: var(--white);
   border: 2px solid transparent;
   transition: all .3s ease;
   font-size: 1rem;
@@ -259,8 +225,8 @@ button {
 
 button:hover:not(:disabled) {
   background: transparent;
-  color: rgba(4, 190, 109, 1);
-  border: 2px solid rgba(4, 190, 109, 1);
+  color: var(--primary-teal);
+  border: 2px solid var(--primary-teal);
 }
 
 button:disabled {
@@ -276,24 +242,23 @@ button:disabled {
 }
 
 .status-card {
-  background-color: transparent;
+  background-color: var(--white);
   padding: 1rem;
-  border: 1px solid black;
+  border: 1px solid var(--primary-dark);
   border-radius: 12px;
   margin: 1rem 0;
-  backdrop-filter: blur(4px);
-  box-shadow: 0 4px 8px black;
+  box-shadow: var(--shadow);
 }
 
 .status-card .role-title {
   font-weight: bold;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
-  color: rgba(4, 190, 109, 1);
+  color: var(--primary-teal);
 }
 
 .status-card .card-status {
-  color: black;
+  color: var(--dark-text);
   font-size: 0.95rem;
 }
 
@@ -309,7 +274,7 @@ button:disabled {
 .progress-bar span {
   display: block;
   height: 100%;
-  background: rgba(4, 190, 109, 1);
+  background: var(--primary-teal);
   width: 0%;
   transition: width 0.3s ease;
 }
@@ -335,13 +300,13 @@ button:disabled {
   overflow-y: auto;
   white-space: pre-wrap;
   margin: 1rem 0;
-  border: 1px solid black;
+  border: 1px solid var(--primary-dark);
 }
 
 .content-display {
   display: none;
-        justify-content: space-between;
-  width: 100%
+  justify-content: space-between;
+  width: 100%;
   margin: 1.5rem 0;
 }
 
@@ -358,26 +323,26 @@ button:disabled {
         
 .preview-panel,
 .code-panel {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid black;
+  background: var(--white);
+  border: 1px solid var(--primary-dark);
   border-radius: 12px;
   padding: .5rem;
-  box-shadow: 0 4px 8px black;
+  box-shadow: var(--shadow);
 }
 
 .preview-panel h3,
 .code-panel h3 {
   margin-top: 0;
-  color: black;
+  color: var(--primary-dark);
   font-size: 1.2rem;
 }
 
 #previewFrame {
   width: 100%;
   height: 650px;
-  border: 2px solid black;
+  border: 2px solid var(--primary-dark);
   border-radius: 8px;
-  background: white;
+  background: var(--white);
 }
 
 #codeDisplay {
@@ -394,23 +359,23 @@ button:disabled {
 }
 
 .token-info {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid black;
+  background: var(--white);
+  border: 1px solid var(--primary-dark);
   border-radius: 12px;
   padding: 1.5rem;
   margin: 1.5rem 0;
-  box-shadow: 0 4px 8px black;
+  box-shadow: var(--shadow);
 }
 
 .token-info h3 {
   margin: 0 0 1rem 0;
-  color: rgba(4, 190, 109, 1);
-  border-bottom: 2px solid rgba(4, 190, 109, 1);
+  color: var(--primary-teal);
+  border-bottom: 2px solid var(--primary-teal);
   padding-bottom: 0.5rem;
 }
 
 .token-details {
-  background: white;
+  background: var(--white);
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1rem;
@@ -418,20 +383,20 @@ button:disabled {
 }
 
 .token-summary {
-  background: rgba(4, 190, 109, 1);
-  color: white;
+  background: var(--primary-teal);
+  color: var(--white);
   border-radius: 8px;
   padding: 1rem;
   text-align: center;
 }
 
 .success-message {
-  background-color: rgba(4, 190, 109, 0.3);
-  border: 1px solid rgba(4, 190, 109, 1);
+  background-color: rgba(110, 197, 116, 0.2);
+  border: 1px solid var(--primary-green);
   padding: 1rem;
   border-radius: 8px;
   margin: 1rem 0;
-  color: black;
+  color: var(--dark-text);
   font-weight: bold;
 }
 
@@ -441,13 +406,13 @@ button:disabled {
   padding: 1rem;
   border-radius: 8px;
   margin: 1rem 0;
-  color: black;
+  color: var(--dark-text);
   font-weight: bold;
 }
 
 .info-box {
-  background: #f0f8ff;
-  border: 1px solid rgba(4, 190, 109, 1);
+  background: var(--light-gray);
+  border: 1px solid var(--primary-teal);
   border-radius: 8px;
   padding: 1rem;
   margin: 1rem 0;
@@ -455,12 +420,6 @@ button:disabled {
 }
 
 @media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-  
   main {
     width: 95%;
     padding: 1rem;
@@ -497,18 +456,6 @@ button:disabled {
 }
 
 @media screen and (max-width: 900px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-
   .content-display {
     grid-template-columns: 1fr;
   }

@@ -27,11 +27,17 @@
 <main class="main-container">
   <h1 class="heading">AI Image Rebuilder</h1>
 
-  <div class="container">
-    <div class="image-box" id="original-image">
-      <img id="uploaded-image" src="" alt="Uploaded Image" style="display: none;">
+  <div class="image-comparison-container">
+    <div class="image-panel">
+      <h3>Original</h3>
+      <div class="thumbnail-box" id="original-image">
+        <img id="uploaded-image" src="" alt="Uploaded Image" style="display: none;">
+      </div>
     </div>
-    <div class="image-box" id="generated-image"></div>
+    <div class="image-panel">
+      <h3>Rebuilt</h3>
+      <div class="thumbnail-box" id="generated-image"></div>
+    </div>
   </div>
 
   <div id="voperations">
