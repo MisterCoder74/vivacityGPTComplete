@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VivacityGPT Complete User Manual | v.20</title>
+    <meta name="description" content="Complete user manual for VivacityGPT Complete - The definitive AI tools suite with 25+ integrated tools for development, creativity, and automation.">
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #245668;
+            --primary-teal: #0D8F81;
+            --primary-green: #6EC574;
+            --accent-yellow: #EDEF5D;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-text: #333333;
+            --medium-gray: #666666;
+            --border-gray: #dddddd;
+            --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.15);
+            --border-radius: 10px;
+            --border-radius-lg: 18px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--light-gray);
+            min-height: 100vh;
+        }
+
+        /* Top Navigation */
+        .topnav {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-teal) 100%);
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: var(--white);
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .topnav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .topnav a.active {
+            background-color: var(--accent-yellow);
+            color: var(--dark-text);
+        }
+
+        .topnav .icon {
+            display: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            .topnav a:not(:first-child) {display: none;}
+            .topnav a.icon {
+                float: right;
+                display: block;
+            }
+            .topnav.responsive {position: fixed;}
+            .topnav.responsive .icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+            .topnav.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+        }
+
+        /* Sticky Documentation Navigation */
+        .doc-nav {
+            background: var(--white);
+            border-bottom: 2px solid var(--primary-teal);
+            position: sticky;
+            top: 48px;
+            z-index: 999;
+            box-shadow: var(--shadow);
+        }
+
+        .doc-nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .doc-nav a {
+            display: inline-block;
+            padding: 12px 16px;
+            color: var(--dark-text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .doc-nav a:hover {
+            color: var(--primary-teal);
+            border-bottom-color: var(--primary-green);
+        }
+
+        .doc-nav a i {
+            margin-right: 6px;
+            color: var(--primary-teal);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            padding-top: 120px;
+        }
+
+        @media screen and (max-width: 768px) {
+            main {
+                padding: 1rem;
+                padding-top: 100px;
+            }
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--primary-teal);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-green);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            color: var(--primary-teal);
+            margin-top: 1.5rem;
+            margin-bottom: 0.6rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--primary-teal);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Header Section */
+        .doc-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-teal) 50%, var(--primary-green) 100%);
+            border-radius: var(--border-radius-lg);
+            margin-bottom: 3rem;
+            color: var(--white);
+        }
+
+        .doc-header h1 {
+            color: var(--white);
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .doc-header .tagline {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--accent-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .doc-header .version {
+            display: inline-block;
+            background: var(--accent-yellow);
+            color: var(--dark-text);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        /* Feature Boxes */
+        .feature-box {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary-teal);
+        }
+
+        .feature-box h4 {
+            margin-top: 0;
+            color: var(--primary-dark);
+        }
+
+        .feature-box i {
+            color: var(--primary-teal);
+            margin-right: 8px;
+        }
+
+        /* Category Cards */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary-teal);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-card h3 {
+            margin-top: 0;
+            color: var(--primary-dark);
+        }
+
+        .category-card h3 i {
+            margin-right: 10px;
+            color: var(--primary-teal);
+        }
+
+        .category-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .category-card li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .category-card li::before {
+            content: "\f054";
+            font-family: "FontAwesome";
+            position: absolute;
+            left: 0;
+            color: var(--primary-green);
+            font-size: 0.8rem;
+        }
+
+        /* Tool Tables */
+        .tool-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .tool-table th {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-teal) 100%);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .tool-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .tool-table tr:hover {
+            background: var(--light-gray);
+        }
+
+        .tool-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Tip/Warning Boxes */
+        .tip-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid var(--primary-green);
+            border-radius: var(--border-radius);
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .tip-box::before {
+            content: "\f0eb";
+            font-family: "FontAwesome";
+            color: var(--primary-green);
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 4px solid #ff9800;
+            border-radius: var(--border-radius);
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box::before {
+            content: "\f071";
+            font-family: "FontAwesome";
+            color: #ff9800;
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid var(--primary-teal);
+            border-radius: var(--border-radius);
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-box::before {
+            content: "\f129";
+            font-family: "FontAwesome";
+            color: var(--primary-teal);
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        /* Code Blocks */
+        code {
+            background: var(--light-gray);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: var(--primary-dark);
+        }
+
+        pre {
+            background: var(--dark-text);
+            color: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Step Cards */
+        .step-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--primary-teal) 0%, var(--primary-green) 100%);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Cost Table */
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .cost-table th {
+            background: var(--accent-yellow);
+            color: var(--dark-text);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .cost-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .cost-highlight {
+            background: #fffde7;
+            font-weight: 600;
+        }
+
+        /* Quick Links */
+        .quick-links {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .quick-links h3 {
+            margin-top: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-teal) 0%, var(--primary-green) 100%);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary-teal);
+            border: 2px solid var(--primary-teal);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-teal);
+            color: var(--white);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 2px solid var(--primary-green);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: var(--primary-teal);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-teal) 0%, var(--primary-green) 100%);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 998;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background: var(--primary-dark);
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        /* Print Styles */
+        @media print {
+            .topnav, .doc-nav, .back-to-top {
+                display: none;
+            }
+            
+            main {
+                padding-top: 1rem;
+            }
+            
+            .doc-header {
+                background: var(--light-gray) !important;
+                color: var(--dark-text) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .doc-header h1 {
+                color: var(--primary-dark) !important;
+            }
+            
+            section {
+                page-break-inside: avoid;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            .category-card, .tool-table, .feature-box {
+                box-shadow: none;
+                border: 1px solid var(--border-gray);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            h3 { font-size: 1.2rem; }
+            
+            .doc-header h1 {
+                font-size: 2rem;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-card {
+                flex-direction: column;
+            }
+            
+            .tool-table, .cost-table {
+                font-size: 0.9rem;
+            }
+            
+            .tool-table th, .tool-table td,
+            .cost-table th, .cost-table td {
+                padding: 0.8rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Navigation -->
+    <div class="topnav" id="myTopnav">
+        <a href="index.html">Home</a>
+        <a href="txtchatbot.html">Master Chatbot</a>
+        <a href="devbot.html">Web Dev Bot</a>
+        <a href="dalle.html">Image Creator</a>
+        <a href="pdfchatbot.html">PDF Chatbot</a>
+        <a href="tts.html">Text to Speech</a>
+        <a href="whisper.html">Audio Transcriber</a>
+        <a href="vd_gpts.html">VD GPTs</a>
+        <a href="#" class="active">Documentation</a>
+        <a href="javascript:void(0);" class="icon" onclick="toggleNav()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <!-- Documentation Navigation -->
+    <nav class="doc-nav">
+        <div class="doc-nav-inner">
+            <a href="#concept"><i class="fa fa-lightbulb-o"></i>Concept</a>
+            <a href="#requirements"><i class="fa fa-cogs"></i>Requirements</a>
+            <a href="#suite"><i class="fa fa-th-large"></i>Suite Composition</a>
+            <a href="#functionalities"><i class="fa fa-wrench"></i>Functionalities</a>
+            <a href="#getting-started"><i class="fa fa-rocket"></i>Getting Started</a>
+            <a href="#categories"><i class="fa fa-folder-open"></i>Categories</a>
+            <a href="#tips"><i class="fa fa-magic"></i>Tips</a>
+            <a href="#support"><i class="fa fa-life-ring"></i>Support</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Header Section -->
+        <div class="doc-header">
+            <h1><i class="fa fa-book"></i> VivacityGPT Complete</h1>
+            <p class="tagline">"Action first, without boundaries!"</p>
+            <span class="version">Version 20 - User Manual</span>
+        </div>
+
+        <!-- Basic Concept Section -->
+        <section id="concept">
+            <h2><i class="fa fa-lightbulb-o"></i> Basic Concept</h2>
+            
+            <h3>Philosophy</h3>
+            <p>VivacityGPT Complete represents the convergence of cutting-edge artificial intelligence and practical utility. Built on the principle that technology should empower rather than complicate, our suite puts advanced AI capabilities directly into your hands without requiring technical expertise or complex setup procedures.</p>
+            
+            <p>Our guiding philosophy is simple: <strong>"Action first, without boundaries!"</strong> We believe that creativity and productivity shouldn't be hindered by technical barriers. Whether you're a developer, designer, writer, or curious explorer, our tools are designed to amplify your capabilities and bring your ideas to life.</p>
+
+            <h3>Core Principles</h3>
+            <div class="feature-box">
+                <h4><i class="fa fa-bolt"></i> Immediate Action</h4>
+                <p>No lengthy installations or steep learning curves. Every tool is ready to use the moment you access it. Enter your API keys and start creating immediately.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4><i class="fa fa-unlock"></i> Boundary-Free Creation</h4>
+                <p>Our tools don't impose artificial limits on your creativity. From generating entire websites to crafting detailed book plots, the only limit is your imagination.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4><i class="fa fa-puzzle-piece"></i> Seamless Integration</h4>
+                <p>All 25+ tools work together harmoniously. Use the Image Creator to generate visuals for your blog posts, then use the TTS tool to add voice narration. The possibilities for combination are endless.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4><i class="fa fa-code"></i> Self-Building Philosophy</h4>
+                <p>Remarkably, over 86% of this suite was built using its own tools. This demonstrates the power of AI-assisted development and serves as proof of concept for what you can achieve.</p>
+            </div>
+
+            <h3>Target Audience</h3>
+            <ul>
+                <li><strong>Web Developers & Designers</strong> - Build, prototype, and refine web projects with AI assistance</li>
+                <li><strong>Content Creators</strong> - Generate blog posts, images, audio, and presentations</li>
+                <li><strong>Business Professionals</strong> - Create presentations, analyze documents, and automate workflows</li>
+                <li><strong>Educators & Students</strong> - Learn languages, create educational materials, explore AI capabilities</li>
+                <li><strong>Creative Writers</strong> - Develop plots, characters, and storylines with AI collaboration</li>
+                <li><strong>Hobbyists & Explorers</strong> - Experiment with cutting-edge AI technology in a user-friendly environment</li>
+            </ul>
+        </section>
+
+        <!-- Requirements Section -->
+        <section id="requirements">
+            <h2><i class="fa fa-cogs"></i> Requirements</h2>
+
+            <h3>Technical Requirements</h3>
+            <table class="tool-table">
+                <tr>
+                    <th>Requirement</th>
+                    <th>Details</th>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-chrome"></i> Web Browser</td>
+                    <td>Modern browser (Chrome, Firefox, Safari, Edge) with JavaScript enabled</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-wifi"></i> Internet Connection</td>
+                    <td>Stable broadband connection for API communication</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-hdd-o"></i> Storage</td>
+                    <td>Local storage enabled for API key persistence</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-upload"></i> Upload Directory</td>
+                    <td>./upload folder must be created at project root for file upload features</td>
+                </tr>
+            </table>
+
+            <h3>API Keys Setup</h3>
+            <p>To use VivacityGPT Complete, you'll need active accounts with the following providers:</p>
+
+            <div class="info-box">
+                <strong>Required Accounts:</strong> OpenAI, ChatPDF, and aPDF.io accounts are required. Each service has its own billing structure and terms of service.
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Get Your OpenAI API Key</h4>
+                    <p>Visit <a href="https://openai.com/api/" target="_blank">openai.com/api</a> and create an account. Navigate to the API section to generate your personal API key. Keep this key secure and never share it publicly.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Get Your ChatPDF API Key</h4>
+                    <p>Sign up at <a href="https://www.chatpdf.com/" target="_blank">chatpdf.com</a> and access your API credentials from your account dashboard.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Get Your aPDF.io API Key</h4>
+                    <p>Create an account at <a href="https://apdf.io/" target="_blank">apdf.io</a> and retrieve your API key from the developer section.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Configure in VivacityGPT Complete</h4>
+                    <p>Click the "API Keys Setup" button on the homepage, enter your keys in the modal dialog, and click "Save Keys". Your keys are stored locally in your browser and are never sent to our servers.</p>
+                </div>
+            </div>
+
+            <h3>Cost Considerations</h3>
+            <p>VivacityGPT Complete itself is completely free to use. However, API providers charge for usage based on their pricing models:</p>
+
+            <table class="cost-table">
+                <tr>
+                    <th>Service</th>
+                    <th>Model/Capability</th>
+                    <th>Approximate Cost</th>
+                </tr>
+                <tr>
+                    <td rowspan="5">OpenAI</td>
+                    <td>GPT-4.1 Nano</td>
+                    <td>Most economical</td>
+                </tr>
+                <tr>
+                    <td>GPT-4o Mini</td>
+                    <td>Low cost per token</td>
+                </tr>
+                <tr>
+                    <td>DALL-E 3 Images</td>
+                    <td>Per image generation</td>
+                </tr>
+                <tr>
+                    <td>Sora 2/Pro Video</td>
+                    <td>Premium pricing</td>
+                </tr>
+                <tr>
+                    <td>Text-to-Speech</td>
+                    <td>Per character</td>
+                </tr>
+                <tr>
+                    <td>ChatPDF</td>
+                    <td>PDF Processing</td>
+                    <td>Based on document size/pages</td>
+                </tr>
+                <tr>
+                    <td>aPDF.io</td>
+                    <td>PDF to Text API</td>
+                    <td>Usage-based pricing</td>
+                </tr>
+            </table>
+
+            <div class="warning-box">
+                <strong>Important:</strong> Always monitor your API usage through each provider's dashboard. Set up billing alerts to avoid unexpected charges. Start with smaller requests to understand costs before scaling up.
+            </div>
+        </section>
+
+        <!-- Suite Composition Section -->
+        <section id="suite">
+            <h2><i class="fa fa-th-large"></i> Suite Composition</h2>
+            
+            <p>VivacityGPT Complete v.20 features over 25 integrated AI tools organized into five primary categories. Each category addresses specific needs while maintaining seamless interoperability with the entire suite.</p>
+
+            <div class="category-grid">
+                <div class="category-card">
+                    <h3><i class="fa fa-image"></i> Image Tools</h3>
+                    <p>Create, modify, merge, and analyze images using state-of-the-art AI models including DALL-E 3 and GPT Image 1.5.</p>
+                    <ul>
+                        <li>Image Rebuilder</li>
+                        <li>Image Modifier</li>
+                        <li>Image Merger</li>
+                        <li>Art Critic</li>
+                        <li>Xora Video Generator</li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <h3><i class="fa fa-comments"></i> Chatbots</h3>
+                    <p>Intelligent conversational agents for various purposes, from creative exploration to expert advice.</p>
+                    <ul>
+                        <li>Dreams Interpreter</li>
+                        <li>Voice Chatbot</li>
+                        <li>Skynet</li>
+                        <li>Virtual Sommelier</li>
+                        <li>Master Debater</li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <h3><i class="fa fa-microphone"></i> Audio Tools</h3>
+                    <p>Transform text to speech and speech to text with lifelike voice synthesis and accurate transcription.</p>
+                    <ul>
+                        <li>Transcript Creator</li>
+                        <li>Text to Speech (TTS)</li>
+                        <li>Audio Transcriber (Whisper)</li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <h3><i class="fa fa-code"></i> Developer Tools</h3>
+                    <p>Accelerate web development with AI-powered code generation, analysis, and collaboration tools.</p>
+                    <ul>
+                        <li>Website Builder Plus</li>
+                        <li>Website Restyler</li>
+                        <li>Web Agency</li>
+                        <li>Repo Analyzer</li>
+                        <li>Web Dev Bot</li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <h3><i class="fa fa-smile-o"></i> Fun & Creative</h3>
+                    <p>Explore creative writing, language learning, and content creation with specialized AI assistants.</p>
+                    <ul>
+                        <li>Blog Post Creator</li>
+                        <li>Book Plot Creator</li>
+                        <li>Language Teacher</li>
+                        <li>WebSlide Creator</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>AI Models Integration</h3>
+            <p>Our suite leverages the latest AI models to deliver optimal results:</p>
+            <p><code>gpt-5-nano, gpt-5-chat-latest, gpt-4.1-nano, gpt-4o-mini, gpt-4o-mini-search-preview, gpt-4o-mini-tts, tts1, sora-2, sora-2-pro, gpt-image-1.5, gpt-image-1, gpt-image-1-mini, dall-e-3, chatPDF, aPDF</code></p>
+        </section>
+
+        <!-- Main Functionalities Section -->
+        <section id="functionalities">
+            <h2><i class="fa fa-wrench"></i> Main Functionalities</h2>
+
+            <h3>Image Tools</h3>
+            
+            <h4>AI Image Rebuilder</h4>
+            <p>Upload any image and the AI will analyze its content, generate a detailed description, and create a completely new variant based on the original. Perfect for reimagining existing visuals or creating variations of inspiration images.</p>
+            <p><strong>Supported formats:</strong> JPG, PNG, WebP | <strong>Max size:</strong> 20MB</p>
+
+            <h4>AI Image Modifier</h4>
+            <p>Upload an image and provide specific instructions for modification. Change styles, add or remove elements, adjust colors, or transform the composition while maintaining the core structure of the original.</p>
+            <p><strong>Use cases:</strong> Style transfer, object replacement, background modification, color correction</p>
+
+            <h4>AI Image Merger</h4>
+            <p>Combine up to three images into a single cohesive composition. The AI intelligently blends elements from each source image based on your descriptive prompt.</p>
+            <p><strong>Tip:</strong> Be specific about which elements you want from each image for best results.</p>
+
+            <h4>AI Art Critic</h4>
+            <p>Upload your artwork and receive a professional critical analysis. The AI evaluates composition, technique, color theory, emotional impact, and provides constructive feedback for improvement.</p>
+            <p><strong>Great for:</strong> Portfolio reviews, learning artistic principles, preparing exhibition submissions</p>
+
+            <h4>Xora Video Generator</h4>
+            <p>Generate stunning high-quality videos using OpenAI's Sora 2 and Sora 2 Pro models. Create videos from text descriptions or transform static images into dynamic video content.</p>
+            <p><strong>Features:</strong> Text-to-video, image-to-video, high-resolution output, professional quality</p>
+
+            <hr style="margin: 2rem 0;">
+
+            <h3>Chatbots</h3>
+
+            <h4>AI Dreams Interpreter</h4>
+            <p>Record your dreams and receive comprehensive psychological analysis along with an evocative dreamscape image generated by DALL-E. Explore the hidden meanings and symbolism in your subconscious.</p>
+
+            <h4>AI Voice Chatbot</h4>
+            <p>Advanced chatbot supporting voice conversations in English and Italian. Features web search capabilities and image generation. Perfect for hands-free interaction and natural conversation flow.</p>
+            <p><strong>Capabilities:</strong> Voice input/output, web search, image generation, bilingual support</p>
+
+            <h4>Skynet</h4>
+            <p>Chat with the most iconic and aggressive artificial intelligence ever portrayed in popular culture. A fun, entertaining experience for sci-fi fans and those seeking an intense AI conversation.</p>
+
+            <h4>AI Virtual Sommelier</h4>
+            <p>Plan your perfect dinner with expert sommelier advice. Get recommendations for course pairings, wine selections, and create a harmonious dining experience tailored to your preferences.</p>
+
+            <h4>AI Master Debater</h4>
+            <p>Enter any controversial topic and watch as two AI chatbots engage in a structured debate. After witnessing both sides of the argument, you can decree the winner based on the strength of their positions.</p>
+
+            <hr style="margin: 2rem 0;">
+
+            <h3>Audio Tools</h3>
+
+            <h4>AI Transcript Creator</h4>
+            <p>Input your movie or play script and generate a complete audio production with up to 6 distinct voice actors. Each character can be assigned a unique voice for dramatic readings and audio productions.</p>
+
+            <h4>Text to Speech (TTS)</h4>
+            <p>Generate lifelike voiceovers from any text input. Choose from multiple voice tones, accents, and speaking styles to match your content's needs.</p>
+            <p><strong>Models:</strong> TTS-1, GPT-4o Mini TTS | <strong>Voices:</strong> Multiple options available</p>
+
+            <h4>Audio Transcriber (Whisper)</h4>
+            <p>Upload audio files and receive accurate transcriptions in minutes. Supports multiple languages and handles various audio formats with excellent accuracy.</p>
+            <p><strong>Supported formats:</strong> MP3, WAV, M4A, FLAC | <strong>Languages:</strong> 99+ languages supported</p>
+
+            <hr style="margin: 2rem 0;">
+
+            <h3>Developer Tools</h3>
+
+            <h4>AI Website Builder Plus</h4>
+            <p>Describe your desired landing page design in natural language and receive both visual mockups and complete front-end code. The AI generates responsive HTML, CSS, and JavaScript ready for deployment.</p>
+
+            <h4>AI Website Restyler</h4>
+            <p>Generate entirely new websites from prompts or upload existing websites to receive AI-powered restyling suggestions. Get visual previews and downloadable code for the redesigned site.</p>
+
+            <h4>AI Web Agency</h4>
+            <p>Watch front-end and back-end specialized chatbots collaborate to bring your web project to life. Experience the unique interaction as AI agents work together to design and implement your website.</p>
+
+            <h4>AI Repo Analyzer</h4>
+            <p>Input any GitHub repository URL and receive a comprehensive analysis of the codebase. The AI evaluates code quality, architecture, documentation, and provides insights into the project's structure and functionality.</p>
+
+            <h4>Web Dev Bot</h4>
+            <p>Your dedicated AI coding assistant for building, debugging, and improving web projects. Get help with everything from simple HTML fixes to complex JavaScript implementations.</p>
+
+            <hr style="margin: 2rem 0;">
+
+            <h3>Fun & Creative</h3>
+
+            <h4>AI Blog Post Creator</h4>
+            <p>Enter a topic and the AI generates complete blog content including text, featured image, and voice narration files. Everything you need for a professional blog post in one tool.</p>
+
+            <h4>AI Book Plot Creator</h4>
+            <p>Provide a title, genre, and brief plot summary, and the AI will expand it into a detailed book outline with chapter breakdowns, character development, and narrative arcs.</p>
+
+            <h4>AI Language Teacher</h4>
+            <p>Learn the fundamentals of 16 different languages through 14 straightforward lessons per language. The structured approach covers essential vocabulary, grammar, and conversation basics.</p>
+            <p><strong>Languages:</strong> Spanish, French, German, Italian, Portuguese, Dutch, Russian, Chinese, Japanese, Korean, Arabic, Hindi, Swedish, Greek, Turkish, Polish</p>
+
+            <h4>AI WebSlide Creator</h4>
+            <p>Generate beautiful web-based slides for your tutorials and presentations. The AI creates visuals using DALL-E and exports the complete presentation in HTML format for easy sharing and hosting.</p>
+
+            <hr style="margin: 2rem 0;">
+
+            <h3>Master Tools Overview</h3>
+            
+            <table class="tool-table">
+                <tr>
+                    <th>Tool</th>
+                    <th>Primary Function</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td><strong>Master Chatbot</strong></td>
+                    <td>General-purpose AI assistant with search and image generation</td>
+                    <td>Research, Q&A, content ideas</td>
+                </tr>
+                <tr>
+                    <td><strong>PDF Chatbot</strong></td>
+                    <td>Chat with PDF documents, extract information</td>
+                    <td>Document analysis, research papers</td>
+                </tr>
+                <tr>
+                    <td><strong>Image Creator</strong></td>
+                    <td>Generate images from text descriptions</td>
+                    <td>Visual content, mockups, art</td>
+                </tr>
+                <tr>
+                    <td><strong>Web Dev Bot</strong></td>
+                    <td>Code generation and debugging</td>
+                    <td>Development assistance</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Getting Started Section -->
+        <section id="getting-started">
+            <h2><i class="fa fa-rocket"></i> Getting Started</h2>
+
+            <h3>Step-by-Step Setup</h3>
+
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Access the Suite</h4>
+                    <p>Navigate to the <a href="index.html">homepage</a> to access the main interface. Bookmark the page for easy access to all tools.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Configure API Keys</h4>
+                    <p>Click the "API Keys Setup" button in the center of the page. Enter your OpenAI, ChatPDF, and aPDF.io API keys. These are stored locally in your browser and never transmitted to our servers.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Choose Your First Tool</h4>
+                    <p>Visit the <a href="vd_gpts.html">VD GPTs</a> page to browse all available tools organized by category. Click on any tool card to launch it.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Start Creating</h4>
+                    <p>Each tool has intuitive controls and helpful instructions. Enter your prompts, upload files when needed, and let the AI do the work. Results are typically generated within seconds to minutes.</p>
+                </div>
+            </div>
+
+            <h3>Understanding Token Costs</h3>
+            <p>API usage is measured in tokens. A token is approximately 4 characters or 0.75 words in English. Understanding token consumption helps manage costs:</p>
+
+            <ul>
+                <li><strong>Input tokens:</strong> The text you send to the AI (prompts, uploaded content)</li>
+                <li><strong>Output tokens:</strong> The text the AI generates in response</li>
+                <li><strong>Image tokens:</strong> Different pricing applies for DALL-E and image analysis</li>
+                <li><strong>Audio tokens:</strong> TTS is priced per character, Whisper per minute</li>
+            </ul>
+
+            <div class="tip-box">
+                <strong>Cost-Saving Tip:</strong> Start with smaller, more specific prompts. The GPT-4o Mini models offer excellent results at lower cost compared to larger models.
+            </div>
+
+            <h3>Common Workflows</h3>
+
+            <h4>Blog Post Creation Workflow</h4>
+            <ol>
+                <li>Use <strong>Blog Post Creator</strong> to generate article text and featured image</li>
+                <li>Use <strong>TTS</strong> to create an audio version for accessibility</li>
+                <li>Use <strong>WebSlide Creator</strong> to make accompanying presentation slides</li>
+            </ol>
+
+            <h4>Website Development Workflow</h4>
+            <ol>
+                <li>Use <strong>Website Builder Plus</strong> for initial design and code</li>
+                <li>Use <strong>Web Dev Bot</strong> to debug and enhance functionality</li>
+                <li>Use <strong>Image Creator</strong> to generate custom graphics</li>
+                <li>Use <strong>Repo Analyzer</strong> to review and optimize code structure</li>
+            </ol>
+
+            <h4>Creative Writing Workflow</h4>
+            <ol>
+                <li>Use <strong>Book Plot Creator</strong> to develop story outline</li>
+                <li>Use <strong>Dreams Interpreter</strong> for inspiration and imagery</li>
+                <li>Use <strong>Master Chatbot</strong> for character development dialogue</li>
+            </ol>
+
+            <h3>First-Time User Tips</h3>
+            <ul>
+                <li>Start with the <strong>Master Chatbot</strong> to get familiar with AI interactions</li>
+                <li>Try simple prompts first, then gradually increase complexity</li>
+                <li>Save your favorite prompts for reuse across sessions</li>
+                <li>Experiment with different models to find the best balance of quality and cost</li>
+                <li>Join the community to share prompts and learn from other users</li>
+            </ul>
+        </section>
+
+        <!-- Tool Categories Deep Dive Section -->
+        <section id="categories">
+            <h2><i class="fa fa-folder-open"></i> Tool Categories Deep Dive</h2>
+
+            <h3>Master Chatbot Features</h3>
+            <p>The Master Chatbot (accessible via the "Master Chatbot" link in the navigation) serves as your primary AI assistant. Built on GPT-5 and GPT-4.1 models, it offers:</p>
+
+            <div class="feature-box">
+                <h4><i class="fa fa-search"></i> Web Search Integration</h4>
+                <p>Access real-time information from the web. The chatbot can search for current events, recent developments, and up-to-date information beyond its training data.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4><i class="fa fa-image"></i> Image Generation</h4>
+                <p>Generate images directly within the conversation using DALL-E 3 integration. Simply describe what you want to see, and the AI creates it instantly.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4><i class="fa fa-history"></i> Chat History</h4>
+                <p>Conversations are saved and can be retrieved for future reference. Access your history to continue previous discussions or review past insights.</p>
+            </div>
+
+            <h3>PDF Chatbot Capabilities</h3>
+            <p>The PDF Chatbot transforms how you interact with documents:</p>
+
+            <ul>
+                <li><strong>Document Upload:</strong> Upload PDFs up to 50MB for analysis</li>
+                <li><strong>Natural Language Queries:</strong> Ask questions about document content in plain English</li>
+                <li><strong>Content Extraction:</strong> Pull specific information, summaries, and key points</li>
+                <li><strong>Multi-document Support:</strong> Chat with multiple PDFs simultaneously</li>
+                <li><strong>Citation Tracking:</strong> Responses include references to specific document sections</li>
+            </ul>
+
+            <h4>Using the PDF Chatbot</h4>
+            <ol>
+                <li>Navigate to the PDF Chatbot page</li>
+                <li>Upload your PDF document(s)</li>
+                <li>Wait for the document to be processed</li>
+                <li>Ask questions naturally: "What are the main conclusions?" or "Summarize section 3"</li>
+            </ol>
+
+            <h3>Image Creator Options</h3>
+            <p>The Image Creator tool offers multiple generation modes:</p>
+
+            <table class="tool-table">
+                <tr>
+                    <th>Model</th>
+                    <th>Best For</th>
+                    <th>Quality Level</th>
+                </tr>
+                <tr>
+                    <td>GPT-Image-1.5</td>
+                    <td>High-fidelity, detailed images</td>
+                    <td>Premium</td>
+                </tr>
+                <tr>
+                    <td>GPT-Image-1</td>
+                    <td>General purpose generation</td>
+                    <td>High</td>
+                </tr>
+                <tr>
+                    <td>GPT-Image-1-Mini</td>
+                    <td>Quick drafts, simple images</td>
+                    <td>Standard</td>
+                </tr>
+                <tr>
+                    <td>DALL-E 3</td>
+                    <td>Creative, artistic visuals</td>
+                    <td>High</td>
+                </tr>
+            </table>
+
+            <h3>Audio Tools Comparison</h3>
+
+            <h4>Text to Speech Options</h4>
+            <ul>
+                <li><strong>TTS-1:</strong> Standard quality, fast generation, multiple voices</li>
+                <li><strong>GPT-4o Mini TTS:</strong> Enhanced naturalness, better intonation</li>
+            </ul>
+
+            <h4>Voice Options</h4>
+            <p>Multiple voice personas are available including:</p>
+            <ul>
+                <li>Professional narrators (Alloy, Echo, Fable, Onyx, Nova, Shimmer)</li>
+                <li>Character voices for dramatic readings</li>
+                <li>Accent variations for localization</li>
+            </ul>
+
+            <h3>Developer Tools Integration</h3>
+            <p>The developer tools work together to accelerate your workflow:</p>
+
+            <div class="feature-box">
+                <h4><i class="fa fa-exchange"></i> Code Sharing</h4>
+                <p>Copy code from Website Builder Plus directly into Web Dev Bot for refinement and debugging.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4><i class="fa fa-github"></i> Repository Integration</h4>
+                <p>Use Repo Analyzer to evaluate GitHub projects, then use insights to improve your own code with Web Dev Bot assistance.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4><i class="fa fa-users"></i> AI Collaboration</h4>
+                <p>Web Agency demonstrates how multiple AI agents can collaborate - apply these patterns to your own multi-agent workflows.</p>
+            </div>
+        </section>
+
+        <!-- Tips & Best Practices Section -->
+        <section id="tips">
+            <h2><i class="fa fa-magic"></i> Tips & Best Practices</h2>
+
+            <h3>Prompt Writing Guidelines</h3>
+
+            <div class="tip-box">
+                <strong>Be Specific:</strong> Instead of "create an image of a dog," try "create a photorealistic image of a golden retriever puppy playing in autumn leaves, golden hour lighting, shallow depth of field."
+            </div>
+
+            <div class="tip-box">
+                <strong>Provide Context:</strong> Help the AI understand the purpose. "Write a blog post about climate change for a general audience aged 25-40" yields better results than just "write about climate change."
+            </div>
+
+            <div class="tip-box">
+                <strong>Use Examples:</strong> When possible, show the AI what you want: "Write in the style of this example: [paste example text]"
+            </div>
+
+            <h4>The 5 W's Framework</h4>
+            <p>Structure prompts using Who, What, When, Where, Why:</p>
+            <ul>
+                <li><strong>Who:</strong> Target audience or character perspective</li>
+                <li><strong>What:</strong> Specific content or action desired</li>
+                <li><strong>When:</strong> Time period, season, or temporal context</li>
+                <li><strong>Where:</strong> Setting, location, or environment</li>
+                <li><strong>Why:</strong> Purpose, goal, or intended effect</li>
+            </ul>
+
+            <h3>Image Generation Best Practices</h3>
+
+            <h4>Effective Prompt Structure</h4>
+            <pre><code>[Subject] + [Action/Pose] + [Environment] + [Lighting] + [Style] + [Quality Boosters]
+
+Example:
+"Elegant ballerina, mid-pirouette, grand theater stage, 
+spotlight from above, oil painting style, highly detailed, 8k resolution"</code></pre>
+
+            <h4>Quality Boosters</h4>
+            <p>These terms consistently improve image quality:</p>
+            <ul>
+                <li>Highly detailed, intricate details</li>
+                <li>Professional photography, 8k resolution</li>
+                <li>Sharp focus, depth of field</li>
+                <li>Cinematic lighting, volumetric light</li>
+                <li>Masterpiece, award-winning</li>
+            </ul>
+
+            <h4>Aspect Ratios and Sizes</h4>
+            <p>Different use cases require different image dimensions:</p>
+            <ul>
+                <li><strong>1:1 (Square):</strong> Social media posts, profile pictures</li>
+                <li><strong>16:9 (Widescreen):</strong> Presentations, banners, headers</li>
+                <li><strong>9:16 (Portrait):</strong> Mobile content, stories</li>
+                <li><strong>4:3 (Standard):</strong> Documents, general use</li>
+            </ul>
+
+            <h3>Cost Management Strategies</h3>
+
+            <div class="warning-box">
+                <strong>Monitor Usage:</strong> Regularly check your API dashboards to track spending and set up billing alerts with each provider.
+            </div>
+
+            <h4>Tier Selection</h4>
+            <ul>
+                <li><strong>Development/Testing:</strong> Use GPT-4o Mini and GPT-Image-1-Mini for rapid iteration</li>
+                <li><strong>Production:</strong> Use GPT-4.1 and GPT-Image-1.5 for final, polished outputs</li>
+                <li><strong>Bulk Operations:</strong> Process large volumes with nano models when quality requirements allow</li>
+            </ul>
+
+            <h4>Prompt Optimization</h4>
+            <ul>
+                <li>Refine prompts on cheaper models before using premium models</li>
+                <li>Batch similar requests when possible</li>
+                <li>Use system messages effectively to reduce per-prompt context</li>
+                <li>Cache and reuse successful prompt patterns</li>
+            </ul>
+
+            <h3>Workflow Efficiency</h3>
+
+            <h4>Keyboard Shortcuts</h4>
+            <p>Common shortcuts across tools:</p>
+            <ul>
+                <li><kbd>Ctrl</kbd> + <kbd>Enter</kbd> - Submit prompt</li>
+                <li><kbd>Ctrl</kbd> + <kbd>S</kbd> - Save output</li>
+                <li><kbd>Ctrl</kbd> + <kbd>C</kbd> / <kbd>Ctrl</kbd> + <kbd>V</kbd> - Copy/Paste</li>
+            </ul>
+
+            <h4>Session Management</h4>
+            <ul>
+                <li>Save important outputs immediately - browser storage can be cleared</li>
+                <li>Use meaningful filenames when downloading generated content</li>
+                <li>Organize downloads in project-specific folders</li>
+            </ul>
+
+            <h3>Quality Assurance</h3>
+
+            <h4>Review Checklist</h4>
+            <ul>
+                <li>Verify all facts and claims in generated content</li>
+                <li>Check image outputs for artifacts or anomalies</li>
+                <li>Review code before deployment to production</li>
+                <li>Test audio files for pronunciation and clarity</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Human Oversight:</strong> AI is a powerful tool, but human judgment remains essential. Always review and verify AI-generated content before publishing or deploying.
+            </div>
+        </section>
+
+        <!-- Support & Resources Section -->
+        <section id="support">
+            <h2><i class="fa fa-life-ring"></i> Support & Resources</h2>
+
+            <h3>Troubleshooting Common Issues</h3>
+
+            <table class="tool-table">
+                <tr>
+                    <th>Issue</th>
+                    <th>Possible Cause</th>
+                    <th>Solution</th>
+                </tr>
+                <tr>
+                    <td>"API Key Invalid" error</td>
+                    <td>Key not saved or expired</td>
+                    <td>Re-enter API keys in the setup modal. Verify keys are active in provider dashboards.</td>
+                </tr>
+                <tr>
+                    <td>Images not generating</td>
+                    <td>Rate limit or quota exceeded</td>
+                    <td>Check OpenAI usage dashboard. Wait a moment and try again with a simpler prompt.</td>
+                </tr>
+                <tr>
+                    <td>File uploads failing</td>
+                    <td>Missing upload directory</td>
+                    <td>Ensure ./upload folder exists at project root with write permissions.</td>
+                </tr>
+                <tr>
+                    <td>Slow response times</td>
+                    <td>High API load or large prompts</td>
+                    <td>Try again later or break large requests into smaller chunks.</td>
+                </tr>
+                <tr>
+                    <td>Chat history not saving</td>
+                    <td>Local storage disabled or full</td>
+                    <td>Enable local storage in browser settings or clear old data.</td>
+                </tr>
+                <tr>
+                    <td>Audio playback issues</td>
+                    <td>Browser autoplay restrictions</td>
+                    <td>Click to interact with page before playback. Check volume settings.</td>
+                </tr>
+            </table>
+
+            <h3>Version Information</h3>
+            
+            <div class="info-box">
+                <strong>Current Version:</strong> VivacityGPT Complete v.20<br>
+                <strong>Release Date:</strong> February 10th-16th, 2026<br>
+                <strong>Conception Date:</strong> May 2024<br>
+                <strong>Latest Update:</strong> Introducing aPDF.io pdf2text API and Master Chatbot
+            </div>
+
+            <h4>Version History Highlights</h4>
+            <ul>
+                <li><strong>v.20 (Current):</strong> Master Chatbot, aPDF.io integration, GPT-5 models</li>
+                <li><strong>v.19:</strong> TXT Chatbot evolution, enhanced UI components</li>
+                <li><strong>v.18:</strong> Expanded tool suite, improved CSS architecture</li>
+                <li><strong>Earlier versions:</strong> Foundation tools, core architecture</li>
+            </ul>
+
+            <p>View the complete <a href="v20.txt" target="_blank">Change Log</a> for detailed version history.</p>
+
+            <h3>External Resources</h3>
+            
+            <h4>API Documentation</h4>
+            <ul>
+                <li><a href="https://platform.openai.com/docs" target="_blank">OpenAI API Documentation</a></li>
+                <li><a href="https://www.chatpdf.com/docs" target="_blank">ChatPDF API Guide</a></li>
+                <li><a href="https://apdf.io/docs" target="_blank">aPDF.io Documentation</a></li>
+            </ul>
+
+            <h4>Community & Support</h4>
+            <ul>
+                <li><a href="https://www.vivacitydesign.net/" target="_blank">Vivacity Design Homepage</a></li>
+                <li>OpenAI Community Forums for model-specific questions</li>
+                <li>Stack Overflow for technical implementation help</li>
+            </ul>
+
+            <h3>Quick Navigation</h3>
+            
+            <div class="quick-links">
+                <h3>Jump to Key Pages</h3>
+                <a href="index.html" class="btn"><i class="fa fa-home"></i> Home</a>
+                <a href="vd_gpts.html" class="btn"><i class="fa fa-th"></i> All Tools</a>
+                <a href="txtchatbot.html" class="btn btn-secondary"><i class="fa fa-comments"></i> Master Chatbot</a>
+                <a href="devbot.html" class="btn btn-secondary"><i class="fa fa-code"></i> Web Dev Bot</a>
+                <a href="dalle.html" class="btn btn-secondary"><i class="fa fa-image"></i> Image Creator</a>
+                <a href="pdfchatbot.html" class="btn btn-secondary"><i class="fa fa-file-pdf-o"></i> PDF Chatbot</a>
+            </div>
+
+            <h3>Feedback & Contributions</h3>
+            <p>We continuously improve VivacityGPT Complete based on user feedback. If you have suggestions, encounter issues, or want to share how you're using the tools, we want to hear from you.</p>
+
+            <div class="tip-box">
+                <strong>Did You Know?</strong> Over 86% of this suite was built using its own tools. Your feedback helps us build even better tools for everyone!
+            </div>
+
+            <h3>Legal & Attribution</h3>
+            <p>VivacityGPT Complete is created by <a href="https://www.vivacitydesign.net/" target="_blank">Vivacity Design Web Agency</a>. All AI capabilities are powered by third-party APIs (OpenAI, ChatPDF, aPDF.io) with their respective terms of service and billing structures.</p>
+
+            <div class="warning-box">
+                <strong>Usage Responsibility:</strong> Users are responsible for complying with API provider terms of service and applicable laws regarding AI-generated content in their jurisdiction.
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="footer">
+            <img src="button_poweredby.png" alt="Powered by" style="margin-bottom: 1rem;"><br>
+            <strong>VivacityGPT Complete v.20 User Manual</strong><br>
+            Created by Vivacity Design Web Agency, May 2024 – February 2026<br>
+            <a href="index.html">Home</a> | <a href="vd_gpts.html">All Tools</a> | <a href="https://www.vivacitydesign.net/">Vivacity Design</a>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop" title="Back to Top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+
+    <script>
+        // Mobile Navigation Toggle
+        function toggleNav() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+
+        // Back to Top Button Visibility
+        var backToTopBtn = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add("visible");
+            } else {
+                backToTopBtn.classList.remove("visible");
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Add active state to doc nav based on scroll position
+        window.addEventListener('scroll', function() {
+            var sections = document.querySelectorAll('section[id]');
+            var navLinks = document.querySelectorAll('.doc-nav a');
+            
+            var currentSection = '';
+            
+            sections.forEach(function(section) {
+                var sectionTop = section.offsetTop;
+                var sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= (sectionTop - 200)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(function(link) {
+                link.style.borderBottomColor = 'transparent';
+                link.style.color = '';
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.style.borderBottomColor = 'var(--primary-green)';
+                    link.style.color = 'var(--primary-teal)';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
