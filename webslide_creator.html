@@ -7,6 +7,238 @@
     <link rel="stylesheet" href="css/core.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/layout.css">
+    <style>
+      /* Section visibility */
+      .section { display: none; }
+      .section.active { display: block; }
+
+      /* Theme selector - colored boxes */
+      .theme-selector {
+        display: flex;
+        gap: 15px;
+        margin: 10px 0;
+      }
+
+      .theme-option {
+        width: 60px;
+        height: 60px;
+        border-radius: 10px;
+        cursor: pointer;
+        border: 3px solid transparent;
+        transition: all 0.3s ease;
+      }
+
+      .theme-option:hover {
+        transform: scale(1.1);
+      }
+
+      .theme-option.active {
+        border-color: #333;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      }
+
+      .theme-professional { background: linear-gradient(135deg, #0D8F81, #245668); }
+      .theme-creative { background: linear-gradient(135deg, #ff6b6b, #4ecdc4); }
+      .theme-minimal { background: linear-gradient(135deg, #2c3e50, #ecf0f1); }
+
+      /* Template buttons */
+      .templates {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 10px 0;
+      }
+
+      .template-btn {
+        padding: 10px 20px;
+        border: 2px solid var(--primary-teal);
+        border-radius: 25px;
+        cursor: pointer;
+        background: white;
+        color: var(--primary-teal);
+        transition: all 0.3s ease;
+      }
+
+      .template-btn:hover, .template-btn.active {
+        background: var(--primary-teal);
+        color: white;
+      }
+
+      /* Form layout */
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: var(--primary-dark);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+      }
+
+      .form-group textarea {
+        width: 100%;
+        min-height: 150px;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        resize: vertical;
+      }
+
+      .form-group input[type="number"] {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+      }
+
+      /* Character counter */
+      .char-counter {
+        text-align: right;
+        font-size: 0.9em;
+        color: #666;
+        margin-top: 5px;
+      }
+
+      .char-counter.warning { color: orange; }
+      .char-counter.error { color: red; }
+
+      /* Loading section */
+      .loading {
+        text-align: center;
+        padding: 40px;
+      }
+
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid var(--primary-teal);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .progress {
+        width: 100%;
+        max-width: 400px;
+        height: 20px;
+        background: #f0f0f0;
+        border-radius: 10px;
+        margin: 20px auto;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary-teal), var(--primary-green));
+        text-align: center;
+        line-height: 20px;
+        color: white;
+        font-size: 0.9em;
+        transition: width 0.3s ease;
+      }
+
+      /* Slides section */
+      #slides {
+        margin: 20px 0;
+        min-height: 200px;
+      }
+
+      .slide {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      }
+
+      .slide h2 {
+        color: var(--primary-dark);
+        margin-bottom: 15px;
+      }
+
+      .slide ul {
+        margin-left: 20px;
+        margin-bottom: 20px;
+      }
+
+      .slide li {
+        margin-bottom: 8px;
+      }
+
+      .slide-image {
+        max-width: 100%;
+        border-radius: 8px;
+        margin-top: 15px;
+      }
+
+      /* Controls */
+      .controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 2px solid #eee;
+      }
+
+      .export-buttons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      /* Messages */
+      .error {
+        background: #ffebee;
+        color: #c62828;
+        padding: 12px;
+        border-radius: 8px;
+        margin: 10px 0;
+      }
+
+      .success {
+        background: #e8f5e9;
+        color: #2e7d32;
+        padding: 12px;
+        border-radius: 8px;
+        margin: 10px 0;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .theme-selector {
+          justify-content: center;
+        }
+
+        .templates {
+          justify-content: center;
+        }
+
+        .controls {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
     <title>AI WebSlide Creator</title>
 </head>
 <body>
