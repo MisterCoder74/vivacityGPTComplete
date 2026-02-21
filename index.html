@@ -62,9 +62,10 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="canonical" href="https://www.vivacitydesign.net/vdgptscomplete/index.html">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/core.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/layout.css">
+        <?php $version = time(); ?>
+    <link rel="stylesheet" href="css/core.css?v=<?php echo($version); ?>">
+    <link rel="stylesheet" href="css/components.css?v=<?php echo ($version); ?>">
+    <link rel="stylesheet" href="css/layout.css?v=<?php echo ($version); ?>">
 </head>
 <body>
 
@@ -84,21 +85,21 @@
 
 <main>
     <section id="intro">
-        <h1 class="heading">VivacityGPT Complete v.20</h1>
+        <h1 class="heading">VivacityGPT Complete <sup style="color: red; font-size: 1.1rem;"><small>v.20</small></sup></h1>
         <p style="float: right;"><i>Action first, without boundaries!</i></p>
         <hr>
     </section>
 
     <section id="content">
-        <span style="line-height: 1.3; font-size: 0.9rem;">
-        Welcome to <strong>Vivacity Design</strong> — where innovation meets intelligence.<br>
-        We're redefining the development of web and app experiences through the latest advances in <strong>Artificial Intelligence</strong>.<br><br>
+        <span style="line-height: 1.3; font-size: 1rem;">
+        Welcome to <strong style="color: var(--primary-teal);">Vivacity Design</strong> — where innovation meets intelligence.<br>
+        We're redefining the development of web and app experiences through the latest advances in <strong style="color: var(--primary-teal);">Artificial Intelligence</strong>.<br><br>
 
-        Remarkably, almost <b>45% of this very website</b> was built using the early tools that have evolved into our current <strong>VivacityGPT Master Chatbot</strong> <small>(formerly TXT Chatbot up to v.19)</small>!
-        <br>As of February 2026, <strong>over 86% of the website and of the tools</strong> were built using VivacityGPT Complete: <i>a suite of tools that builds itself!</i> <br><br>
+        Remarkably, almost  <strong style="color: var(--primary-teal);">45% of this very website</strong> was built using the early tools that have evolved into our current <strong style="color: var(--primary-teal);">VivacityGPT Master Chatbot</strong> <small>(formerly TXT Chatbot up to v.19)</small>!
+        <br>As of February 2026, <strong style="color: var(--primary-teal);">over 86% of the website and of the tools</strong> were built using VivacityGPT Complete: <i style="color: red;">a suite of tools that builds itself!</i> <br><br>
 
 
-        Explore our suite of <strong>integrated AI tools</strong> — powered by <a href="https://openai.com/api/" target="_blank" style="color: black;">OpenAI</a>,
+        Explore our suite of <strong style="color: var(--primary-teal);">integrated AI tools</strong> — powered by <a href="https://openai.com/api/" target="_blank" style="color: black;">OpenAI</a>,
         <a href="https://www.chatpdf.com/?via=alessandro-demontis" target="_blank" style="color: black;">ChatPDF</a> and <a href="https://apdf.io/" target="_blank" style="color: black;">aPDF.io</a> —
         all brought together for the first time in the <i>VivacityGPT Complete</i> collection.<br><br>
 
@@ -107,21 +108,22 @@
 
         <p>
             <small>
-                <strong>Models used:</strong><br>
+                <strong style="display: block; color: var(--primary-teal); margin-top: 1rem;">Models used:</strong>
                 <code>gpt-5-nano, gpt-5-chat-latest, gpt-4.1-nano, gpt-4o-mini, gpt-4o-mini-search-preview, gpt-4o-mini-tts, tts1, sora-2, sora-2-pro, gpt-image-1.5, gpt-image-1, gpt-image-1-mini, dall-e-3, chatPDF, aPDF</code>
             </small>
             <br><br>
             <small>
-                <strong>Latest News:</strong> Introducing <code>aPDF.io pdf2text API</code> and <code>Master Chatbot</code>.
+                <strong style="display: block; color: var(--primary-teal); margin-top: 1rem;">Latest News:</strong>Complete redesign + Introducing <code>aPDF.io pdf2text API</code> and <code>Master Chatbot</code>.
             </small>
         </p>
 
-        <small>
+        <div style="font-size: .8rem;">
             <i>VivacityGPT Complete</i> was conceived in May 2024.<br>
             Last update: v.20 — February 10th–16th, 2026.<br>
-            View the <a href="v20.txt" title="See v.20 Changelog" target="_blank" style="color: black;">Change Log</a> or access the
-            <a href="#" title="VivacityGPT Complete Handbook" target="_blank" style="color: black;">Reference Handbook (under preparation)</a>.
-        </small>
+            View the <a href="v20.txt" title="See v.20 Changelog" target="_blank" style="color: black;">Change Log</a><br>
+            Access the
+            <a href="documentation.html" title="VivacityGPT Complete Documentation" style="color: black;">Documentation</a>
+        </div>
         <br><br>
 
         <center>
@@ -169,16 +171,16 @@
         </center>
         <br>
 
-        <p>
+ 
             <span class="heading" style="font-size: 1.5rem;">Disclaimer:</span><br>
-            <small>
+             <div style="font-size: .8rem;">
                 Access to our services requires active accounts with <a href="https://www.openai.com" target="_blank" style="color: black;">OpenAI</a>,
                 <a href="https://www.chatpdf.com/?via=alessandro-demontis" target="_blank" style="color: black;">ChatPDF</a>  and <a href="https://apdf.io/" target="_blank" style="color: black;">aPDF.io</a>.<br>
                 You'll need to enter your personal API keys into the setup interface above.<br><br>
                 Our tools are completely free to use, but note that <strong>OpenAI</strong>, <strong>ChatPDF</strong> and <strong>aPDF</strong> may charge for API usage.<br>
                 Please refer to each provider's terms and billing policies before use.
-            </small>
-        </p>
+            </div>
+
     </section>
 
     <div class="footer">
@@ -224,7 +226,7 @@
         var apikey2 = localStorage.getItem("chatpdfkey");
         var apikey3 = localStorage.getItem("chatapdfkey");
 
-        console.log(apikey1, apikey2, apikey3);
+        console.log('API Key updated: ', apikey1, ' - ', apikey2,  ' - ', apikey3);
         modal.style.display = 'none';
     });
 

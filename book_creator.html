@@ -40,7 +40,7 @@
           <option value="Mystery">Mystery</option>
           <option value="Biography">Biography</option>
         </select>
-        <textarea id="mainIdea" placeholder="Main Idea" required></textarea>
+        <textarea id="mainIdea" placeholder="Main Idea" required rows="6"></textarea>
         <button id="submit" type="submit" class="btn btn-primary">Generate Preview</button>
       </form>
       <button id="createBookStructure" class="btn btn-secondary">Create Book Structure</button>
@@ -139,7 +139,7 @@ document.getElementById("createBookStructure").addEventListener("click", async (
   if (outline) {
     document.getElementById("preview").innerHTML = `
       <h2>${title} - Book Outline</h2>
-      <div>${outline}</div>
+      <div style="text-align: justify;">${outline}</div>
     `;
   }
   const saveBtn = document.createElement('button');

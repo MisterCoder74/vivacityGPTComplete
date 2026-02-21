@@ -50,7 +50,7 @@
 
   <div id="text-box">
     <b>Your Image analysis will appear here...</b>
-    <p id="image-analysis-output"></p>
+    <p id="image-analysis-output" style="text-align: justify;"></p>
   </div>
 </main>
 
@@ -145,7 +145,7 @@ async function getChatGPTResponseIMG(fileUrl, chatMemory) {
             content: [
               {
                 type: "text",
-                text: `You are senior Web Designer and Desktop applications developer. You will analyze the image of a ${selectedValue} layout and you will provide a professional analysis focalizing on the following points: structure, choice of colors, typography, navigation, icons and general graphics, text content arrangement. For each of these point you will also provide a rating between 1 (very bad) and 10 (very good). You will also use the same rating scale to provide an overall final rating of the ${selectedValue} layout, and and you will suggest how to improve the final layout.`
+                text: `You are senior Web Designer and Desktop applications developer. You will analyze the image of a ${selectedValue} layout and you will provide a professional analysis focalizing on the following points: structure, choice of colors, typography, navigation, icons and general graphics, text content arrangement. For each of these point you will also provide a rating between 1 (very bad) and 10 (very good). You will also use the same rating scale to provide an overall final rating of the ${selectedValue} layout, and and you will suggest how to improve the final layout. Format your entire response as valid HTML using tags like <h3>, <p>, <ul>, <li>, <strong> etc. Do not use markdown. Do not include <html>, <head> or <body> tags, because your answer will be inserted into a <div> element.`
               },
               {
                 type: "image_url",
@@ -170,7 +170,7 @@ async function getChatGPTResponseIMG(fileUrl, chatMemory) {
     chatGPTResponse = chatGPTResponse.replace(/\*\*(.*?)\*\*/g, "$1");
     chatContainer.removeChild(typingIndicator);
     const responsediv = document.getElementById("image-analysis-output");
-    responsediv.innerText = chatGPTResponse;
+    responsediv.innerHTML = chatGPTResponse;
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
     const fileName = `interface_analysis_${timestamp}.txt`;
     const blob = new Blob([chatGPTResponse], { type: 'text/plain' });
