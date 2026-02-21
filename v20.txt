@@ -1,7 +1,8 @@
 CHANGELOG
-V20 - Feb. 10-16, 2026
+V20 - Feb. 10-20, 2026
 
 Main changes
+- Complete refactoring of Layout and color scheme
 - Total Analyzer deleted - no longer part of the suite (obsolete and redundant tool)
 - TXT Chatbot renamed as Master Chatbot
 - PDF analysis added to Master Chatbot via aPDF Free API service
@@ -10,9 +11,11 @@ Main changes
 - GPTs: AI Image Merger added
 
 Minor changes:
+- general CSS refactoring and isolation
 - Web Dev Bot: specialized and structured new prompt added
-- Web Dev Bot: General CSS refactoring
-- Homepage: minimal CSS refactoring 
 
-Bugs solved
+
+
+Bugs solved:
+- none
 

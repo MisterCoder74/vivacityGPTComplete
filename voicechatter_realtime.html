@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">        
   <title>VivacityGPT Complete - AI voice chatbot</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'>
-  <link rel="stylesheet" href="css/core.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/layout.css">
+        <?php $version = time(); ?>
+    <link rel="stylesheet" href="css/core.css?v=<?php echo($version); ?>">
+    <link rel="stylesheet" href="css/components.css?v=<?php echo ($version); ?>">
+    <link rel="stylesheet" href="css/layout.css?v=<?php echo ($version); ?>">
 </head>
 <body>
 <div class="topnav" id="myTopnav">
@@ -33,7 +34,7 @@
 <input id="prompt" type="text" placeholder="Activate Microphone to chat..." autocomplete="off" autofocus disabled><br>
 
 </form>
-<section style="display: flex; justify-content: center; gap: 1rem; align-items: center; width: 22rem; margin: .25rem auto;">        
+<section style="display: flex; justify-content: center; gap: 1rem; align-items: center; width: 28rem; margin: .25rem auto;">        
 <select id="languageSelector">
 <option value="en-US" selected>English (US)</option>
 <option value="it-IT">Italiano</option>
@@ -41,7 +42,7 @@
 <option value="es-ES">Español</option>
 <option value="de-DE">Deutsch</option>
 </select>         
-<button id="saveChatBtn" type="button" class="btn">Save Chat</button> 
+<button id="saveChatBtn" type="button" style="display: inline-block; width: auto;">Save Chat</button> 
 </section>        
 <div id="chathistory">
 </div>

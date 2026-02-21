@@ -4,9 +4,10 @@
 <title>VivacityGPT Complete - Master Chatbot</title>        
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="css/core.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/layout.css">
+        <?php $version = time(); ?>
+    <link rel="stylesheet" href="css/core.css?v=<?php echo($version); ?>">
+    <link rel="stylesheet" href="css/components.css?v=<?php echo ($version); ?>">
+    <link rel="stylesheet" href="css/layout.css?v=<?php echo ($version); ?>">
 </head>
 <body>
 
@@ -24,30 +25,30 @@
   </a>
 </div>
 
-<main class="main-container">
+<main class="main-container-compact">
 <h1 class="heading">OpenAI Master Chatbot</h1>
         <small>Now based on gpt-5-nano, gpt-4.1-nano and gpt-4o-mini-search-preview models</small>
 <hr>
-      <div class="card mb-2">
+      <div class="card mb-1">
               <input type="password" id="apikey" placeholder="Your API key" readonly><br>
-        <textarea rows=8 type="text" id="prompt" placeholder="Your prompt" autocomplete="off" autofocus></textarea><br>
+        <textarea rows=6 type="text" id="prompt" placeholder="Your prompt" autocomplete="off" autofocus></textarea><br>
         <button class="btn btn-primary" onclick="sendMessage()">Send</button>
         <button class="btn btn-primary" onclick="sendWeb()">Search the Web</button>      
       </div>
       <section id="content" class="grid grid-2 gap-2">
-        <aside id="menu" class="flex flex-column gap-2">
-          <details class="card">
+        <aside id="menu" class="flex flex-column gap-1">
+          <details class="card-compact">
             <summary>&#128195; Document Analyzer</summary>
             <div id="operations">
               <form enctype="multipart/form-data" method="POST">
-                <input class="fixedwidth" type="file" accept=".txt,.pdf,.rtf,.xml,.html,.css,.js,.json,vb,.php" name="file" id="file-input">
+                <input class="fixedwidth" type="file" accept=".txt,.pdf,.rtf,.xml,.html,.css,.js,.json,vb,.php,.py" name="file" id="file-input">
                 <div id="feedback"></div>
                 <button class="btn btn-primary" id="uploadBtn" type="submit">Upload the file</button>
                 <button class="btn btn-primary" type="button" onclick="analyzeFile();">Analyze the file</button>
               </form>
             </div>
           </details>
-            <details class="card">
+            <details class="card-compact">
             <summary>&#128202; Image Analyzer</summary>
             <div id="voperations">
               <form enctype="multipart/form-data" method="POST">
@@ -111,7 +112,7 @@
                   
           </script>
           <hr>
-          <button class="btn btn-primary" id="showChatButton">Show Chatbot Memory</button><br>
+          <button class="btn btn-primary" id="showChatButton">Show Chatbot Memory</button>
           <button class="btn btn-primary" id="savetxt">Export Chat</button>
           <button
             class="btn btn-primary"
@@ -142,7 +143,7 @@
             <option value="17">Contrarian Analyst</option>
             <option value="18">Book Architect</option>       
           </select>
-          <br><input type="text" id="search-input" placeholder="Search in the chats..."><button class="btn btn-primary" id="search-button">Search</button>
+          <input type="text" id="search-input" placeholder="Search in the chats..."><button class="btn btn-primary" id="search-button">Search</button>
 
                 
 <div id="chatModal" class="modal">
@@ -153,11 +154,11 @@
 <div id="chatHistoryContent"></div>
 </div>
 </div>
-        </aside>
-        <div id="chathistory" class="card">
+</aside>
+<div id="chathistory" class="card-compact">
           
-        </div>
-      </section>
+</div>
+</section>
 </main>
 <P><small>Powered by OpenAI API</small></P>        
 <script>
@@ -381,9 +382,9 @@ function showMessage(sender, message, tokens) {
 
   // style correctly according to the sender
   if (sender === "Guest") {
-    messageElement.classList.add("user-message");
+    messageElement.classList.add("user-message-compact");
   } else if (sender === "VivacityGPT") {
-    messageElement.classList.add("chatgpt-message");
+    messageElement.classList.add("chatgpt-message-compact");
           
     // Control panel for buttons is created          
     const commands = document.createElement("div");
@@ -720,9 +721,9 @@ messageElement.appendChild(responseContainer);
 
 // style correctly according to the sender
   if (sender === "Guest") {
-    messageElement.classList.add("user-message");
+    messageElement.classList.add("user-message-compact");
   } else if (sender === "VivacityGPT") {
-    messageElement.classList.add("chatgpt-message");
+    messageElement.classList.add("chatgpt-message-compact");
 
     // Control panel for buttons is created
     const commands = document.createElement("div");

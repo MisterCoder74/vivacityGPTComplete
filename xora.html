@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generatore Video Sora API</title>
+    <title>Xora Video Generator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/core.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/layout.css">
+        <?php $version = time(); ?>
+    <link rel="stylesheet" href="css/core.css?v=<?php echo($version); ?>">
+    <link rel="stylesheet" href="css/components.css?v=<?php echo ($version); ?>">
+    <link rel="stylesheet" href="css/layout.css?v=<?php echo ($version); ?>">
 </head>
 <body>
 <div class="topnav" id="myTopnav">
@@ -25,7 +26,7 @@
 </div>
 
 <main class="main-container">
-  <h1 class="heading">AI Video Generator</h1>
+  <h1 class="heading">Xora AI Video Generator</h1>
 
   <div class="content">
     <div style="color: var(--dark-text); font-size: .9rem; margin-bottom: 24px;">Disclaimer: Sora models moderation often refuses to generate videos from image with visible faces</div>
@@ -57,14 +58,14 @@
 
       <div class="form-group">
         <label for="prompt">Descriptive Prompt *</label>
-        <textarea id="prompt" placeholder="Describe the video you want to create. Ex: 'A wide shot of a child flying a red kite in a grassy park, golden sunset light, the camera slowly panning upward.'" required></textarea>
+        <textarea id="prompt" rows="6" placeholder="Describe the video you want to create. Ex: 'A wide shot of a child flying a red kite in a grassy park, golden sunset light, the camera slowly panning upward.'" required></textarea>
       </div>
 
       <div id="imageSection" class="form-group hidden">
         <label>Reference image (1st frame)</label>
         <div class="image-upload" onclick="document.getElementById('imageInput').click()">
-          <p>Click to upload an image</p>
-          <p style="font-size: 14px; margin-top: 5px;">JPEG, PNG or WebP</p>
+          <p style="font-size: 14px; margin-top: 5px; color: black;">Click to upload an image</p>
+          <p style="font-size: 14px; margin-top: 5px; color: black;">JPEG, PNG or WebP</p>
           <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp">
         </div>
         <div id="imagePreview" class="image-preview hidden"></div>

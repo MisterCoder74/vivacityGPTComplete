@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VivacityGPT Complete - AI Transcript Creator</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/core.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/layout.css">
+        <?php $version = time(); ?>
+    <link rel="stylesheet" href="css/core.css?v=<?php echo($version); ?>">
+    <link rel="stylesheet" href="css/components.css?v=<?php echo ($version); ?>">
+    <link rel="stylesheet" href="css/layout.css?v=<?php echo ($version); ?>">
 </head>
 <body>
 <div class="topnav" id="myTopnav">
@@ -28,53 +29,97 @@
   <h1 class="heading">AI Transcript Creator</h1>
 
   <div class="character-container">
-    <fieldset>
-      <legend>Characters Mapping</legend>
-      <div class="characterInputs">
-        <input type="text" id="character1" placeholder="Character 1 Name">
-        <select id="voiceSelect1">
-          <option value="alloy">Alloy (M)</option>
-          <option value="echo">Echo (M)</option>
-          <option value="onyx">Onyx (M)</option>
-          <option value="ballad">Ballad (M)</option>
-          <option value="ash">Ash (M)</option>
-          <option value="fable">Fable (F)</option>
-          <option value="nova">Nova (F)</option>
-          <option value="shimmer">Shimmer (F)</option>
-          <option value="coral">Coral (F)</option>
-          <option value="sage">Sage (F)</option>
-        </select>
-        <input type="text" id="character2" placeholder="Character 2 Name">
-        <select id="voiceSelect2">
-          <option value="alloy">Alloy (M)</option>
-          <option value="echo">Echo (M)</option>
-          <option value="onyx">Onyx (M)</option>
-          <option value="ballad">Ballad (M)</option>
-          <option value="ash">Ash (M)</option>
-          <option value="fable">Fable (F)</option>
-          <option value="nova">Nova (F)</option>
-          <option value="shimmer">Shimmer (F)</option>
-          <option value="coral">Coral (F)</option>
-          <option value="sage">Sage (F)</option>
-        </select>
-        <input type="text" id="character3" placeholder="Character 3 Name">
-        <select id="voiceSelect3">
-          <option value="alloy">Alloy (M)</option>
-          <option value="echo">Echo (M)</option>
-          <option value="onyx">Onyx (M)</option>
-          <option value="ballad">Ballad (M)</option>
-          <option value="ash">Ash (M)</option>
-          <option value="fable">Fable (F)</option>
-          <option value="nova">Nova (F)</option>
-          <option value="shimmer">Shimmer (F)</option>
-          <option value="coral">Coral (F)</option>
-          <option value="sage">Sage (F)</option>
-        </select>
-      </div>
-    </fieldset>
+  <fieldset>
+    <legend>Characters Mapping</legend>
+    <div class="characterInputs">
+      <!-- Dynamic Inputs will be added here -->
+      <input type="text" id="character1" placeholder="Character 1 Name">
+      <select id="voiceSelect1">
+        <option value="alloy">Alloy (M)</option>
+        <option value="echo">Echo (M)</option>
+        <option value="onyx">Onyx (M)</option>
+        <option value="ballad">Ballad (M)</option> 
+        <option value="ash">Ash (M)</option>               
+        <option value="fable">Fable (F)</option>
+        <option value="nova">Nova (F)</option>
+        <option value="shimmer">Shimmer (F)</option>
+        <option value="coral">Coral (F)</option>
+		<option value="sage">Sage (F)</option>         
+ 
+		<option value="sage">Sage (F)</option>               
+      </select>
+      <input type="text" id="character2" placeholder="Character 2 Name">
+      <select id="voiceSelect2">
+        <option value="alloy">Alloy (M)</option>
+        <option value="echo">Echo (M)</option>
+        <option value="onyx">Onyx (M)</option>
+        <option value="ballad">Ballad (M)</option> 
+        <option value="ash">Ash (M)</option>               
+        <option value="fable">Fable (F)</option>
+        <option value="nova">Nova (F)</option>
+        <option value="shimmer">Shimmer (F)</option>
+        <option value="coral">Coral (F)</option>
+		<option value="sage">Sage (F)</option>             
+      </select>
+      <input type="text" id="character3" placeholder="Character 3 Name">
+      <select id="voiceSelect3">
+        <option value="alloy">Alloy (M)</option>
+        <option value="echo">Echo (M)</option>
+        <option value="onyx">Onyx (M)</option>
+        <option value="ballad">Ballad (M)</option> 
+        <option value="ash">Ash (M)</option>               
+        <option value="fable">Fable (F)</option>
+        <option value="nova">Nova (F)</option>
+        <option value="shimmer">Shimmer (F)</option>
+        <option value="coral">Coral (F)</option>
+		<option value="sage">Sage (F)</option>              
+      </select>
+    </div>
+    <div class="characterInputs">
+      <input type="text" id="character4" placeholder="Character 4 Name">
+      <select id="voiceSelect4">
+        <option value="alloy">Alloy (M)</option>
+        <option value="echo">Echo (M)</option>
+        <option value="onyx">Onyx (M)</option>
+        <option value="ballad">Ballad (M)</option> 
+        <option value="ash">Ash (M)</option>               
+        <option value="fable">Fable (F)</option>
+        <option value="nova">Nova (F)</option>
+        <option value="shimmer">Shimmer (F)</option>
+        <option value="coral">Coral (F)</option>
+		<option value="sage">Sage (F)</option>             
+      </select>
+      <input type="text" id="character5" placeholder="Character 5 Name">
+      <select id="voiceSelect5">
+        <option value="alloy">Alloy (M)</option>
+        <option value="echo">Echo (M)</option>
+        <option value="onyx">Onyx (M)</option>
+        <option value="ballad">Ballad (M)</option> 
+        <option value="ash">Ash (M)</option>               
+        <option value="fable">Fable (F)</option>
+        <option value="nova">Nova (F)</option>
+        <option value="shimmer">Shimmer (F)</option>
+        <option value="coral">Coral (F)</option>
+		<option value="sage">Sage (F)</option>              
+      </select>
+      <input type="text" id="character6" placeholder="Character 6 Name">
+      <select id="voiceSelect6">
+        <option value="alloy">Alloy (M)</option>
+        <option value="echo">Echo (M)</option>
+        <option value="onyx">Onyx (M)</option>
+        <option value="ballad">Ballad (M)</option> 
+        <option value="ash">Ash (M)</option>               
+        <option value="fable">Fable (F)</option>
+        <option value="nova">Nova (F)</option>
+        <option value="shimmer">Shimmer (F)</option>
+        <option value="coral">Coral (F)</option>
+		<option value="sage">Sage (F)</option>              
+      </select>
+    </div>
+  </fieldset>
   </div>
 
-  <textarea id="scriptInput" placeholder="Paste your movie script here... actors names and emotions/instructions must be enclosed in [], i.e.:
+  <textarea id="scriptInput" rows="14" placeholder="Paste your movie script here... actors names and emotions/instructions must be enclosed in [], i.e.:
 [Mark]: Hello June! :[happy and friendly]
 [June]: Hello Mark, how are you? :[uneasy and sarcastic]"></textarea>
 
@@ -133,7 +178,8 @@ async function convertToAudio(script) {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              model: "gpt-4o-mini-tts",
+              //model: "gpt-4o-mini-tts",
+                                  model: "tts-1",
               input: dialogue,
               voice: selectedVoice,
               instructions: instruction,

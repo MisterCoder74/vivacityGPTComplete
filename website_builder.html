@@ -4,9 +4,10 @@
 <title>VivacityGPT Complete - AI Website Builder</title>        
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-<link rel="stylesheet" href="css/core.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/layout.css">
+        <?php $version = time(); ?>
+    <link rel="stylesheet" href="css/core.css?v=<?php echo($version); ?>">
+    <link rel="stylesheet" href="css/components.css?v=<?php echo ($version); ?>">
+    <link rel="stylesheet" href="css/layout.css?v=<?php echo ($version); ?>">
 </head>
 <body>
 
@@ -33,7 +34,7 @@
       <textarea rows=6 type="text" id="prompt" placeholder="Describe the kind of landing page you want to generate" autocomplete="off" autofocus></textarea><br>
     </div>
             
-    <div class="style-selection"><h3>Page Style:</h3>
+    <div class="style-selector"><h3>Page Style:</h3>
       <label>
         <input type="radio" name="style" value="professional"> <b>Professional</b>
       </label>
@@ -221,7 +222,7 @@ const flexedpanel = document.createElement("div");
         
 // Crea un iframe per il codice generato dalla chatbot
 const iframe = document.createElement("iframe");
-iframe.style.width = "58%";
+iframe.style.width = "62%";
 iframe.style.height = "800px"; // Altezza dell'iframe
 iframe.style.border = "1px solid black"; // Stile del bordo per l'iframe
 iframe.style.boxShadow = "0px 4px 10px black"; 
@@ -253,13 +254,14 @@ iframe.src = url;
 
 // Mostra il codice relativo alla creazione ottenuta
 const resultcode = document.createElement("div");
-resultcode.style.width = "40%"; 
+resultcode.style.width = "36%"; 
 resultcode.style.height = "800px";         
 resultcode.style.overflowY = "auto";        
 resultcode.style.marginLeft = "10px";        
 resultcode.style.padding = "4px 6px";
 resultcode.style.border = "1px solid black";        
-resultcode.style.boxShadow = "0px 4px 10px black";         
+resultcode.style.boxShadow = "0px 4px 10px black";
+resultcode.style.fontSize = ".9rem";        
 resultcode.innerText = `${message}`;
 flexedpanel.appendChild(resultcode);
 messageElement.appendChild(flexedpanel);        
